@@ -1,0 +1,60 @@
+{
+    "players": {
+        "1": {
+            "Last name": "Dupont",
+            "Name": "Nicolas",
+            "Birthday": "13/07/72",
+            "Sex": "M",
+            "Ranking": 0
+        },
+        "2": {
+            "Last name": "Artix",
+            "Name": "Emma",
+            "Birthday": "14/01/73",
+            "Sex": "F",
+            "Ranking": 0
+        },
+        "3": {
+            "Last name": "Petit",
+            "Name": "Ang\u00e9lique",
+            "Birthday": "15/02/74",
+            "Sex": "F",
+            "Ranking": 0
+        },
+        "4": {
+            "Last name": "Roux",
+            "Name": "Michael",
+            "Birthday": "16/03/75",
+            "Sex": "M",
+            "Ranking": 0
+        },
+        "5": {
+            "Last name": "Thiers",
+            "Name": "Pierre",
+            "Birthday": "17/04/76",
+            "Sex": "M",
+            "Ranking": 0
+        },
+        "6": {
+            "Last name": "Ponthier",
+            "Name": "Jade",
+            "Birthday": "18/05/77",
+            "Sex": "F",
+            "Ranking": 0
+        },
+        "7": {
+            "Last name": "Rey",
+            "Name": "L\u00e9o",
+            "Birthday": "19/06/78",
+            "Sex": "M",
+            "Ranking": 0
+        },
+        "8": {
+            "Last name": "Fournier",
+            "Name": "Manon",
+            "Birthday": "20/07/79",
+            "Sex": "F",
+            "Ranking": 0
+        }
+    }
+}
