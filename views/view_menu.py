@@ -73,7 +73,7 @@ class ShowMenu:
 
             elif choice == 3:
                 # Show current tournament
-                pass
+                controllers.controller_tournament.ControllerAddTournament.show_tournament()
 
             elif choice == 4:
                 # Check current tournament
