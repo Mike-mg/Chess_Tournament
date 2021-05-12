@@ -1,0 +1,60 @@
+{
+    "players": {
+        "1": {
+            "Last name": "Gay",
+            "Name": "Michael",
+            "Birthday": "13/07/1979",
+            "Sex": "M",
+            "Ranking": 10
+        },
+        "2": {
+            "Last name": "Hilton",
+            "Name": "Angelique",
+            "Birthday": "03/03/1979",
+            "Sex": "F",
+            "Ranking": 11
+        },
+        "3": {
+            "Last name": "Bender",
+            "Name": "Amandine",
+            "Birthday": "26/02/2006",
+            "Sex": "F",
+            "Ranking": 8
+        },
+        "4": {
+            "Last name": "Hol",
+            "Name": "Anais",
+            "Birthday": "24/04/1998",
+            "Sex": "F",
+            "Ranking": 6
+        },
+        "5": {
+            "Last name": "Aston",
+            "Name": "Ilya",
+            "Birthday": "12/02/1998",
+            "Sex": "M",
+            "Ranking": 2
+        },
+        "6": {
+            "Last name": "Berton",
+            "Name": "Isabelle",
+            "Birthday": "22/04/1978",
+            "Sex": "F",
+            "Ranking": 6
+        },
+        "7": {
+            "Last name": "Ingram",
+            "Name": "Andrew",
+            "Birthday": "16/07/1986",
+            "Sex": "M",
+            "Ranking": 19
+        },
+        "8": {
+            "Last name": "Hilton",
+            "Name": "Joe",
+            "Birthday": "17/05/0988",
+            "Sex": "M",
+            "Ranking": 23
+        }
+    }
+}
