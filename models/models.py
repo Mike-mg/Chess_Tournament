@@ -15,7 +15,7 @@ class Player:
 
     """Docstring"""
 
-    def __init__(self, last_name, name, birthday, sex, ranking, nb_rounds):
+    def __init__(self, last_name, name, birthday, sex, ranking):
 
         player = {}
 
@@ -24,7 +24,6 @@ class Player:
         self.birthday = birthday
         self.sex = sex.capitalize()
         self.ranking = ranking
-        self.nb_rounds = nb_rounds
 
         player['Last name'] = self.last_name
         player['Name'] = self.name
@@ -39,7 +38,7 @@ class Tournament:
 
     """Docstring"""
 
-    def __init__(self, name, location, start_date, end_date, players, nb_rounds):
+    def __init__(self, name, location, start_date, end_date, players, nb_rounds,tours):
 
         tournament = {}
 
@@ -49,6 +48,7 @@ class Tournament:
         self.end_date = end_date
         self.nb_rounds = nb_rounds
         self.players = players
+        self.tours = tours
 
         tournament['Name'] = self.name
         tournament['Location'] = self.location
@@ -56,5 +56,6 @@ class Tournament:
         tournament['End date'] = self.end_date
         tournament['Players'] = self.players
         tournament['Nb_rounds'] = self.nb_rounds
+        tournament['Tours'] = self.tours
 
         DB_ALL_TOURNAMENTS.insert(tournament)
