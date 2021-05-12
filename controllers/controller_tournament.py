@@ -28,4 +28,9 @@ class ControllerAddTournament:
                                  tournament["Start date"],
                                  tournament["End date"],
                                  tournament['Players'],
-                                 tournament["Nb_rounds"])
+                                 tournament["Nb_rounds"],
+                                 tournament["Tours"])
+
+    @staticmethod
+    def show_tournament():
+        views.view_tournament.ViewTournament.show_tournament()
