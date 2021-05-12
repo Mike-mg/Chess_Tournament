@@ -1,16 +1,20 @@
-#! usr/bin/env python3
+#! /usr/bin/env python3
 # coding:utf-8
 
-import view
-import controller
-
-"""Docstring"""
+"""
+Module view
+"""
+import views.view_menu
+import views.view_tournament
 
 
 def main():
-    view.ShowMenu.menu()
-    controller.Menu.choice_menu()
+    """
+    Enter point
+    """
 
+    views.view_menu.ShowMenu.menu()
+    views.view_menu.ShowMenu.choice_menu()
 
 if __name__ == "__main__":
     main()
