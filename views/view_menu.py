@@ -25,7 +25,7 @@ class ShowMenu:
         menu_list = ['Add a player',
                      'List of all players',
                      'Create a tournament',
-                     'Show all tournaments',
+                     'Show tournament',
                      'Check current tournaments',
                      'Leave -*- CHESS TOURNAMENT -*-',
                      'Return menu']
