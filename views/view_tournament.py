@@ -141,7 +141,7 @@ class ViewTournament:
         return round1
 
     @staticmethod
-    def show_tournament():
+    def show_all_tournament():
 
         print(f"\n{'=' * 119}\n"
               f"{'|'}{'* List of all tournaments *'.center(117)}{'|'}\n"
@@ -149,14 +149,13 @@ class ViewTournament:
 
         for tournament in models.models.DB_ALL_TOURNAMENTS:
             print(f"{'=' * 35}\n"
-                  f"N°' : {str(tournament.doc_id)}\n"
+                  f"N° : {str(tournament.doc_id)}\n"
                   f"Name : {tournament['Name']}\n"
                   f"Location : {tournament['Location']}\n"
                   f"Start date : {tournament['Start date']}\n"
                   f"End date : {tournament['End date']}\n"
                   f"Players : {tournament['Players']}\n"
                   f"Nb rounds : {tournament['Nb_rounds']}\n")
-
 
             for rounds in tournament['Tours']:
 
@@ -168,60 +167,38 @@ class ViewTournament:
 
             print(f"{'-' * 35}\n\n")
 
-                  # f"Tours : {tournament['Tours']}\n"
+    @staticmethod
+    def point_round_1():
 
-        # with open("Bdd/db_tournaments.json", "r") as f:
-        #     content = json.load(f)
-        #
-        #     print(f"\n\n{'=' * 119}\n"
-        #           f"{'|'}{'* Show Current Tournament *'.center(117)}{'|'}\n"
-        #           f"{'-' * 119}")
-        #
-        #     tournament_list = [
-        #         'Show all tournaments',
-        #         'Show per tournament',
-        #     ]
-        #
-        #     for index, m_menu in enumerate(tournament_list):
-        #         print(f"{':: '}{index} > {m_menu}")
-        #
-        #     choice_tournament = input("\nChoice : ")
-        #     choice_tournament = int(choice_tournament)
-        #     print(f"{'-' * 10}")
+        views.view_menu.ShowMenu.menu()
 
-            # if choice_tournament == 0:
-            #     for tournament_keys, tournament_values in content['tournaments'].items():
-            #         print(f"{tournament_keys} : {tournament_values}")
-            #
-            #         # if tournament_keys == 'Tours':
-            #         #     for value in content['tournaments']['Tours']:
-            #         #         print(f"\nRound : {value}\n"
-            #         #               f"{'-' * 9}")
-            #         #
-            #         #     for value in tournament_values:
-            #         #         print(f"Player '{value[0]['Player']}' against Player '{value[1]['Player']}'")
-            #
-            # elif choice_tournament == 1:
-            #
-            #     choice_tournament_user = input(f"\nShow tournament N° : ")
-            #     print(f"{'-' * 22}\n")
-            #
-            #     for tournament_keys, tournament_values in content['tournaments'][choice_tournament_user].items():
-            #
-            #         if tournament_keys != 'Tours':
-            #             print(f"{tournament_keys} : {tournament_values}")
-            #
-            #         if tournament_keys == 'Tours':
-            #             for value in content['tournaments'][choice_tournament_user]['Tours']:
-            #                 print(f"\nRound : {value}\n"
-            #                       f"{'-' * 9}")
-            #
-            #             for value in tournament_values[choice_tournament_user]:
-            #                 print(f"Player '{value[0]['Player']}' against Player '{value[1]['Player']}'")
-            #
-            # elif choice_tournament == 2:
-            #     # Create a tournament
-            #     pass
+        print(f"\n\n{'=' * 119}\n"
+              f"{'|'}{'* Modified Current Tournament *'.center(117)}{'|'}\n"
+              f"{'-' * 119}")
+
+        tournament_list = [
+            'Show all tournaments',
+            'Show per tournament',
+        ]
+
+        for index, m_menu in enumerate(tournament_list):
+            print(f"{':: '}{index} > {m_menu}")
+
+        choice_tournament = input("\nTournament modified : ")
+
+        try:
+            choice_tournament = int(choice_tournament)
+
+        except ValueError:
+            print(f"\n{':: ERROR > Enter a valid format, the rank must be a positive number'}\n")
+
+        if choice_tournament == 0:
+            ViewTournament.show_all_tournament()
+
+
+        elif choice_tournament == 1:
+            for tournament in models.models.DB_ALL_TOURNAMENTS:
+                print(tournament)
 
 
 if __name__ == "__main__":
