@@ -26,7 +26,7 @@ class ShowMenu:
                      'List of all players',
                      'Create a tournament',
                      'Show tournament',
-                     'Check current tournaments',
+                     'Modified current tournaments',
                      'Leave -*- CHESS TOURNAMENT -*-',
                      'Return menu']
 
@@ -76,8 +76,8 @@ class ShowMenu:
                 controllers.controller_tournament.ControllerAddTournament.show_tournament()
 
             elif choice == 4:
-                # Check current tournament
-                pass
+                # Modified current tournament
+                controllers.controller_tournament.ControllerAddTournament.modified_tournament()
 
             elif choice == 6:
                 # show menu
