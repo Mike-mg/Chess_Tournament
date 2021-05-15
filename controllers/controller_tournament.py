@@ -33,4 +33,8 @@ class ControllerAddTournament:
 
     @staticmethod
     def show_tournament():
-        views.view_tournament.ViewTournament.show_tournament()
+        views.view_tournament.ViewTournament.show_all_tournament()
+
+    @staticmethod
+    def modified_tournament():
+        views.view_tournament.ViewTournament.point_round_1()
