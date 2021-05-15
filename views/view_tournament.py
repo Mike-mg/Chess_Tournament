@@ -6,7 +6,6 @@ import views
 """
 
 import datetime
-import json
 
 import views.view_menu
 import models.models
@@ -133,10 +132,10 @@ class ViewTournament:
     def tours(players):
 
         round1 = {1: [
-            [{"Player": players[0]}, {"Player": players[4]}],
-            [{"Player": players[1]}, {"Player": players[5]}],
-            [{"Player": players[2]}, {"Player": players[6]}],
-            [{"Player": players[3]}, {"Player": players[7]}]
+            [{"Player": players[0], "Points": 0}, {"Player": players[4], "Points": 0}],
+            [{"Player": players[1], "Points": 0}, {"Player": players[5], "Points": 0}],
+            [{"Player": players[2], "Points": 0}, {"Player": players[6], "Points": 0}],
+            [{"Player": players[3], "Points": 0}, {"Player": players[7], "Points": 0}]
         ]}
 
         return round1
@@ -144,58 +143,85 @@ class ViewTournament:
     @staticmethod
     def show_tournament():
 
-        with open("Bdd/db_tournaments.json", "r") as f:
-            content = json.load(f)
+        print(f"\n{'=' * 119}\n"
+              f"{'|'}{'* List of all tournaments *'.center(117)}{'|'}\n"
+              f"{'-' * 119}\n\n")
 
-            print(f"\n\n{'=' * 119}\n"
-                  f"{'|'}{'* Show Current Tournament *'.center(117)}{'|'}\n"
-                  f"{'-' * 119}")
+        for tournament in models.models.DB_ALL_TOURNAMENTS:
+            print(f"{'=' * 35}\n"
+                  f"N°' : {str(tournament.doc_id)}\n"
+                  f"Name : {tournament['Name']}\n"
+                  f"Location : {tournament['Location']}\n"
+                  f"Start date : {tournament['Start date']}\n"
+                  f"End date : {tournament['End date']}\n"
+                  f"Players : {tournament['Players']}\n"
+                  f"Nb rounds : {tournament['Nb_rounds']}\n")
 
-            tournament_list = [
-                'Show all tournaments',
-                'Show per tournament',
-            ]
 
-            for index, m_menu in enumerate(tournament_list):
-                print(f"{':: '}{index} > {m_menu}")
+            for rounds in tournament['Tours']:
 
-            choice_tournament = input("\nChoice : ")
-            choice_tournament = int(choice_tournament)
-            print(f"{'-' * 10}")
+                print(f"Round : {rounds}")
 
-            if choice_tournament == 0:
-                for tournament_keys, tournament_values in content['tournaments'].items():
-                    print(f"{tournament_keys} : {tournament_values}")
+                for round_key, round_value in tournament['Tours'][rounds]:
+                    print(f"Player {round_key['Player']} (Pts = {round_key['Points']}) Vs "
+                          f"{round_value['Player']} (Pts = {round_value['Points']})")
 
-                    # if tournament_keys == 'Tours':
-                    #     for value in content['tournaments']['Tours']:
-                    #         print(f"\nRound : {value}\n"
-                    #               f"{'-' * 9}")
-                    #
-                    #     for value in tournament_values:
-                    #         print(f"Player '{value[0]['Player']}' against Player '{value[1]['Player']}'")
+            print(f"{'-' * 35}\n\n")
 
-            elif choice_tournament == 1:
+                  # f"Tours : {tournament['Tours']}\n"
 
-                choice_tournament_user = input(f"\nShow tournament N° : ")
-                print(f"{'-' * 22}\n")
+        # with open("Bdd/db_tournaments.json", "r") as f:
+        #     content = json.load(f)
+        #
+        #     print(f"\n\n{'=' * 119}\n"
+        #           f"{'|'}{'* Show Current Tournament *'.center(117)}{'|'}\n"
+        #           f"{'-' * 119}")
+        #
+        #     tournament_list = [
+        #         'Show all tournaments',
+        #         'Show per tournament',
+        #     ]
+        #
+        #     for index, m_menu in enumerate(tournament_list):
+        #         print(f"{':: '}{index} > {m_menu}")
+        #
+        #     choice_tournament = input("\nChoice : ")
+        #     choice_tournament = int(choice_tournament)
+        #     print(f"{'-' * 10}")
 
-                for tournament_keys, tournament_values in content['tournaments'][choice_tournament_user].items():
-
-                    if tournament_keys != 'Tours':
-                        print(f"{tournament_keys} : {tournament_values}")
-
-                    if tournament_keys == 'Tours':
-                        for value in content['tournaments'][choice_tournament_user]['Tours']:
-                            print(f"\nRound : {value}\n"
-                                  f"{'-' * 9}")
-
-                        for value in tournament_values[choice_tournament_user]:
-                            print(f"Player '{value[0]['Player']}' against Player '{value[1]['Player']}'")
-
-            elif choice_tournament == 2:
-                # Create a tournament
-                pass
+            # if choice_tournament == 0:
+            #     for tournament_keys, tournament_values in content['tournaments'].items():
+            #         print(f"{tournament_keys} : {tournament_values}")
+            #
+            #         # if tournament_keys == 'Tours':
+            #         #     for value in content['tournaments']['Tours']:
+            #         #         print(f"\nRound : {value}\n"
+            #         #               f"{'-' * 9}")
+            #         #
+            #         #     for value in tournament_values:
+            #         #         print(f"Player '{value[0]['Player']}' against Player '{value[1]['Player']}'")
+            #
+            # elif choice_tournament == 1:
+            #
+            #     choice_tournament_user = input(f"\nShow tournament N° : ")
+            #     print(f"{'-' * 22}\n")
+            #
+            #     for tournament_keys, tournament_values in content['tournaments'][choice_tournament_user].items():
+            #
+            #         if tournament_keys != 'Tours':
+            #             print(f"{tournament_keys} : {tournament_values}")
+            #
+            #         if tournament_keys == 'Tours':
+            #             for value in content['tournaments'][choice_tournament_user]['Tours']:
+            #                 print(f"\nRound : {value}\n"
+            #                       f"{'-' * 9}")
+            #
+            #             for value in tournament_values[choice_tournament_user]:
+            #                 print(f"Player '{value[0]['Player']}' against Player '{value[1]['Player']}'")
+            #
+            # elif choice_tournament == 2:
+            #     # Create a tournament
+            #     pass
 
 
 if __name__ == "__main__":
