@@ -3,8 +3,8 @@
         "1": {
             "Name": "Chess 1",
             "Location": "Pamiers",
-            "Start date": "12/05/2021",
-            "End date": "15/05/2021",
+            "Start date": "01/01/2021",
+            "End date": "01/01/2021",
             "Players": [
                 1,
                 2,
@@ -21,7 +21,7 @@
                     [
                         {
                             "Player": 1,
-                            "Points": 10
+                            "Points": 0
                         },
                         {
                             "Player": 5,
@@ -59,68 +59,9 @@
                         }
                     ]
                 ]
-            }
-        },
-        "2": {
-            "Name": "Chess 2",
-            "Location": "Saverdun",
-            "Start date": "16/05/2021",
-            "End date": "16/05/2021",
-            "Players": [
-                8,
-                7,
-                6,
-                5,
-                4,
-                3,
-                2,
-                1
-            ],
-            "Nb_rounds": 4,
-            "Tours": {
-                "1": [
-                    [
-                        {
-                            "Player": 8,
-                            "Points": 0
-                        },
-                        {
-                            "Player": 4,
-                            "Points": 0
-                        }
-                    ],
-                    [
-                        {
-                            "Player": 7,
-                            "Points": 0
-                        },
-                        {
-                            "Player": 3,
-                            "Points": 0
-                        }
-                    ],
-                    [
-                        {
-                            "Player": 6,
-                            "Points": 0
-                        },
-                        {
-                            "Player": 2,
-                            "Points": 0
-                        }
-                    ],
-                    [
-                        {
-                            "Player": 5,
-                            "Points": 0
-                        },
-                        {
-                            "Player": 1,
-                            "Points": 0
-                        }
-                    ]
-                ]
-            }
+            },
+            "Points": 1,
+            "Player": 10
         }
     }
 }
