@@ -5,10 +5,10 @@ from tinydb import TinyDB
 
 
 DB_PLAYERS = TinyDB('Bdd/db_players.json', indent=4)
-DB_ALL_PLAYERS = DB_PLAYERS.table('players')
+PLAYERS = DB_PLAYERS.table("players")
 
 DB_TOURNAMENTS = TinyDB('Bdd/db_tournaments.json', indent=4)
-DB_ALL_TOURNAMENTS = DB_TOURNAMENTS.table('tournaments')
+TOURNAMENTS = DB_TOURNAMENTS.table("tournaments")
 
 
 class Player:
@@ -25,20 +25,20 @@ class Player:
         self.sex = sex.capitalize()
         self.ranking = ranking
 
-        player['Last name'] = self.last_name
+        player['Last_name'] = self.last_name
         player['Name'] = self.name
         player['Birthday'] = self.birthday
         player['Sex'] = self.sex
         player['Ranking'] = self.ranking
 
-        DB_ALL_PLAYERS.insert(player)
+        PLAYERS.insert(player)
 
 
 class Tournament:
 
     """Docstring"""
 
-    def __init__(self, name, location, start_date, end_date, players, nb_rounds,tours):
+    def __init__(self, name, location, start_date, end_date, players, nb_rounds, tours):
 
         tournament = {}
 
@@ -58,4 +58,4 @@ class Tournament:
         tournament['Nb_rounds'] = self.nb_rounds
         tournament['Tours'] = self.tours
 
-        DB_ALL_TOURNAMENTS.insert(tournament)
+        TOURNAMENTS.insert(tournament)
