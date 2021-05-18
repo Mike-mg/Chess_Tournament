@@ -27,8 +27,11 @@ class ShowMenu:
                      'Create a tournament',
                      'Show tournament',
                      'Modified current tournaments',
-                     'Leave -*- CHESS TOURNAMENT -*-',
-                     'Return menu']
+                     'Remove a player',
+                     'Return menu',
+                     'Modified ranking player',
+                     'Leave -*- CHESS TOURNAMENT -*-'
+                     ]
 
         print(f"\n\n{'=' * 119}\n"
               f"{'|'}{'-*- CHESS TOURNAMENT -*-'.center(117)}{'|'}\n"
@@ -49,7 +52,7 @@ class ShowMenu:
         while 1:
 
             choice = input(f"\n{'=' * 22}\n"
-                           f"{'Help : 6 > Return menu'}"
+                           f"Help : 6 > Return menu"
                            f"\n{'-' * 22}"
                            f"\n{':: Select a option > '}")
 
@@ -57,7 +60,7 @@ class ShowMenu:
                 choice = int(choice)
 
             except ValueError:
-                print(f"\n{':: ERROR > Enter a valid option'}\n")
+                print(f"\n{':: ERROR > Enter a valid option [0-6]'}\n")
                 continue
 
             if choice == 0:
@@ -66,7 +69,8 @@ class ShowMenu:
 
             elif choice == 1:
                 # Show all player
-                views.view_players.ViewPlayer.show_players()
+                views.view_players.ViewPlayer.show()
+
             elif choice == 2:
                 # Create a tournament
                 controllers.controller_tournament.ControllerAddTournament.controller_add_tournament()
@@ -79,11 +83,18 @@ class ShowMenu:
                 # Modified current tournament
                 controllers.controller_tournament.ControllerAddTournament.modified_tournament()
 
+            elif choice == 5:
+                controllers.controller_player.ControllerAddPlayer.controller_player_remove()
+
             elif choice == 6:
                 # show menu
                 ShowMenu.menu()
 
-            elif choice in [7, 8, 9]:
+            elif choice == 7:
+                controllers.controller_player.ControllerAddPlayer.controller_player_ranking()
+
+
+            elif choice in [8, 9]:
                 print(f"\n:: ERROR > Enter a valid option")
 
             else:
