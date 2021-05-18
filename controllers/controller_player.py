@@ -22,9 +22,18 @@ class ControllerAddPlayer:
         Add player control
         """
 
-        player = views.view_players.ViewPlayer.add_player()
+        player = views.view_players.ViewPlayer.add()
         models.models.Player(player["last_name"],
                              player["name"],
                              player["birth_day"],
                              player["sex"],
                              player["ranking"])
+
+    @staticmethod
+    def controller_player_remove():
+        views.view_players.ViewPlayer.remove()
+
+    @staticmethod
+    def controller_player_ranking():
+        views.view_players.ViewPlayer.ranking()
+
