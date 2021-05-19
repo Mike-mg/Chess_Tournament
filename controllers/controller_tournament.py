@@ -7,7 +7,7 @@ Modules Models
 """
 
 import views.view_tournament
-import models.models
+import models.models_tournaments
 
 
 class ControllerAddTournament:
@@ -23,7 +23,7 @@ class ControllerAddTournament:
         """
 
         tournament = views.view_tournament.ViewTournament.add_tournament()
-        models.models.Tournament(tournament["Name"],
+        models.models_tournaments.Tournament(tournament["Name"],
                                  tournament["Location"],
                                  tournament["Start date"],
                                  tournament["End date"],
