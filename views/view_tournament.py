@@ -7,8 +7,10 @@ import views
 
 import datetime
 
+import views.view_players
 import views.view_menu
-import models.models
+import models.models_players
+import models.models_tournaments
 
 
 class ViewTournament:
@@ -22,12 +24,10 @@ class ViewTournament:
 
         while 1:
 
-            print(f"\n\n{'=' * 119}\n"
-                  f"{'|'}{'* Add A Tournament *'.center(117)}{'|'}\n"
-                  f"{'-' * 119}")
+            views.view_menu.ShowMenu.sub_menu('* Add A Tournament *')
 
-            name = ViewTournament.name_tournament()
-            location = ViewTournament.location_tournament()
+            name = views.view_menu.ShowMenu.get_string_value("Name Tournament")
+            location = views.view_menu.ShowMenu.get_string_value("Location")
             date_start_end = ViewTournament.date_tournament()
             players = ViewTournament.add_player_tournament()
             nb_rounds = ViewTournament.nb_rounds()
@@ -46,18 +46,12 @@ class ViewTournament:
     @staticmethod
     def add_player_tournament():
 
+        views.view_players.ViewPlayer.show()
+
         players = []
 
         print(f"\n{'Select players by their index to add them to the tournament'}\n"
               f"{'-' * 59}")
-
-        for player in models.models.DB_ALL_PLAYERS:
-            print(f"[ {player.doc_id} ] "
-                  f"{player['Last name']}, "
-                  f"{player['Name']}, "
-                  f"{player['Birthday']}, "
-                  f"{player['Sex']}, "
-                  f"{player['Ranking']}\n")
 
         for i in range(8):
 
@@ -71,18 +65,6 @@ class ViewTournament:
             players.append(player)
 
         return players
-
-    @staticmethod
-    def name_tournament():
-
-        name = input(f"- Name tournament : ")
-        return name
-
-    @staticmethod
-    def location_tournament():
-
-        location = input(f"- Location : ")
-        return location
 
     @staticmethod
     def date_tournament():
@@ -143,13 +125,12 @@ class ViewTournament:
     @staticmethod
     def show_all_tournament():
 
-        print(f"\n{'=' * 119}\n"
-              f"{'|'}{'* List of all tournaments *'.center(117)}{'|'}\n"
-              f"{'-' * 119}\n\n")
+        views.view_menu.ShowMenu.menu()
+        views.view_menu.ShowMenu.sub_menu('* List of all tournaments *')
 
-        for tournament in models.models.DB_ALL_TOURNAMENTS:
-            print(f"{'=' * 35}\n"
-                  f"N° : {str(tournament.doc_id)}\n"
+        for tournament in models.models_tournaments.TOURNAMENTS:
+            print(f"\n{'=' * 35}\n"
+                  f"ID : {str(tournament.doc_id)}\n"
                   f"Name : {tournament['Name']}\n"
                   f"Location : {tournament['Location']}\n"
                   f"Start date : {tournament['Start date']}\n"
@@ -165,41 +146,20 @@ class ViewTournament:
                     print(f"Player {round_key['Player']} (Pts = {round_key['Points']}) Vs "
                           f"{round_value['Player']} (Pts = {round_value['Points']})")
 
-            print(f"{'-' * 35}\n\n")
+            print(f"{'-' * 35}")
 
     @staticmethod
     def point_round_1():
 
         views.view_menu.ShowMenu.menu()
+        views.view_menu.ShowMenu.sub_menu('* Modified Current Tournament *')
+        ViewTournament.show_all_tournament()
 
-        print(f"\n\n{'=' * 119}\n"
-              f"{'|'}{'* Modified Current Tournament *'.center(117)}{'|'}\n"
-              f"{'-' * 119}")
+        choice_tournament = input('ID tournament : ')
+        choice_tournament = int(choice_tournament)
 
-        tournament_list = [
-            'Show all tournaments',
-            'Show per tournament',
-        ]
-
-        for index, m_menu in enumerate(tournament_list):
-            print(f"{':: '}{index} > {m_menu}")
-
-        choice_tournament = input("\nTournament modified : ")
-
-        try:
-            choice_tournament = int(choice_tournament)
-
-        except ValueError:
-            print(f"\n{':: ERROR > Enter a valid format, the rank must be a positive number'}\n")
-
-        if choice_tournament == 0:
-            ViewTournament.show_all_tournament()
-
-
-        elif choice_tournament == 1:
-            for tournament in models.models.DB_ALL_TOURNAMENTS:
-                print(tournament)
-
+        tournament = models.models_tournaments.TOURNAMENTS.get(doc_id=choice_tournament)
+        print(type(tournament))
 
 if __name__ == "__main__":
     pass
