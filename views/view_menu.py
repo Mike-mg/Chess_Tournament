@@ -8,9 +8,11 @@ import controllers.controller_menu
 
 
 class ShowMenu:
+    '''
+    Docstrings
+    '''
 
-    @staticmethod
-    def menu():
+    def __init__(self):
 
         if sys.platform.startswith('linux'):
             os.system('clear')
@@ -30,16 +32,21 @@ class ShowMenu:
                      'Leave -*- CHESS TOURNAMENT -*-'
                      ]
 
-        ShowMenu.sub_menu('*** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- ***')
-        ShowMenu.sub_menu('* MENU *')
+        SubMenu('/^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\')
+        SubMenu('* MENU *')
 
         for index, m_menu in enumerate(menu_list):
             print(f"{':: '}{index} > {m_menu}")
 
         print(f"{'-' * 119}")
 
-    @staticmethod
-    def choice_menu():
+
+class ChoiceMenu():
+    '''
+    Docstrings
+    '''
+
+    def __init__(self):
 
         while 1:
 
@@ -57,12 +64,14 @@ class ShowMenu:
 
             controllers.controller_menu.ChoiceMenu.choice_user_menu(choice)
 
-    @staticmethod
-    def sub_menu(title):
+
+class SubMenu:
+    '''
+    Docstrings
+    '''
+
+    def __init__(self,title):
+
         print(f"\n\n\n{'=' * 119}\n"
               f"{title.center(119)}\n"
               f"{str('-' * len(title)).center(119)}\n\n")
-
-    @staticmethod
-    def get_string_value(get_string):
-        return input(f"- {get_string}: ")
