@@ -4,24 +4,30 @@
 """
 Modules views
 """
-import json
-from tinydb import Query
 import datetime
 
-import views.view_menu
 import models.models_players
+import views.view_menu
 
 
-class ViewPlayer:
+def format_string(get_string):
+    return input(f"- {get_string} : ")
 
-    all_players = models.models_players.DeserializePlayer.players(models.models_players.PLAYERS.all())
 
-    @staticmethod
-    def show():
+class ViewShowPlayer:
+    """
+    View show all player
+    """
 
-        views.view_menu.ShowMenu.menu()
+    def __init__(self, table_players):
 
-        views.view_menu.ShowMenu.sub_menu('* List of all players *')
+        self.table_players = table_players
+
+    def show_players(self):
+
+        views.view_menu.ShowMenu()
+
+        views.view_menu.SubMenu('* List of all players *')
 
         print(f"{'ID'.center(10)} | "
               f"{'Last name'.center(25)} | "
@@ -31,8 +37,8 @@ class ViewPlayer:
               f"{'Ranking'.center(10)}"
               f"\n{'°' * 119}")
 
-        for key, player in enumerate(ViewPlayer.all_players):
-            print(f"{str(key).center(10)} | "
+        for player in self.table_players:
+            print(f"{str(player.doc_id).center(10)} | "
                   f"{player['Last_name'].center(25)} | "
                   f"{player['Name'].center(25)} | "
                   f"{player['Birthday'].center(20)} | "
@@ -40,30 +46,35 @@ class ViewPlayer:
                   f"{str(player['Ranking']).center(10)}"
                   f"\n{'-' * 119}")
 
-    @staticmethod
-    def add():
 
-        views.view_menu.ShowMenu.menu()
+class ViewAddPlayer:
+    """
+    View add player
+    """
+
+    def __init__(self):
+
+        views.view_menu.ShowMenu()
 
         player = {}
 
         while 1:
 
-            views.view_menu.ShowMenu.sub_menu('* Add A Player *')
+            views.view_menu.SubMenu('* Add A Player *')
 
             try:
-                last_name = views.view_menu.ShowMenu.get_string_value('Last name').capitalize()
-                name = views.view_menu.ShowMenu.get_string_value('Name').capitalize()
+                self.last_name = format_string('Last name').capitalize()
+                self.name = str(format_string('Name')).capitalize()
                 print(f"\n{'Birth date'}\n"
                       f"{'-' * 10}")
-                year = int(views.view_menu.ShowMenu.get_string_value('Year'))
-                month = int(views.view_menu.ShowMenu.get_string_value('Month'))
-                day = int(views.view_menu.ShowMenu.get_string_value('Day'))
-                birth_day = datetime.date(year, month, day)
+                year = int(format_string('Year'))
+                month = int(format_string('Month'))
+                day = int(format_string('Day'))
+                self.birthday = datetime.date(year, month, day).strftime("%d/%m/%Y")
                 print()
-                sex = views.view_menu.ShowMenu.get_string_value('Sex [F/M]').capitalize()
+                self.sex = format_string('Sex [F/M]').capitalize()
 
-                if sex not in "FM":
+                if self.sex not in "FM":
                     print(f"""\n{":: ERROR > Enter a valid form. Ex: 'F' for female and 'M' for male for Sex"}\n""")
                     continue
 
@@ -75,65 +86,69 @@ class ViewPlayer:
                       f"{'Day : 13'}\n")
                 continue
 
-            ranking = f"{input('- Ranking : ')}"
+            self.ranking = f"{input('- Ranking : ')}"
 
             try:
-                ranking = int(views.view_menu.ShowMenu.get_string_value(ranking))
+                self.ranking = int(self.ranking)
 
             except ValueError:
                 print(f"\n{':: ERROR > Enter a valid format, the rank must be a positive number'}\n")
                 continue
 
-            player["last_name"] = last_name
-            player["name"] = name
-            player["birth_day"] = str(birth_day.strftime("%d/%m/%Y"))
-            player["sex"] = sex
-            player["ranking"] = ranking
+            player["Last_name"] = self.last_name
+            player["Name"] = self.name
+            player["Birthday"] = self.birthday
+            player["Sex"] = self.sex
+            player["Ranking"] = self.ranking
 
             break
 
-        return player
 
-    @staticmethod
-    def remove():
+class ViewRemovePlayer:
+    """
+    View remove player
+    """
 
-        views.view_players.ViewPlayer.show()
+    def __init__(self):
 
-        player_q = Query()
+        self.id_player_remove = int()
+
+    def remove_player(self):
+
+        views.view_players.ViewShowPlayer(models.models_players.table_players.all())
 
         choice_player = input('Select the player ID to be deleted : ')
         choice_player = int(choice_player)
 
-        id_player = models.models_players.PLAYERS.get(doc_id=choice_player)
+        id_player = models.models_players.table_players.get(doc_id=choice_player)
+        self.id_player_remove = id_player.doc_id
 
-        print(f"\nRemove the next player\n"
-              f"{'-' * 22}")
+        views.view_menu.ShowMenu()
 
-        for player in id_player.values():
-            print(f"- {player}")
 
-        accept_delete = input('\nDelete player [o/N] : ')
+class ViewRankingPlayer:
+    """
+    View new ranking player
+    """
+    def __init__(self):
 
-        if accept_delete and accept_delete in "Oo":
-            models.models_players.PLAYERS.remove(player_q.Last_name == id_player["Last_name"])
+        self.player_id = int()
+        self.ranking = int()
 
-        views.view_menu.ShowMenu.menu()
+    def new_ranking(self):
 
-    @staticmethod
-    def new_ranking():
-
-        views.view_players.ViewPlayer.show()
+        views.view_players.ViewShowPlayer(models.models_players.table_players.all())
 
         id_player = input('Select player ID to change rank : ')
         id_player = int(id_player)
 
-        for player_id, player in enumerate(ViewPlayer.all_players):
-            if id_player == player_id:
-                new_ranking = input('New ranking : ')
-                new_ranking = int(new_ranking)
-                player['Ranking'] = new_ranking
+        new_ranking = input('New ranking : ')
+        new_ranking = int(new_ranking)
 
-        views.view_menu.ShowMenu.menu()
+        self.player_id = id_player
+        self.ranking = new_ranking
+
+        views.view_menu.ShowMenu()
 
 
 if __name__ == "__main__":
