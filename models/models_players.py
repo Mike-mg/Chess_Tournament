@@ -1,21 +1,19 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
+
 from tinydb import TinyDB
 
-DB_PLAYERS = TinyDB('Bdd/db_players.json', indent=4)
-PLAYERS = DB_PLAYERS.table("players")
+db_players = TinyDB('Bdd/db_players.json', indent=4)
+table_players = db_players.table("players")
 
 
-class SerializedPlayer:
-
+class Player:
     """
     Serialize and Create a object Player
     """
 
     def __init__(self, last_name, name, birthday, sex, ranking):
-
-        player = {}
 
         self.last_name = last_name.capitalize()
         self.name = name.capitalize()
@@ -23,34 +21,45 @@ class SerializedPlayer:
         self.sex = sex.capitalize()
         self.ranking = ranking
 
+    def serialized_player(self):
+
+        player = dict()
+
         player['Last_name'] = self.last_name
         player['Name'] = self.name
         player['Birthday'] = self.birthday
         player['Sex'] = self.sex
         player['Ranking'] = self.ranking
 
-        PLAYERS.insert(player)
+        table_players.insert(player)
 
 
-class DeserializePlayer:
-
+class Remove:
     """
-        Deserialize a object Player
+    Remove Player
     """
 
-    @staticmethod
-    def players(db_players):
+    def __init__(self, player_id):
 
-        players = []
+        self.player_id = player_id
 
-        for all_players in db_players:
-            player = dict()
-            player['Last_name'] = all_players['Last_name']
-            player['Name'] = all_players['Name']
-            player['Birthday'] = all_players['Birthday']
-            player['Sex'] = all_players['Sex']
-            player['Ranking'] = all_players['Ranking']
+    def remove(self):
+        table_players.remove(doc_ids=[self.player_id])
 
-            players.append(player)
 
-        return players
+class NewRanking:
+    """
+    Docstrings
+    """
+
+    def __init__(self, player_id, ranking):
+
+        self.player_id = player_id
+        self.ranking = ranking
+
+    def new_ranking(self):
+        table_players.update({'Ranking': self.ranking}, doc_ids=[self.player_id])
+
+
+if __name__ == "__main__":
+    pass
