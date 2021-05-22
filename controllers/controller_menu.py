@@ -14,19 +14,19 @@ class ChoiceMenu:
 
         if choice == 0:
             # Show all player
-            views.view_players.ViewPlayer.show()
+            controllers.controller_player.ControllerShowPlayers()
 
         elif choice == 1:
             # Add a player
-            controllers.controller_player.ControllerAddPlayer.controller_add_player()
+            controllers.controller_player.ControllerAddPlayer()
 
         elif choice == 2:
             # Modified ranking player
-            controllers.controller_player.ControllerAddPlayer.controller_player_ranking()
+            controllers.controller_player.ControllerRankingPlayer()
 
         elif choice == 3:
             # Remove player
-            controllers.controller_player.ControllerAddPlayer.controller_player_remove()
+            controllers.controller_player.ControllerRemovePlayer()
 
         elif choice == 4:
             # Show current tournament
@@ -42,7 +42,7 @@ class ChoiceMenu:
 
         elif choice == 7:
             # show menu
-            views.view_menu.ShowMenu.menu()
+            views.view_menu.ShowMenu()
 
         elif choice == 8:
             return 0
