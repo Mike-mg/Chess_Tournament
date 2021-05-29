@@ -21,44 +21,39 @@ class Player:
         self.sex = sex.capitalize()
         self.ranking = ranking
 
-    def serialized_player(self):
 
-        player = dict()
+def serialized_player(players):
 
-        player['Last_name'] = self.last_name
-        player['Name'] = self.name
-        player['Birthday'] = self.birthday
-        player['Sex'] = self.sex
-        player['Ranking'] = self.ranking
+    player = dict()
 
-        table_players.insert(player)
+    players['Last_name'] = player['Last_name']
+    players['Name'] = player['Ranking']
+    players['Birthday'] = player['Ranking']
+    players['Sex'] = player['Ranking']
+    players['Ranking'] = player['Ranking']
+
+    table_players.insert(player)
 
 
-class Remove:
+def deserialized_table_players(table_list_players):
     """
-    Remove Player
+    Deserialized table players
     """
+    all_players = []
 
-    def __init__(self, player_id):
+    for player in table_list_players:
 
-        self.player_id = player_id
+        player_dict = dict()
 
-    def remove(self):
-        table_players.remove(doc_ids=[self.player_id])
+        player['Last_name'] = player_dict['Last_name']
+        player['Name'] = player_dict['Ranking']
+        player['Birthday'] = player_dict['Ranking']
+        player['Sex'] = player_dict['Ranking']
+        player['Ranking'] = player_dict['Ranking']
 
+        all_players.append(player_dict)
 
-class NewRanking:
-    """
-    Docstrings
-    """
-
-    def __init__(self, player_id, ranking):
-
-        self.player_id = player_id
-        self.ranking = ranking
-
-    def new_ranking(self):
-        table_players.update({'Ranking': self.ranking}, doc_ids=[self.player_id])
+    return all_players
 
 
 if __name__ == "__main__":
