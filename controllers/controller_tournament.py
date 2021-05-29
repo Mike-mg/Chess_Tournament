@@ -7,34 +7,42 @@ Modules Models
 """
 
 import views.view_tournament
-import models.models_tournaments
 
 
-class ControllerAddTournament:
-
+def controller_add_tournament():
     """
-    Class ControllerAddPlayer
+    Add player control
     """
+    tournament = views.view_tournament.ViewAddTournament()
+    # tournament.name_tournament()
+    # tournament.location_tournament()
+    # tournament.date_tournament()
+    # tournament.nb_rounds_tournament()
+    tournament.tours_tournament()
+    # tournament.add_player_tournament()
+    # tournament.time_control_tournament()
+    # tournament.description_tournament()
 
-    @staticmethod
-    def controller_add_tournament():
-        """
-        Add player control
-        """
+    tournament.match_tournament(({tournament.players[0]: 0}, {tournament.players[1]: 0}))
 
-        tournament = views.view_tournament.ViewTournament.add_tournament()
-        models.models_tournaments.Tournament(tournament["Name"],
-                                 tournament["Location"],
-                                 tournament["Start date"],
-                                 tournament["End date"],
-                                 tournament['Players'],
-                                 tournament["Nb_rounds"],
-                                 tournament["Tours"])
+    print(f"Name : {tournament.name}\n"
+          f"Location : {tournament.location}\n"
+          f"Start date : {tournament.start_date}\n"
+          f"End date : {tournament.end_date}\n"
+          f"Nb rounds : {tournament.nb_rounds}\n"
+          f"Tours : {tournament.tours}\n"
+          f"Players : {tournament.players}\n"
+          f"Time control : {tournament.time_control}\n"
+          f"Description : {tournament.description}")
 
-    @staticmethod
-    def show_tournament():
-        views.view_tournament.ViewTournament.show_all_tournament()
+    tournament.results_round_1()
 
-    @staticmethod
-    def modified_tournament():
-        views.view_tournament.ViewTournament.point_round_1()
+    print(f"Name : {tournament.name}\n"
+          f"Location : {tournament.location}\n"
+          f"Start date : {tournament.start_date}\n"
+          f"End date : {tournament.end_date}\n"
+          f"Nb rounds : {tournament.nb_rounds}\n"
+          f"Tours : {tournament.tours}\n"
+          f"Players : {tournament.players}\n"
+          f"Time control : {tournament.time_control}\n"
+          f"Description : {tournament.description}")
