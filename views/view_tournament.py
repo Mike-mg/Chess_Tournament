@@ -30,9 +30,9 @@ class ViewAddTournament:
         self.location = str("Boston")
         self.start_date = str("1/1/2020")
         self.end_date = str("1/1/2020")
-        self.nb_rounds = int(4)
+        self.nb_rounds = int(2)
         self.tours = list()
-        self.players = [1, 2, 3, 4, 5, 6, 7, 8]
+        self.players = [1, 2]
         self.time_control = str("Bullet")
         self.description = str("Tournament of Boston")
 
@@ -145,16 +145,12 @@ class ViewAddTournament:
         """
         self.description = format_string("Description").title()
 
-
-    def match_tournament(self, round_1):
+    def round_1_tournament(self, round_1):
         """
         Match tournament
         """
 
         self.tours[0] =  [tuple(round_1)]
-        # self.round_2 =  round_2
-        # self.round_3 =  round_3
-        # self.round_4 =  round_4
 
     def results_round_1(self):
         """
@@ -165,23 +161,45 @@ class ViewAddTournament:
         print(f"\nResults Round 1\n"
               f"{'-' * 14}")
 
-        for round in self.tours:
+        for round in self.tours[0][0]:
 
-            for results in round:
-                for player in results:
+            for key, value in round.items():
 
-                    for key, value in player.items():
-
-                        dict_results = dict()
-                        new_score = float(format_string(f"""Player '{key}' New score : """))
-                        value = new_score
-                        dict_results[key] = value
-                        result_player += dict_results,
+                dict_results = dict()
+                new_score = float(format_string(f"""Player '{key}' New score : """))
+                value = new_score
+                dict_results[key] = value
+                result_player += dict_results,
 
         self.tours[0] = [result_player]
 
+    def round_2_tournament(self, round_2):
+        """
+        Match tournament
+        """
 
+        self.tours[1] = [tuple(round_2)]
 
+    def results_round_2(self):
+        """
+        Results match round 2
+        """
+        result_player = tuple()
+
+        print(f"\nResults Round 2\n"
+              f"{'-' * 14}")
+
+        for round in self.tours[1][0]:
+
+            for key, value in round.items():
+
+                dict_results = dict()
+                new_score = float(format_string(f"""Player '{key}' New score : """))
+                value = new_score
+                dict_results[key] = value
+                result_player += dict_results,
+
+        self.tours[1] = [result_player]
 
 if __name__ == "__main__":
     pass
