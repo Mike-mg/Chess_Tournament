@@ -10,82 +10,69 @@ import datetime
 import views.view_players
 import views.view_menu
 import models.models_players
-import models.models_tournaments
 
 
-class ViewTournament:
+def format_string(get_string):
+    return input(f":: {get_string} > ")
 
-    @staticmethod
-    def add_tournament():
 
-        views.view_menu.ShowMenu.menu()
+class ViewAddTournament:
+    """
+    Objet tournament
+    """
 
-        tournament = {}
+    def __init__(self):
 
-        while 1:
+        views.view_menu.show_menu()
+        views.view_menu.sub_menu('* Add A Tournament *')
 
-            views.view_menu.ShowMenu.sub_menu('* Add A Tournament *')
+        self.name = str("chess 1")
+        self.location = str("Boston")
+        self.start_date = str("1/1/2020")
+        self.end_date = str("1/1/2020")
+        self.nb_rounds = int(4)
+        self.tours = list()
+        self.players = [1, 2, 3, 4, 5, 6, 7, 8]
+        self.time_control = str("Bullet")
+        self.description = str("Tournament of Boston")
 
-            name = views.view_menu.ShowMenu.get_string_value("Name Tournament")
-            location = views.view_menu.ShowMenu.get_string_value("Location")
-            date_start_end = ViewTournament.date_tournament()
-            players = ViewTournament.add_player_tournament()
-            nb_rounds = ViewTournament.nb_rounds()
-            tours = ViewTournament.tours(players)
+    def name_tournament(self):
+        """
+        Name of tournament
+        """
 
-            tournament["Name"] = name
-            tournament["Location"] = location
-            tournament["Start date"] = date_start_end[0]
-            tournament["End date"] = date_start_end[1]
-            tournament["Players"] = players
-            tournament["Nb_rounds"] = nb_rounds
-            tournament["Tours"] = tours
+        self.name = format_string("Name tournament").title()
 
-            return tournament
+    def location_tournament(self):
+        """
+        Location of tournament
+        """
 
-    @staticmethod
-    def add_player_tournament():
+        self.location = format_string("Location").title()
 
-        views.view_players.ViewPlayer.show()
-
-        players = []
-
-        print(f"\n{'Select players by their index to add them to the tournament'}\n"
-              f"{'-' * 59}")
-
-        for i in range(8):
-
-            try:
-                player = int(input(f"{'Player N°'}{i + 1} :  "))
-
-            except ValueError:
-                print(f"\n{':: ERROR > Enter a valid format, the rank must be a positive number'}\n")
-                continue
-
-            players.append(player)
-
-        return players
-
-    @staticmethod
-    def date_tournament():
-
-        date = []
+    def date_tournament(self):
+        """
+        start and end of tournament
+        """
 
         try:
             print(f"\n{'Enter start date'}\n"
                   f"{'-' * 16}")
 
-            start_date = datetime.date(int(input("- Year : ")), int(input("- Month : ")), int(input("- Day : ")))
+            year = int(format_string("Year"))
+            month = int(format_string("Month"))
+            day = int(format_string("Day"))
+            start_date = datetime.date(year, month, day).strftime("%d/%m/%Y")
 
             print(f"\n{'Enter end date'}\n"
                   f"{'-' * 14}")
-            end_date = datetime.date(int(input("- Year : ")), int(input("- Month : ")), int(input("- Day : ")))
+            year = int(format_string("Year"))
+            month = int(format_string("Month"))
+            day = int(format_string("Day"))
+            end_date = datetime.date(year, month, day).strftime("%d/%m/%Y")
 
-            start_date = start_date.strftime("%d/%m/%Y")
-            end_date = end_date.strftime("%d/%m/%Y")
-
-            date.append(start_date)
-            date.append(end_date)
+            self.start_date = start_date
+            self.end_date = end_date
 
         except ValueError:
             print(f"\n{':: ERROR > Enter a valid date of birth like this'}\n"
@@ -93,73 +80,108 @@ class ViewTournament:
                   f"{'Year : 1979'}\n"
                   f"{'Month : 07'}\n"
                   f"{'Day : 13'}\n")
-        return date
 
-    @staticmethod
-    def nb_rounds():
-
-        nb_rounds = input(f"""\n{"NB rounds ( default '4' ) : "}""")
+    def nb_rounds_tournament(self):
+        """
+        Number de round of tournament
+        """
+        print()
+        nb_rounds = int(format_string(f"NB rounds ( default '4' )"))
 
         try:
 
-            if not nb_rounds:
+            if nb_rounds is False:
                 nb_rounds = 4
+
+            nb_rounds = int(nb_rounds)
 
         except ValueError:
             print(f"\n{':: ERROR > Enter a valid format, the rank must be a positive number'}\n")
 
-        return nb_rounds
+        self.nb_rounds = nb_rounds
 
-    @staticmethod
-    def tours(players):
+    def tours_tournament(self):
+        """
+        Tours of tournament
+        """
+        for i in range(self.nb_rounds):
+            self.tours.append([])
 
-        round1 = {1: [
-            [{"Player": players[0], "Points": 0}, {"Player": players[4], "Points": 0}],
-            [{"Player": players[1], "Points": 0}, {"Player": players[5], "Points": 0}],
-            [{"Player": players[2], "Points": 0}, {"Player": players[6], "Points": 0}],
-            [{"Player": players[3], "Points": 0}, {"Player": players[7], "Points": 0}]
-        ]}
+    def add_player_tournament(self):
+        """
+        Add player at a tournament
+        """
+        nb_players = int(format_string("Number of players of tournament"))
 
-        return round1
+        views.view_players.view_show_player(models.models_players.table_players.all())
 
-    @staticmethod
-    def show_all_tournament():
+        print(f"\n{'Select players by their index to add them to the tournament'}\n"
+              f"{'-' * 59}")
 
-        views.view_menu.ShowMenu.menu()
-        views.view_menu.ShowMenu.sub_menu('* List of all tournaments *')
+        for i in range(nb_players):
+            player = int(format_string(f"Player {i + 1} : "))
+            self.players.append(player)
 
-        for tournament in models.models_tournaments.TOURNAMENTS:
-            print(f"\n{'=' * 35}\n"
-                  f"ID : {str(tournament.doc_id)}\n"
-                  f"Name : {tournament['Name']}\n"
-                  f"Location : {tournament['Location']}\n"
-                  f"Start date : {tournament['Start date']}\n"
-                  f"End date : {tournament['End date']}\n"
-                  f"Players : {tournament['Players']}\n"
-                  f"Nb rounds : {tournament['Nb_rounds']}\n")
+    def time_control_tournament(self):
+        """
+        Time control of tournament
+        """
 
-            for rounds in tournament['Tours']:
+        list_time_control = ["Blitz", "Bullet", "Quick hit"]
 
-                print(f"Round : {rounds}")
+        print()
+        print(f"Select time control\n"
+              f"{'-' * 19}")
+        for key, time_control in enumerate(list_time_control):
+            print(f"[ {key} ]  {time_control}")
 
-                for round_key, round_value in tournament['Tours'][rounds]:
-                    print(f"Player {round_key['Player']} (Pts = {round_key['Points']}) Vs "
-                          f"{round_value['Player']} (Pts = {round_value['Points']})")
+        choice_time_control = int(format_string("Choice time control"))
 
-            print(f"{'-' * 35}")
+        self.time_control = list_time_control[choice_time_control]
 
-    @staticmethod
-    def point_round_1():
+    def description_tournament(self):
+        """
+        Description of tournament
+        """
+        self.description = format_string("Description").title()
 
-        views.view_menu.ShowMenu.menu()
-        views.view_menu.ShowMenu.sub_menu('* Modified Current Tournament *')
-        ViewTournament.show_all_tournament()
 
-        choice_tournament = input('ID tournament : ')
-        choice_tournament = int(choice_tournament)
+    def match_tournament(self, round_1):
+        """
+        Match tournament
+        """
 
-        tournament = models.models_tournaments.TOURNAMENTS.get(doc_id=choice_tournament)
-        print(type(tournament))
+        self.tours[0] =  [tuple(round_1)]
+        # self.round_2 =  round_2
+        # self.round_3 =  round_3
+        # self.round_4 =  round_4
+
+    def results_round_1(self):
+        """
+        Results match round 1
+        """
+        result_player = tuple()
+
+        print(f"\nResults Round 1\n"
+              f"{'-' * 14}")
+
+        for round in self.tours:
+
+            for results in round:
+                for player in results:
+
+                    for key, value in player.items():
+
+                        dict_results = dict()
+                        new_score = float(format_string(f"""Player '{key}' New score : """))
+                        value = new_score
+                        dict_results[key] = value
+                        result_player += dict_results,
+
+        self.tours[0] = [result_player]
+
+
+
 
 if __name__ == "__main__":
     pass
