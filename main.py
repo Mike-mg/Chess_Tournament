@@ -13,8 +13,8 @@ def main():
     Enter point
     """
 
-    views.view_menu.ShowMenu()
-    views.view_menu.ChoiceMenu()
+    views.view_menu.show_menu()
+    views.view_menu.choice_menu()
 
 
 if __name__ == "__main__":
