@@ -4,126 +4,73 @@
 """
 Modules views
 """
+
 import datetime
 
-import models.models_players
 import views.view_menu
+import models.models_players
 
 
 def format_string(get_string):
-    return input(f"- {get_string} : ")
+    return input(f"{get_string}")
 
 
-class ViewShowPlayer:
+def view_show_player(table_players):
     """
     View show all player
     """
 
-    def __init__(self, table_players):
+    views.view_menu.show_menu()
 
-        self.table_players = table_players
+    views.view_menu.sub_menu('* List of all players *')
 
-    def show_players(self):
+    print(f"{'ID'.center(10)} | "
+          f"{'Last name'.center(25)} | "
+          f"{'Name'.center(25)} | "
+          f"{'Birthday'.center(20)} | "
+          f"{'Sex'.center(10)} | "
+          f"{'Ranking'.center(10)}"
+          f"\n{'°' * 119}")
 
-        views.view_menu.ShowMenu()
-
-        views.view_menu.SubMenu('* List of all players *')
-
-        print(f"{'ID'.center(10)} | "
-              f"{'Last name'.center(25)} | "
-              f"{'Name'.center(25)} | "
-              f"{'Birthday'.center(20)} | "
-              f"{'Sex'.center(10)} | "
-              f"{'Ranking'.center(10)}"
-              f"\n{'°' * 119}")
-
-        for player in self.table_players:
-            print(f"{str(player.doc_id).center(10)} | "
-                  f"{player['Last_name'].center(25)} | "
-                  f"{player['Name'].center(25)} | "
-                  f"{player['Birthday'].center(20)} | "
-                  f"{player['Sex'].center(10)} | "
-                  f"{str(player['Ranking']).center(10)}"
-                  f"\n{'-' * 119}")
+    for player in table_players:
+        print(f"{str(player.doc_id).center(10)} | "
+              f"{player['Last_name'].center(25)} | "
+              f"{player['Name'].center(25)} | "
+              f"{player['Birthday'].center(20)} | "
+              f"{player['Sex'].center(10)} | "
+              f"{str(player['Ranking']).center(10)}"
+              f"\n{'-' * 119}")
 
 
-class ViewAddPlayer:
+def view_add_player():
     """
     View add player
     """
 
-    def __init__(self):
+    views.view_menu.show_menu()
+    views.view_menu.sub_menu('* Add A Player *')
 
-        views.view_menu.ShowMenu()
+    player_list = list()
+    nb_player = int(format_string("Number of players in the tournament : "))
 
-        player = {}
+    for player in range(nb_player):
 
-        while 1:
+        player_dict = dict()
 
-            views.view_menu.SubMenu('* Add A Player *')
+        player_dict["Last_name"] = format_string('\n- Last name : ').capitalize()
+        player_dict["Name"] = str(format_string('- Name : ')).capitalize()
+        print(f"\n{'Birth date'}\n"
+              f"{'-' * 10}")
+        year = int(format_string('- Year : '))
+        month = int(format_string('- Month : '))
+        day = int(format_string('- Day : '))
+        player_dict["birthday"] = datetime.date(year, month, day).strftime("%d/%m/%Y")
+        player_dict["Sex"] = format_string('\n- Sex [F/M] : ').capitalize()
+        player_dict["Ranking"] = int(format_string('- Ranking : '))
 
-            try:
-                self.last_name = format_string('Last name').capitalize()
-                self.name = str(format_string('Name')).capitalize()
-                print(f"\n{'Birth date'}\n"
-                      f"{'-' * 10}")
-                year = int(format_string('Year'))
-                month = int(format_string('Month'))
-                day = int(format_string('Day'))
-                self.birthday = datetime.date(year, month, day).strftime("%d/%m/%Y")
-                print()
-                self.sex = format_string('Sex [F/M]').capitalize()
+        player_list.append(player_dict)
 
-                if self.sex not in "FM":
-                    print(f"""\n{":: ERROR > Enter a valid form. Ex: 'F' for female and 'M' for male for Sex"}\n""")
-                    continue
-
-            except ValueError:
-                print(f"\n{':: ERROR > Enter a valid date of birth like this'}\n"
-                      f"{'-' * 48}\n"
-                      f"{'Year : 1979'}\n"
-                      f"{'Month : 07'}\n"
-                      f"{'Day : 13'}\n")
-                continue
-
-            self.ranking = f"{input('- Ranking : ')}"
-
-            try:
-                self.ranking = int(self.ranking)
-
-            except ValueError:
-                print(f"\n{':: ERROR > Enter a valid format, the rank must be a positive number'}\n")
-                continue
-
-            player["Last_name"] = self.last_name
-            player["Name"] = self.name
-            player["Birthday"] = self.birthday
-            player["Sex"] = self.sex
-            player["Ranking"] = self.ranking
-
-            break
-
-
-class ViewRemovePlayer:
-    """
-    View remove player
-    """
-
-    def __init__(self):
-
-        self.id_player_remove = int()
-
-    def remove_player(self):
-
-        views.view_players.ViewShowPlayer(models.models_players.table_players.all())
-
-        choice_player = input('Select the player ID to be deleted : ')
-        choice_player = int(choice_player)
-
-        id_player = models.models_players.table_players.get(doc_id=choice_player)
-        self.id_player_remove = id_player.doc_id
-
-        views.view_menu.ShowMenu()
+    return player_list
 
 
 class ViewRankingPlayer:
@@ -137,18 +84,18 @@ class ViewRankingPlayer:
 
     def new_ranking(self):
 
-        views.view_players.ViewShowPlayer(models.models_players.table_players.all())
+        views.view_players.view_show_player(models.models_players.table_players.all())
 
-        id_player = input('Select player ID to change rank : ')
+        id_player = input(':: Select player ID to change rank > ')
         id_player = int(id_player)
 
-        new_ranking = input('New ranking : ')
+        new_ranking = input(':: New ranking > ')
         new_ranking = int(new_ranking)
 
         self.player_id = id_player
         self.ranking = new_ranking
 
-        views.view_menu.ShowMenu()
+        views.view_menu.show_menu()
 
 
 if __name__ == "__main__":
