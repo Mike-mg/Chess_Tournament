@@ -1,48 +1,44 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import views.view_players
+import views.view_tournament
 import views.view_menu
 import controllers.controller_tournament
 import controllers.controller_player
 
 
-class ChoiceMenu:
+def choice_user_menu(choice):
 
-    @staticmethod
-    def choice_user_menu(choice):
+    if choice == 0:
+        # Show all player
+        controllers.controller_player.controller_show_player()
 
-        if choice == 0:
-            # Show all player
-            controllers.controller_player.ControllerShowPlayers()
+    elif choice == 1:
+        # Add a player
+        controllers.controller_player.controller_add_player()
 
-        elif choice == 1:
-            # Add a player
-            controllers.controller_player.ControllerAddPlayer()
+    elif choice == 2:
+        # Modified ranking player
+        pass
 
-        elif choice == 2:
-            # Modified ranking player
-            controllers.controller_player.ControllerRankingPlayer()
+    elif choice == 3:
+        pass
 
-        elif choice == 3:
-            # Remove player
-            controllers.controller_player.ControllerRemovePlayer()
+    elif choice == 4:
+        # Add a tournament
+        controllers.controller_tournament.controller_add_tournament()
 
-        elif choice == 4:
-            # Show current tournament
-            controllers.controller_tournament.ControllerAddTournament.show_tournament()
+    elif choice == 5:
+        # Create a tournament
+        views.view_tournament.ViewAddTournament.results_round_1()
 
-        elif choice == 5:
-            # Create a tournament
-            controllers.controller_tournament.ControllerAddTournament.controller_add_tournament()
+    elif choice == 6:
+        # Modified current tournament
+        pass
 
-        elif choice == 6:
-            # Modified current tournament
-            controllers.controller_tournament.ControllerAddTournament.modified_tournament()
+    elif choice == 7:
+        # show menu
+        views.view_menu.show_menu()
 
-        elif choice == 7:
-            # show menu
-            views.view_menu.ShowMenu()
-
-        elif choice == 8:
-            return 0
+    elif choice == 8:
+        return False
