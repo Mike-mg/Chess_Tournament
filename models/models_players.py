@@ -35,23 +35,14 @@ def serialized_player(players):
     table_players.insert(player)
 
 
-def deserialized_table_players(table_list_players):
+def deserialized_table_players(table_list_players=table_players):
     """
     Deserialized table players
     """
     all_players = []
 
     for player in table_list_players:
-
-        player_dict = dict()
-
-        player['Last_name'] = player_dict['Last_name']
-        player['Name'] = player_dict['Ranking']
-        player['Birthday'] = player_dict['Ranking']
-        player['Sex'] = player_dict['Ranking']
-        player['Ranking'] = player_dict['Ranking']
-
-        all_players.append(player_dict)
+        all_players.append(player)
 
     return all_players
 
