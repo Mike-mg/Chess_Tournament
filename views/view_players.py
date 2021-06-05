@@ -15,10 +15,12 @@ def format_string(get_string):
     return input(f"{get_string}")
 
 
-def view_show_player(table_players):
+def view_show_player(table_players=models.models_players.table_players.all()):
     """
     View show all player
     """
+
+    all_players = table_players
 
     views.view_menu.show_menu()
 
@@ -32,8 +34,9 @@ def view_show_player(table_players):
           f"{'Ranking'.center(10)}"
           f"\n{'°' * 119}")
 
-    for player in table_players:
-        print(f"{str(player.doc_id).center(10)} | "
+    for key, player in enumerate(all_players):
+
+        print(f"{str(key).center(10)} | "
               f"{player['Last_name'].center(25)} | "
               f"{player['Name'].center(25)} | "
               f"{player['Birthday'].center(20)} | "
