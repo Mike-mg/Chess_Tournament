@@ -26,11 +26,14 @@ def choice_user_menu(choice):
 
     elif choice == 4:
         # Add a tournament
-        controllers.controller_tournament.controller_add_tournament()
+        tournament = controllers.controller_tournament.ControllerTournament()
+        tournament.controller_add_tournament()
+
 
     elif choice == 5:
-        # Create a tournament
-        views.view_tournament.ViewAddTournament.results_round_1()
+        # Show a tournament
+        show_tournament = controllers.controller_tournament.ControllerTournament()
+        show_tournament.show_tournament()
 
     elif choice == 6:
         # Modified current tournament
