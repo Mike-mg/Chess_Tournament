@@ -7,60 +7,45 @@ Modules Models
 """
 
 import views.view_tournament
+import views.view_players
+import views.view_menu
+import models.models_tournaments
 
 
-def controller_add_tournament():
+class ControllerTournament:
     """
-    Add player control
+    Controller tournament
     """
-    tournament = views.view_tournament.ViewAddTournament()
-    # tournament.name_tournament()
-    # tournament.location_tournament()
-    # tournament.date_tournament()
-    # tournament.nb_rounds_tournament()
-    tournament.tours_tournament()
-    # tournament.add_player_tournament()
-    # tournament.time_control_tournament()
-    # tournament.description_tournament()
+    tournaments = []
 
-    tournament.round_1_tournament(({tournament.players[0]: 0}, {tournament.players[1]: 0}))
+    def __init__(self):
 
-    print(f"Name : {tournament.name}\n"
-          f"Location : {tournament.location}\n"
-          f"Start date : {tournament.start_date}\n"
-          f"End date : {tournament.end_date}\n"
-          f"Nb rounds : {tournament.nb_rounds}\n"
-          f"Tours : {tournament.tours}\n"
-          f"Players : {tournament.players}\n"
-          f"Time control : {tournament.time_control}\n"
-          f"Description : {tournament.description}")
+        self.view_tournament = views.view_tournament.ViewTournament()
 
-    tournament.results_round_1()
+    def controller_add_tournament(self):
 
-    tournament.round_2_tournament(({tournament.players[1]: 0}, {tournament.players[0]: 0}))
+        # self.view_add_tournament.main_tournament_info()
+        self.view_tournament.tours_tournament()
+        # self.view_add_tournament.add_player_tournament()
 
-    print(f"Name : {tournament.name}\n"
-          f"Location : {tournament.location}\n"
-          f"Start date : {tournament.start_date}\n"
-          f"End date : {tournament.end_date}\n"
-          f"Nb rounds : {tournament.nb_rounds}\n"
-          f"Tours : {tournament.tours}\n"
-          f"Players : {tournament.players}\n"
-          f"Time control : {tournament.time_control}\n"
-          f"Description : {tournament.description}")
+        tournament = models.models_tournaments.Tournament(self.view_tournament.name,
+                                                          self.view_tournament.location,
+                                                          self.view_tournament.start_date,
+                                                          self.view_tournament.end_date,
+                                                          self.view_tournament.nb_rounds,
+                                                          self.view_tournament.tours,
+                                                          self.view_tournament.players,
+                                                          self.view_tournament.time_control,
+                                                          self.view_tournament.description)
 
-    tournament.results_round_2()
+        tournament.match()
 
-    print(f"Name : {tournament.name}\n"
-          f"Location : {tournament.location}\n"
-          f"Start date : {tournament.start_date}\n"
-          f"End date : {tournament.end_date}\n"
-          f"Nb rounds : {tournament.nb_rounds}\n"
-          f"Tours : {tournament.tours}\n"
-          f"Players : {tournament.players}\n"
-          f"Time control : {tournament.time_control}\n"
-          f"Description : {tournament.description}")
+        ControllerTournament.tournaments.append(tournament)
+        # views.view_menu.show_menu()
 
+    def show_tournament(self):
 
-    print(f"\n\nResults of tournament\n"
-          f"{'-' * 21}")
+        views.view_menu.show_menu()
+
+        for all_tournament in ControllerTournament.tournaments:
+            self.view_tournament.show_tournament(all_tournament)
