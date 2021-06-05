@@ -24,7 +24,7 @@ def show_menu():
                  'Modified ranking player',
                  'List of all tournaments',
                  'Add a tournament',
-                 'Modified a tournaments',
+                 'Show tournaments',
                  'Return menu',
                  'Leave -*- CHESS TOURNAMENT -*-'
                  ]
