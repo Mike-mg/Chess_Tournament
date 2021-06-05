@@ -5,28 +5,28 @@
             "Name": "Michael",
             "Birthday": "1979-07-13",
             "Sex": "M",
-            "Ranking": 1
+            "Ranking": 10
         },
         "2": {
             "Last_name": "Erd",
             "Name": "Angelique",
             "Birthday": "1974-03-03",
             "Sex": "F",
-            "Ranking": 2
+            "Ranking": 22
         },
         "3": {
             "Last_name": "yer",
             "Name": "Amandine",
             "Birthday": "2006-02-26",
             "Sex": "F",
-            "Ranking": 3
+            "Ranking": 65
         },
         "4": {
             "Last_name": "Hyr",
             "Name": "Anais",
             "Birthday": "1998-04-24",
             "Sex": "F",
-            "Ranking": 6
+            "Ranking": 54
         },
         "5": {
             "Last_name": "Ruv",
@@ -82,7 +82,7 @@
             "Name": "Lilas",
             "Birthday": "12/12/2020",
             "Sex": "F",
-            "Ranking": 25
+            "Ranking": 33
         },
         "13": {
             "Last_name": "Cooper",
