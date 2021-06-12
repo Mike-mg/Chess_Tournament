@@ -24,28 +24,37 @@ class ControllerTournament:
 
     def controller_add_tournament(self):
 
-        # self.view_add_tournament.main_tournament_info()
-        self.view_tournament.tours_tournament()
-        # self.view_add_tournament.add_player_tournament()
+        # main_info_tournament = self.view_tournament.main_tournament_info()
+        # add_player = self.view_tournament.add_player_tournament()
 
-        tournament = models.models_tournaments.Tournament(self.view_tournament.name,
-                                                          self.view_tournament.location,
-                                                          self.view_tournament.start_date,
-                                                          self.view_tournament.end_date,
-                                                          self.view_tournament.nb_rounds,
-                                                          self.view_tournament.tours,
-                                                          self.view_tournament.players,
-                                                          self.view_tournament.time_control,
-                                                          self.view_tournament.description)
+        # tournament = models.models_tournaments.Tournament(main_info_tournament[0],
+        #                                                   main_info_tournament[1],
+        #                                                   main_info_tournament[2],
+        #                                                   main_info_tournament[3],
+        #                                                   add_player,
+        #                                                   main_info_tournament[4],
+        #                                                   main_info_tournament[5])
 
-        tournament.match()
+        tournament = models.models_tournaments.Tournament("Tournament French",
+                                                          "French",
+                                                          "01/01/2020",
+                                                          "01/01/2020",
+                                                          [1, 2, 3, 4, 5, 6, 7, 8],
+                                                          "time control",
+                                                          "description")
 
+        tournament.tours.insert(0, tournament.round_1())
         ControllerTournament.tournaments.append(tournament)
-        # views.view_menu.show_menu()
 
     def show_tournament(self):
 
-        views.view_menu.show_menu()
+        self.view_tournament.show_tournament(ControllerTournament.tournaments)
 
-        for all_tournament in ControllerTournament.tournaments:
-            self.view_tournament.show_tournament(all_tournament)
+    def round_2(self):
+
+        self.view_tournament.menu_tournament(ControllerTournament.tournaments)
+
+        number_tournament, round_1 = self.view_tournament.round_2(ControllerTournament.tournaments)
+
+        tournament = ControllerTournament.tournaments[number_tournament]
+        tournament.tours.insert(1, tournament.round_2(round_1))
