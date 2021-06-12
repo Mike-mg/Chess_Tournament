@@ -29,7 +29,6 @@ def choice_user_menu(choice):
         tournament = controllers.controller_tournament.ControllerTournament()
         tournament.controller_add_tournament()
 
-
     elif choice == 5:
         # Show a tournament
         show_tournament = controllers.controller_tournament.ControllerTournament()
@@ -37,7 +36,8 @@ def choice_user_menu(choice):
 
     elif choice == 6:
         # Modified current tournament
-        pass
+        round_2 = controllers.controller_tournament.ControllerTournament()
+        round_2.round_2()
 
     elif choice == 7:
         # show menu
