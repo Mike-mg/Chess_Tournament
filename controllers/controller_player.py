@@ -12,7 +12,7 @@ import views.view_menu
 
 
 def format_string(get_string):
-    return input(f"{get_string}")
+    return input(f":: {get_string} > ")
 
 
 def controller_show_player():
@@ -28,13 +28,15 @@ def controller_add_player():
     Add player control
     """
 
-    list_players_tournament = list()
+    player = views.view_players.add_player()
+    models.models_players.serialized_player(player)
 
-    for player in views.view_players.view_add_player():
-        list_players_tournament.append(player)
 
-    print(list_players_tournament)
 
+    # list_players_tournament = list()
+    #
+    # for player in views.view_players.view_add_player():
+    #     list_players_tournament.append(player)
 
 # class ControllerRankingPlayer:
 #     """
