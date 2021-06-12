@@ -13,26 +13,28 @@ class Player:
     Serialize and Create a object Player
     """
 
-    def __init__(self, last_name, name, birthday, sex, ranking):
+    def __init__(self, last_name, name, birthday, sex, ranking, points=0):
 
         self.last_name = last_name.capitalize()
         self.name = name.capitalize()
         self.birthday = birthday
         self.sex = sex.capitalize()
         self.ranking = ranking
+        self.point = points
 
 
-def serialized_player(players):
+def serialized_player(player):
 
-    player = dict()
+    serial_player = dict()
 
-    players['Last_name'] = player['Last_name']
-    players['Name'] = player['Ranking']
-    players['Birthday'] = player['Ranking']
-    players['Sex'] = player['Ranking']
-    players['Ranking'] = player['Ranking']
+    serial_player['Last_name'] = player[0]
+    serial_player['Name'] = player[1]
+    serial_player['Birthday'] = player[2]
+    serial_player['Sex'] = player[3]
+    serial_player['Ranking'] = player[4]
+    serial_player['Points'] = player[5]
 
-    table_players.insert(player)
+    table_players.insert(serial_player)
 
 
 def deserialized_table_players(table_list_players=table_players):
