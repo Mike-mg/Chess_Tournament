@@ -7,67 +7,71 @@ import sys
 import controllers.controller_menu
 
 
-def show_menu():
-    """
-    Docstrings
-    """
+class ViewMenu:
 
-    if sys.platform.startswith('linux'):
-        os.system('clear')
-    elif sys.platform.startswith('win32'):
-        os.system('cls')
-    elif sys.platform.startswith('darwin'):
-        os.system('clear')
+    def __init__(self):
 
-    menu_list = ['List of all players',
-                 'Add a player',
-                 'Modified ranking player',
-                 'List of all tournaments',
-                 'Add a tournament',
-                 'Show tournaments',
-                 'Return menu',
-                 'Leave -*- CHESS TOURNAMENT -*-'
-                 ]
+        self.controller_menu = controllers.controller_menu.ControllerMenu()
 
-    sub_menu('/^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\')
-    sub_menu('* MENU *')
+    def show_menu(self):
+        """
+        Docstrings
+        """
 
-    for index, m_menu in enumerate(menu_list):
-        print(f"[ {index} ]  {m_menu}")
+        if sys.platform.startswith('linux'):
+            os.system('clear')
+        elif sys.platform.startswith('win32'):
+            os.system('cls')
+        elif sys.platform.startswith('darwin'):
+            os.system('clear')
 
-    print(f"{'-' * 119}")
+        menu_list = ['List of all players',
+                     'Add a player',
+                     'Modified ranking player',
+                     'List of all tournaments',
+                     'Add a tournament',
+                     'Show tournaments',
+                     'Return menu',
+                     'Leave -*- CHESS TOURNAMENT -*-'
+                     ]
 
+        self.sub_menu('/^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\')
+        self.sub_menu('* MENU *')
 
-def choice_menu():
-    """
-    Docstrings
-    """
+        for index, m_menu in enumerate(menu_list):
+            print(f"[ {index} ]  {m_menu}")
 
-    while 1:
+        print(f"{'-' * 119}")
 
-        choice = input(f"\n\n\n{'=' * 22}\n"
-                       f"Help : 7 > Return menu"
-                       f"\n{'-' * 22}"
-                       f"\n{':: Select a option > '}")
+    def choice_menu(self):
+        """
+        Docstrings
+        """
 
-        try:
-            choice = int(choice)
+        while 1:
 
-        except ValueError:
-            print(f"\n{':: ERROR > Enter a valid option [0-8]'}\n")
-            continue
+            choice = input(f"\n\n\n{'=' * 22}\n"
+                           f"Help : 7 > Return menu"
+                           f"\n{'-' * 22}"
+                           f"\n{':: Select a option > '}")
 
-        if controllers.controller_menu.choice_user_menu(choice) is False:
-            break
+            try:
+                choice = int(choice)
 
-    controllers.controller_menu.choice_user_menu(choice)
+            except ValueError:
+                print(f"\n{':: ERROR > Enter a valid option [0-8]'}\n")
+                continue
 
+            if self.controller_menu.choice_user_menu(choice) is False:
+                break
 
-def sub_menu(title):
-    """
-    Docstrings
-    """
+        self.controller_menu.choice_user_menu(choice)
 
-    print(f"\n\n\n{'=' * 119}\n"
-          f"{title.center(119)}\n"
-          f"{str('-' * len(title)).center(119)}\n\n")
+    def sub_menu(self, title):
+        """
+        Docstrings
+        """
+
+        print(f"\n\n\n{'=' * 119}\n"
+              f"{title.center(119)}\n"
+              f"{str('-' * len(title)).center(119)}\n\n")
