@@ -65,29 +65,17 @@ class Tournament:
              all_match_round_1.append((match[0][0], match[1][0]))
 
 
-        if list_round_2 not in all_match_round_1:
-            print(all_match_round_1)
-            print(list_round_2[:2][0][0], list_round_2[:2][1][0])
-            print('le match a deja ete jouer')
+        # if list_round_2 not in all_match_round_1:
+        #     print(all_match_round_1)
+        #     print(list_round_2[:2][0][0], list_round_2[:2][1][0])
+        #     print('le match a deja ete jouer')
 
 
+        match_1 = [list_round_2[0][:], list_round_2[0][:]]
+        match_2 = [list_round_2[0][:], list_round_2[0][:]]
+        match_3 = [list_round_2[1][:], list_round_2[1][:]]
+        match_4 = [list_round_2[1][:], list_round_2[1][:]]
 
+        round_2_dict = {'Round_2': list([match_1, match_2, match_3, match_4])}
 
-            # print('------')
-            #
-            #
-            # for match in list_round_2:
-            #     print(match[0][0],match[1][0])
-            # print(match[0][0], match[0][1])
-
-
-
-
-        # match_1 = [list_round_2[0][0], list_round_2[0][1]]
-        # match_2 = [list_round_2[0][2], list_round_2[0][3]]
-        # match_3 = [list_round_2[1][0], list_round_2[1][1]]
-        # match_4 = [list_round_2[1][2], list_round_2[1][3]]
-        #
-        # round_2_dict = {'Round_2': list([match_1, match_2, match_3, match_4])}
-        #
-        # return round_2_dict
+        return round_2_dict
