@@ -1,47 +1,48 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import views.view_tournament
-import views.view_menu
 import controllers.controller_tournament
 import controllers.controller_player
 
 
-def choice_user_menu(choice):
+class ControllerMenu:
 
-    if choice == 0:
-        # Show all player
-        controllers.controller_player.controller_show_player()
+    def __init__(self):
 
-    elif choice == 1:
-        # Add a player
-        controllers.controller_player.controller_add_player()
+        self.controller_player = controllers.controller_player.ControllerPlayer()
 
-    elif choice == 2:
-        # Modified ranking player
-        pass
+    def choice_user_menu(self, choice):
 
-    elif choice == 3:
-        pass
+        if choice == 0:
+            # Show all player
+            self.controller_player.controller_show_player()
 
-    elif choice == 4:
-        # Add a tournament
-        tournament = controllers.controller_tournament.ControllerTournament()
-        tournament.controller_add_tournament()
+        elif choice == 1:
+            # Add a player
+            pass
 
-    elif choice == 5:
-        # Show a tournament
-        show_tournament = controllers.controller_tournament.ControllerTournament()
-        show_tournament.show_tournament()
+        elif choice == 2:
+            # Modified ranking player
+            pass
 
-    elif choice == 6:
-        # Modified current tournament
-        round_2 = controllers.controller_tournament.ControllerTournament()
-        round_2.round_2()
+        elif choice == 3:
+            pass
 
-    elif choice == 7:
-        # show menu
-        views.view_menu.show_menu()
+        elif choice == 4:
+            # Add a tournament
+            pass
 
-    elif choice == 8:
-        return False
+        elif choice == 5:
+            # Show a tournament
+            pass
+
+        elif choice == 6:
+            # Modified current tournament
+            pass
+
+        elif choice == 7:
+            # show menu
+            pass
+
+        elif choice == 8:
+            return False
