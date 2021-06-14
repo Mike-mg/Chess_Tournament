@@ -8,14 +8,21 @@ import views.view_menu
 import views.view_tournament
 
 
-def main():
-    """
-    Enter point
-    """
+class Main:
 
-    views.view_menu.show_menu()
-    views.view_menu.choice_menu()
+    def __init__(self):
+
+        self.menu = views.view_menu.ViewMenu()
+
+    def main(self):
+        """
+        Enter point
+        """
+
+        self.menu.show_menu()
+        self.menu.choice_menu()
 
 
 if __name__ == "__main__":
-    main()
+    main = Main()
+    main.main()
