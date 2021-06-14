@@ -15,38 +15,26 @@ def format_string(get_string):
     return input(f":: {get_string} > ")
 
 
-def controller_show_player():
+class ControllerPlayer:
     """
-    Shows all players
-    """
-
-    views.view_players.view_show_player(models.models_players.table_players.all())
-
-
-def controller_add_player():
-    """
-    Add player control
+    Docstrings
     """
 
-    player = views.view_players.add_player()
-    models.models_players.serialized_player(player)
+    def __init__(self):
+
+        self.view_player = views.view_players.ViewPlayer()
+
+    def controller_show_player(self):
+        """
+        Shows all players
+        """
+
+        self.view_player.view_show_player(models.models_players.table_players.all())
 
 
-
-    # list_players_tournament = list()
-    #
-    # for player in views.view_players.view_add_player():
-    #     list_players_tournament.append(player)
-
-# class ControllerRankingPlayer:
-#     """
-#         Class for the new ranking player
-#     """
-#
-#     def __init__(self):
-#
-#         ranking = views.view_players.ViewRankingPlayer()
-#         ranking.new_ranking()
-#
-#         new_ranking_player = models.models_players.new_rankin(ranking.player_id, ranking.ranking)
-#         new_ranking_player.new_ranking()
+    def controller_add_player(self):
+        """
+        Add player control
+        """
+        player = self.view_player.add_player()
+        models.models_players.serialized_player(player)
