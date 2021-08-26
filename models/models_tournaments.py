@@ -48,63 +48,48 @@ class Tournament:
 
         round_1_dict = {'Round_1': list([match_1, match_2, match_3, match_4])}
 
-        print(round_1_dict['Round_1'])
         return round_1_dict
 
-    def round_2(self, list_results_previous_round):
+    def next_round(self, list_results_previous_round):
 
         list_match_round_1 = list()
-        list_player_round_2_tried = list()
-        list_player_round_2 = list()
-        list_match_round_2 = list()
-        player_dict_round_2 = list()
-        next_round_dict = dict()
+        list_player_next_round_tried = list()
+        list_match_next_round = list()
 
         for match in list_results_previous_round:
             list_match_round_1.append((match[0][0], match[1][0]))
-            list_player_round_2_tried.extend(match)
+            list_player_next_round_tried.extend(match)
 
-        list_player_round_2_tried.sort(key=operator.itemgetter(2, 1), reverse=True)
-
-        for player in list_player_round_2_tried:
-            list_player_round_2.append(player[0])
+        list_player_next_round_tried.sort(key=operator.itemgetter(2, 1), reverse=True)
 
         y = 1
-        while len(list_player_round_2) > 0:
+        while len(list_player_next_round_tried) > 0:
 
             try:
 
-                match_control = list_player_round_2[0], list_player_round_2[y]
+                match = [list_player_next_round_tried[0], list_player_next_round_tried[y]]
+                match_control = [match[0][0], match[1][0]]
 
-                if match_control in list_match_round_1 or \
-                        tuple(reversed(match_control)) in list_match_round_1:
-                    match_control = list_player_round_2[0], list_player_round_2[y + 1]
+                if match_control in list_match_round_1 or tuple(reversed(match_control)) in list_match_round_1:
 
-                    if match_control not in list_match_round_1 or \
-                            tuple(reversed(match_control)) not in list_match_round_1:
-                        list_match_round_2.append(match_control)
+                    match_control = list_player_next_round_tried[0][0], list_player_next_round_tried[y + 1][0]
 
-                        del list_player_round_2[0]
-                        del list_player_round_2[y]
+                    if match_control not in list_match_round_1 or tuple(
+                            reversed(match_control)) not in list_match_round_1:
+                        list_match_next_round.append(match)
+
+                        del list_player_next_round_tried[0]
+                        del list_player_next_round_tried[y]
 
                 else:
 
-                    list_match_round_2.append(match_control)
-                    del list_player_round_2[:y + 1]
+                    list_match_next_round.append(match)
+                    del list_player_next_round_tried[:y + 1]
 
             except IndexError:
                 break
 
-        print(list_player_round_2_tried)
+        next_round_dict = {'Round_2': list_match_next_round}
 
-        for player in models.models_players.deserialized_table_players():
-
-            for match in list_match_round_2:
-
-                if player.doc_id in match:
-                    player_dict_round_2.append((player.doc_id, player['Ranking'], player['Points']))
-
-        next_round_dict['Round_2'] = player_dict_round_2
-        print(next_round_dict)
-
+        return next_round_dict
         
