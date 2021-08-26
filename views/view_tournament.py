@@ -133,7 +133,7 @@ class ViewTournament:
                                   f"N°{current_round[1][0]}:{current_round[1][2]}")
                             i += 1
 
-    def result_match_round(self, list_tournament):
+    def result_round_1(self, list_tournament):
 
         results_round = []
         key_tournament = int()
