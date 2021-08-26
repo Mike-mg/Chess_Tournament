@@ -50,11 +50,11 @@ class ControllerTournament:
 
         self.view_tournament.show_tournament(ControllerTournament.tournaments)
 
-    def round_2(self):
+    def result_round(self):
 
         self.view_tournament.menu_tournament(ControllerTournament.tournaments)
 
-        number_tournament, round_1 = self.view_tournament.round_2(ControllerTournament.tournaments)
+        number_tournament, round_1 = self.view_tournament.result_match_round(ControllerTournament.tournaments)
 
         tournament = ControllerTournament.tournaments[number_tournament]
         tournament.tours.insert(1, tournament.round_2(round_1))
