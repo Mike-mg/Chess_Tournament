@@ -3,15 +3,23 @@
 
 import controllers.controller_tournament
 import controllers.controller_player
+import views.view_menu
 
 
 class ControllerMenu:
 
     def __init__(self):
-
+        self.controller_tournament = controllers.controller_tournament.ControllerTournament()
         self.controller_player = controllers.controller_player.ControllerPlayer()
+        self.view_menu = views.view_menu.ViewMenu()
 
-    def choice_user_menu(self, choice):
+    def show_menu(self):
+
+        self.view_menu.show_menu()
+
+    def choice_user_menu(self):
+
+        choice = self.view_menu.choice_menu()
 
         if choice == 0:
             # Show all player
@@ -19,30 +27,28 @@ class ControllerMenu:
 
         elif choice == 1:
             # Add a player
-            pass
+            self.controller_player.controller_add_player()
 
         elif choice == 2:
             # Modified ranking player
             pass
 
         elif choice == 3:
-            pass
+            # List tournament
+            self.controller_tournament.show_tournament()
 
         elif choice == 4:
             # Add a tournament
-            pass
+            self.controller_tournament.controller_add_tournament()
 
         elif choice == 5:
-            # Show a tournament
-            pass
+            # Modified a tournament
+            self.controller_tournament.result_round()
 
         elif choice == 6:
-            # Modified current tournament
-            pass
+            # show menu
+            self.show_menu()
 
         elif choice == 7:
-            # show menu
-            pass
-
-        elif choice == 8:
+            # Leave program
             return False
