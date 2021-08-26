@@ -5,8 +5,6 @@
 Modules views
 """
 
-import datetime
-
 import views.view_menu
 import models.models_players
 
@@ -55,6 +53,7 @@ class ViewPlayer:
         """
         Docstrings
         """
+
         self.view_menu.show_menu()
         self.view_menu.sub_menu("* Add A Player *")
 
