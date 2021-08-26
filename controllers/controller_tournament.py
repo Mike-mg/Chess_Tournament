@@ -54,7 +54,9 @@ class ControllerTournament:
 
         self.view_tournament.menu_tournament(ControllerTournament.tournaments)
 
-        number_tournament, round_1 = self.view_tournament.result_match_round(ControllerTournament.tournaments)
+        number_tournament, round_1 = self.view_tournament.result_round_1(ControllerTournament.tournaments)
 
         tournament = ControllerTournament.tournaments[number_tournament]
-        tournament.tours.insert(1, tournament.round_2(round_1))
+        tournament.tours.insert(1, tournament.next_round(round_1))
+        print(tournament.tours[0])
+        print(tournament.tours[1])
