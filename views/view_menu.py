@@ -11,7 +11,8 @@ class ViewMenu:
 
     def __init__(self):
 
-        self.controller_menu = controllers.controller_menu.ControllerMenu()
+        # self.controller_menu = controllers.controller_menu.ControllerMenu()
+        pass
 
     def show_menu(self):
         """
@@ -30,12 +31,12 @@ class ViewMenu:
                      'Modified ranking player',
                      'List of all tournaments',
                      'Add a tournament',
-                     'Show tournaments',
+                     'Modified a tournament',
                      'Return menu',
                      'Leave -*- CHESS TOURNAMENT -*-'
                      ]
 
-        self.sub_menu('/^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\')
+        self.sub_menu(r'/^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\')
         self.sub_menu('* MENU *')
 
         for index, m_menu in enumerate(menu_list):
@@ -48,24 +49,18 @@ class ViewMenu:
         Docstrings
         """
 
-        while 1:
+        choice = input(f"\n\n\n{'=' * 22}\n"
+                       f"Help : 6 > Return menu"
+                       f"\n{'-' * 22}"
+                       f"\n{':: Select a option > '}")
 
-            choice = input(f"\n\n\n{'=' * 22}\n"
-                           f"Help : 7 > Return menu"
-                           f"\n{'-' * 22}"
-                           f"\n{':: Select a option > '}")
+        try:
+            choice = int(choice)
 
-            try:
-                choice = int(choice)
+        except ValueError:
+            print(f"\n{':: ERROR > Enter a valid option [0-8]'}\n")
 
-            except ValueError:
-                print(f"\n{':: ERROR > Enter a valid option [0-8]'}\n")
-                continue
-
-            if self.controller_menu.choice_user_menu(choice) is False:
-                break
-
-        self.controller_menu.choice_user_menu(choice)
+        return choice
 
     def sub_menu(self, title):
         """
