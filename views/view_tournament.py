@@ -6,11 +6,10 @@ import views
 """
 
 import datetime
-import operator
 
 import views.view_players
 import views.view_menu
-import models.models_tournaments
+
 
 def format_string(get_string):
     return input(f":: {get_string} > ")
@@ -21,13 +20,18 @@ class ViewTournament:
     Objet view tournament
     """
 
+    def __init__(self):
+
+        self.menu = views.view_menu.ViewMenu()
+        self.view_player = views.view_players.ViewPlayer()
+
     def menu_tournament(self, list_tournament):
         """
         Show menu tournament
         """
 
         # views.view_menu.show_menu()
-        views.view_menu.sub_menu("Current tournament")
+        self.menu.sub_menu("Current tournament")
 
         for key, value in enumerate(list_tournament):
             print(f"[ {key} ] - [ {value.name}, {value.location} ]")
@@ -38,7 +42,7 @@ class ViewTournament:
         """
 
         # views.view_menu.show_menu()
-        views.view_menu.sub_menu('* Add A Tournament *')
+        self.menu.sub_menu('* Add A Tournament *')
 
         name = format_string("Name tournament").capitalize()
         location = format_string("Location").capitalize()
@@ -79,7 +83,7 @@ class ViewTournament:
         Add player at a tournament
         """
 
-        views.view_players.view_show_player()
+        self.view_player.view_show_player()
 
         print(f"\n{'Select players by their index to add them to the tournament'}\n"
               f"{'-' * 59}")
@@ -96,6 +100,7 @@ class ViewTournament:
 
     def show_tournament(self, list_tournament):
 
+        self.menu.show_menu()
         self.menu_tournament(list_tournament)
 
         select_tournament = int(input(f"\n{'-' * 37}\n{':: Select the tournament to be show > '}"))
@@ -103,7 +108,7 @@ class ViewTournament:
         for key, tournament in enumerate(list_tournament):
             if key == select_tournament:
 
-                views.view_menu.sub_menu(tournament.name)
+                self.menu.sub_menu(f"{tournament.name} - {tournament.description}")
 
                 print(f"{':: Number tournament':<22}{'> '}{key}\n"
                       f"{':: Name tournament':<22}{'> '}{tournament.name}\n"
@@ -119,18 +124,18 @@ class ViewTournament:
                       f"{'-' * 119}")
 
                 for all_round in tournament.tours:
-                    for key, value in all_round.items():
-                        print(f"\n\n[ {key} ]\n{'-' * 11}")
+                    for value_id, value in all_round.items():
+                        print(f"\n\n[ {value_id} ]\n{'-' * 11}")
 
                         i = 0
-                        for round in value:
-                            print(f":: Match {i + 1} > Player N°{round[0][0]}:{round[0][2]} Vs "
-                                  f"N°{round[1][0]}:{round[1][2]}")
+                        for current_round in value:
+                            print(f":: Match {i + 1} > Player N°{current_round[0][0]}:{current_round[0][2]} Vs "
+                                  f"N°{current_round[1][0]}:{current_round[1][2]}")
                             i += 1
 
-    def round_2(self, list_tournament):
+    def result_match_round(self, list_tournament):
 
-        results_round_1 = []
+        results_round = []
         key_tournament = int()
 
         select_tournament = int(input(f"\n{'-' * 41}\n{':: Select the tournament to be modified > '}"))
@@ -138,16 +143,17 @@ class ViewTournament:
         for key, value in enumerate(list_tournament):
             if key == select_tournament:
                 key_tournament = key
-                views.view_menu.sub_menu(f"[ Tournament : {value.name} ]  {'Round 1 results'}")
+                self.menu.sub_menu(f"[ Tournament : {value.name} ]  {'Round 1 results'}")
 
                 print(f"{'Enter the points of the players in round 1'}\n{'-' * 42}")
 
                 for number_match, match in enumerate(value.tours[0]['Round_1']):
 
-                    print(f"\n[ Match {number_match + 1} ] Player N°{list(match[0])[0]} Vs N°{list(match[1])[0]}\n{'-' * 29}")
+                    print(f"\n[ Match {number_match + 1} ] Player N°{list(match[0])[0]} Vs "
+                          f"N°{list(match[1])[0]}\n{'-' * 29}")
 
-                    new_point_match_player_1 = int(format_string(f"New point player N°{match[0][0]}"))
-                    new_point_match_player_2 = int(format_string(f"New point player N°{match[1][0]}"))
+                    new_point_match_player_1 = float(format_string(f"New point player N°{match[0][0]}"))
+                    new_point_match_player_2 = float(format_string(f"New point player N°{match[1][0]}"))
 
                     match[0], match[1] = list(match[0]), list(match[1])
 
@@ -155,9 +161,9 @@ class ViewTournament:
 
                     match[0], match[1] = tuple(match[0]), tuple(match[1])
 
-                    results_round_1.append(match)
+                    results_round.append(match)
 
-        return key_tournament, results_round_1
+        return key_tournament, results_round
 
 
 if __name__ == "__main__":
