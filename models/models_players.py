@@ -41,7 +41,7 @@ def deserialized_table_players(table_list_players=table_players):
     """
     Deserialized table players
     """
-    all_players = []
+    all_players = list()
 
     for player in table_list_players:
         all_players.append(player)
