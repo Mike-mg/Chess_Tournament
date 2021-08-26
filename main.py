@@ -4,25 +4,29 @@
 """
 Module view
 """
-import views.view_menu
-import views.view_tournament
+
+import controllers.controller_menu
 
 
 class Main:
 
     def __init__(self):
 
-        self.menu = views.view_menu.ViewMenu()
+        self.menu = controllers.controller_menu.ControllerMenu()
 
-    def main(self):
+    def start_main(self):
         """
         Enter point
         """
 
         self.menu.show_menu()
-        self.menu.choice_menu()
+
+        while True:
+
+            if self.menu.choice_user_menu() is False:
+                break
 
 
 if __name__ == "__main__":
     main = Main()
-    main.main()
+    main.start_main()
