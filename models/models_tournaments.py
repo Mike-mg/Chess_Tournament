@@ -32,9 +32,10 @@ class Tournament:
 
         list_round_1 = list()
 
-        for k, v in enumerate(models.models_players.deserialized_table_players()):
-            if k in self.players:
-                list_round_1.append((k, v['Ranking'], v['Points']))
+        for player in models.models_players.deserialized_table_players():
+
+            if player.doc_id in self.players:
+                list_round_1.append((player.doc_id, player['Ranking'], player['Points']))
 
         list_round_1.sort(key=operator.itemgetter(1))
 
@@ -47,35 +48,63 @@ class Tournament:
 
         round_1_dict = {'Round_1': list([match_1, match_2, match_3, match_4])}
 
+        print(round_1_dict['Round_1'])
         return round_1_dict
 
-    def round_2(self, list_results_round_1):
+    def round_2(self, list_results_previous_round):
 
-        all_match_round_1 = list()
-        list_round_2 = list()
+        list_match_round_1 = list()
+        list_player_round_2_tried = list()
+        list_player_round_2 = list()
+        list_match_round_2 = list()
+        player_dict_round_2 = list()
+        next_round_dict = dict()
 
-        for match in list_results_round_1:
+        for match in list_results_previous_round:
+            list_match_round_1.append((match[0][0], match[1][0]))
+            list_player_round_2_tried.extend(match)
 
-            for player in match:
-                list_round_2.append(player)
+        list_player_round_2_tried.sort(key=operator.itemgetter(2, 1), reverse=True)
 
-        list_round_2.sort(key=operator.itemgetter(2, 1))
+        for player in list_player_round_2_tried:
+            list_player_round_2.append(player[0])
 
-        for match in list_results_round_1:
-             all_match_round_1.append((match[0][0], match[1][0]))
+        y = 1
+        while len(list_player_round_2) > 0:
 
+            try:
 
-        # if list_round_2 not in all_match_round_1:
-        #     print(all_match_round_1)
-        #     print(list_round_2[:2][0][0], list_round_2[:2][1][0])
-        #     print('le match a deja ete jouer')
+                match_control = list_player_round_2[0], list_player_round_2[y]
 
+                if match_control in list_match_round_1 or \
+                        tuple(reversed(match_control)) in list_match_round_1:
+                    match_control = list_player_round_2[0], list_player_round_2[y + 1]
 
-        match_1 = [list_round_2[0][:], list_round_2[0][:]]
-        match_2 = [list_round_2[0][:], list_round_2[0][:]]
-        match_3 = [list_round_2[1][:], list_round_2[1][:]]
-        match_4 = [list_round_2[1][:], list_round_2[1][:]]
+                    if match_control not in list_match_round_1 or \
+                            tuple(reversed(match_control)) not in list_match_round_1:
+                        list_match_round_2.append(match_control)
 
-        round_2_dict = {'Round_2': list([match_1, match_2, match_3, match_4])}
+                        del list_player_round_2[0]
+                        del list_player_round_2[y]
 
-        return round_2_dict
+                else:
+
+                    list_match_round_2.append(match_control)
+                    del list_player_round_2[:y + 1]
+
+            except IndexError:
+                break
+
+        print(list_player_round_2_tried)
+
+        for player in models.models_players.deserialized_table_players():
+
+            for match in list_match_round_2:
+
+                if player.doc_id in match:
+                    player_dict_round_2.append((player.doc_id, player['Ranking'], player['Points']))
+
+        next_round_dict['Round_2'] = player_dict_round_2
+        print(next_round_dict)
+
+        
