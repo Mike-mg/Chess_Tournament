@@ -4,15 +4,8 @@
 import os
 import sys
 
-import controllers.controller_menu
-
 
 class ViewMenu:
-
-    def __init__(self):
-
-        # self.controller_menu = controllers.controller_menu.ControllerMenu()
-        pass
 
     def show_menu(self):
         """
