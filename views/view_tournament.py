@@ -144,9 +144,6 @@ class ViewTournament:
 
         for key, value in enumerate(list_tournament):
 
-            print(value.round_indicator)
-
-
             if key == select_tournament:
                 key_tournament = key
 
@@ -183,10 +180,6 @@ class ViewTournament:
                     match[0], match[1] = tuple(match[0]), tuple(match[1])
 
                     results_round.append(match)
-
-            value.round_indicator += 1
-
-            print(value.round_indicator)
 
         return key_tournament, results_round
 
