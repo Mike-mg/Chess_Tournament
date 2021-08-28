@@ -58,13 +58,6 @@ class ControllerTournament:
 
         tournament = ControllerTournament.tournaments[key_tournament]
 
-        print(tournament.round_indicator)
-        tournament.round_indicator += 1
-        print(tournament.round_indicator)
-
         tournament.tours.insert(tournament.round_indicator, tournament.next_round(results_round))
-        print("\n\n++++++++++++++++++++++++++++++++++++++++++++++\n\n")
-        print(tournament.tours[0])
-        print(tournament.tours[tournament.round_indicator])
 
-        # print(tournament.tours[1])
+        print("\n\n", tournament.tours[0])
