@@ -7,8 +7,10 @@ import views
 
 import datetime
 
+import controllers.controller_tournament
 import views.view_players
 import views.view_menu
+
 
 
 def format_string(get_string):
@@ -133,7 +135,7 @@ class ViewTournament:
                                   f"N°{current_round[1][0]}:{current_round[1][2]}")
                             i += 1
 
-    def result_round_1(self, list_tournament):
+    def result_round(self, list_tournament):
 
         results_round = []
         key_tournament = int()
@@ -141,16 +143,35 @@ class ViewTournament:
         select_tournament = int(input(f"\n{'-' * 41}\n{':: Select the tournament to be modified > '}"))
 
         for key, value in enumerate(list_tournament):
+
+            print(value.round_indicator)
+
+
             if key == select_tournament:
                 key_tournament = key
-                self.menu.sub_menu(f"[ Tournament : {value.name} ]  {'Round 1 results'}")
 
-                print(f"{'Enter the points of the players in round 1'}\n{'-' * 42}")
+                str_round = str()
 
-                for number_match, match in enumerate(value.tours[0]['Round_1']):
+                if  value.round_indicator == 0:
+                    str_round = "Round_1"
 
-                    print(f"\n[ Match {number_match + 1} ] Player N°{list(match[0])[0]} Vs "
-                          f"N°{list(match[1])[0]}\n{'-' * 29}")
+                elif value.round_indicator == 1:
+                    str_round = "Round_2"
+                #
+                # elif value.round_indicator == 2:
+                #     str_round = "Round_3"
+                #
+                # elif value.round_indicator == 3:
+                #     str_round = "Round_4"
+
+                self.menu.sub_menu(f"[ Tournament : {value.name} ]  {str_round} {'results'}")
+
+                print(f"{'Enter the points of the players in '}{str_round}\n{'-' * 42}")
+
+                for number_match, match in enumerate(value.tours[value.round_indicator][str_round]):
+
+                    print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
+                          f"N°{match[1][0]}\n{'-' * 29}")
 
                     new_point_match_player_1 = float(format_string(f"New point player N°{match[0][0]}"))
                     new_point_match_player_2 = float(format_string(f"New point player N°{match[1][0]}"))
@@ -162,6 +183,10 @@ class ViewTournament:
                     match[0], match[1] = tuple(match[0]), tuple(match[1])
 
                     results_round.append(match)
+
+            value.round_indicator += 1
+
+            print(value.round_indicator)
 
         return key_tournament, results_round
 
