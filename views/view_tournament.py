@@ -181,6 +181,8 @@ class ViewTournament:
 
                     results_round.append(match)
 
+            value.round_indicator += 1
+
         return key_tournament, results_round
 
 
