@@ -27,6 +27,8 @@ class Tournament:
         self.players = players
         self.time_control = time_control
         self.description = description
+        self.round_indicator = 0
+
 
     def round_1(self):
 
@@ -89,7 +91,7 @@ class Tournament:
             except IndexError:
                 break
 
-        next_round_dict = {'Round_2': list_match_next_round}
+        next_round_dict = {f"{'Round_'}{self.round_indicator}": list_match_next_round}
 
         return next_round_dict
         
