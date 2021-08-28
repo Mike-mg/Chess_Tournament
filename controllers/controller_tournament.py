@@ -54,9 +54,12 @@ class ControllerTournament:
 
         self.view_tournament.menu_tournament(ControllerTournament.tournaments)
 
-        number_tournament, round_1 = self.view_tournament.result_round_1(ControllerTournament.tournaments)
+        key_tournament, results_round = self.view_tournament.result_round(ControllerTournament.tournaments)
 
-        tournament = ControllerTournament.tournaments[number_tournament]
-        tournament.tours.insert(1, tournament.next_round(round_1))
+        tournament = ControllerTournament.tournaments[key_tournament]
+
+        tournament.tours.insert(1, tournament.next_round(results_round))
+
+        print("\n\n++++++++++++++++++++++++++++++++++++++++++++++\n\n")
         print(tournament.tours[0])
         print(tournament.tours[1])
