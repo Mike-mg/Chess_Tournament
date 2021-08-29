@@ -66,6 +66,22 @@ class ViewPlayer:
 
         return last_name, name, birthday, sex, ranking, points
 
+    def new_player_ranking(self, players):
+
+        self.view_show_player()
+
+        select_player = int(input(f"\n{'-' * 41}\n{':: Select the player to be modified > '}"))
+
+        for key, value in enumerate(players):
+
+            if key == select_player:
+                print(f"\n{'Select player :'} {value['Last_name']} {value['Name']}\n{'-' * 30}")
+
+                new_ranking = int(input('Enter the new ranking : '))
+
+                value['Ranking'] = new_ranking
+
+                return key + 1, value
 
 if __name__ == "__main__":
     pass
