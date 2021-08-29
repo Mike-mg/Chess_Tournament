@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
+from tinydb import Query
+
 import views.view_players
 import models.models_players
 import views.view_menu
@@ -29,3 +31,14 @@ class ControllerPlayer:
 
         get_view_player = self.view_player.add_player()
         models.models_players.serialized_player(get_view_player)
+
+    def modified_ranking(self):
+
+        update = Query()
+
+        players = models.models_players.deserialized_table_players()
+
+        update_player = self.view_player.new_player_ranking(players)
+
+        models.models_players.table_players.update({'Ranking': update_player[1]['Ranking']}, update.Name == update_player[1]['Name'])
+
