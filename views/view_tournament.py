@@ -7,10 +7,8 @@ import views
 
 import datetime
 
-import controllers.controller_tournament
 import views.view_players
 import views.view_menu
-
 
 
 def format_string(get_string):
@@ -135,55 +133,69 @@ class ViewTournament:
                                   f"N°{current_round[1][0]}:{current_round[1][2]}")
                             i += 1
 
-    def result_round(self, list_tournament):
-
-        results_round = []
-        key_tournament = int()
+    def choice_tournament(self, tournament):
 
         select_tournament = int(input(f"\n{'-' * 41}\n{':: Select the tournament to be modified > '}"))
 
-        for key, value in enumerate(list_tournament):
+        for key, value in enumerate(tournament):
 
             if key == select_tournament:
-                key_tournament = key
+                self.menu.sub_menu(f"[ Tournament : {value.name} ] ")
+
+            return key
+
+    def result_round(self, list_tournament):
+
+        select_tournament = int(input(f"\n{'-' * 41}\n{':: Select the tournament to be modified > '}"))
+
+        for key, tournament in enumerate(list_tournament):
+
+            if key == select_tournament:
+                self.menu.sub_menu(f"[ Tournament : {tournament.name} ] ")
 
                 str_round = str()
+                round_indicator = int()
+                results_round = list()
 
-                if  value.round_indicator == 0:
+                if len(tournament.tours) == 1:
                     str_round = "Round_1"
+                    round_indicator = 0
 
-                elif value.round_indicator == 1:
+                elif len(tournament.tours) == 2:
                     str_round = "Round_2"
-                #
-                # elif value.round_indicator == 2:
-                #     str_round = "Round_3"
-                #
-                # elif value.round_indicator == 3:
-                #     str_round = "Round_4"
+                    round_indicator = 1
 
-                self.menu.sub_menu(f"[ Tournament : {value.name} ]  {str_round} {'results'}")
+                elif len(tournament.tours) == 3:
+                    str_round = "Round_3"
+                    round_indicator = 2
 
-                print(f"{'Enter the points of the players in '}{str_round}\n{'-' * 42}")
+                elif len(tournament.tours) == 4:
+                    str_round = "Round_4"
+                    round_indicator = 3
 
-                for number_match, match in enumerate(value.tours[value.round_indicator][str_round]):
+                for actual_round, round_match in tournament.tours[round_indicator].items():
 
-                    print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
-                          f"N°{match[1][0]}\n{'-' * 29}")
+                    print(f"{'Enter the points of the players in '}{actual_round}\n{'-' * 42}")
 
-                    new_point_match_player_1 = float(format_string(f"New point player N°{match[0][0]}"))
-                    new_point_match_player_2 = float(format_string(f"New point player N°{match[1][0]}"))
+                    for number_match, match in enumerate(round_match):
 
-                    match[0], match[1] = list(match[0]), list(match[1])
+                        print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
+                              f"N°{match[1][0]}\n{'-' * 29}")
 
-                    match[0][2], match[1][2] = new_point_match_player_1, new_point_match_player_2
+                        new_point_match_player_1 = float(format_string(f"New point player N°{match[0][0]}"))
+                        new_point_match_player_2 = float(format_string(f"New point player N°{match[1][0]}"))
 
-                    match[0], match[1] = tuple(match[0]), tuple(match[1])
+                        match[0], match[1] = list(match[0]), list(match[1])
 
-                    results_round.append(match)
+                        match[0][2], match[1][2] = new_point_match_player_1, new_point_match_player_2
 
-            value.round_indicator += 1
+                        match[0], match[1] = tuple(match[0]), tuple(match[1])
 
-        return key_tournament, results_round
+                        results_round.append(match)
+
+                tournament.tours[round_indicator][str_round] = results_round
+
+                return key, results_round
 
 
 if __name__ == "__main__":
