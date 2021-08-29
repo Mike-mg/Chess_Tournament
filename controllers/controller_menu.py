@@ -31,7 +31,7 @@ class ControllerMenu:
 
         elif choice == 2:
             # Modified ranking player
-            pass
+            self.controller_player.modified_ranking()
 
         elif choice == 3:
             # List tournament
