@@ -21,6 +21,7 @@ class ControllerTournament:
     def __init__(self):
 
         self.view_tournament = views.view_tournament.ViewTournament()
+        self.view_player = views.view_players.ViewPlayer()
 
     def controller_add_tournament(self):
 
@@ -35,7 +36,7 @@ class ControllerTournament:
         #                                                   main_info_tournament[4],
         #                                                   main_info_tournament[5])
 
-        tournament = models.models_tournaments.Tournament("Tournament French",
+        tournament = models.models_tournaments.Tournament("Tournament 1",
                                                           "French",
                                                           "01/01/2020",
                                                           "01/01/2020",
@@ -43,8 +44,18 @@ class ControllerTournament:
                                                           "time control",
                                                           "description")
 
-        tournament.tours.insert(0, tournament.round_1())
+        tournament1 = models.models_tournaments.Tournament("Tournament 2",
+                                                           "French",
+                                                           "01/01/2020",
+                                                           "01/01/2020",
+                                                           [1, 2, 3, 4, 5, 6, 7, 8],
+                                                           "time control",
+                                                           "description")
+
+        tournament.round_1()
+        tournament1.round_1()
         ControllerTournament.tournaments.append(tournament)
+        ControllerTournament.tournaments.append(tournament1)
 
     def show_tournament(self):
 
@@ -54,10 +65,8 @@ class ControllerTournament:
 
         self.view_tournament.menu_tournament(ControllerTournament.tournaments)
 
-        key_tournament, results_round = self.view_tournament.result_round(ControllerTournament.tournaments)
+        num_tournament, result_round_actual = self.view_tournament.result_round(ControllerTournament.tournaments)
 
-        tournament = ControllerTournament.tournaments[key_tournament]
+        tournament = ControllerTournament.tournaments[num_tournament]
 
-        tournament.tours.insert(tournament.round_indicator, tournament.next_round(results_round))
-
-        print("\n\n", tournament.tours[0])
+        tournament.next_round(tournament)
