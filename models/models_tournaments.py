@@ -5,6 +5,7 @@ from tinydb import TinyDB
 import operator
 
 import models.models_players
+import controllers.controller_tournament
 
 DB_TOURNAMENTS = TinyDB('Bdd/db_tournaments.json', indent=4)
 TOURNAMENTS = DB_TOURNAMENTS.table("tournaments")
@@ -27,8 +28,6 @@ class Tournament:
         self.players = players
         self.time_control = time_control
         self.description = description
-        self.round_indicator = 0
-
 
     def round_1(self):
 
@@ -48,50 +47,56 @@ class Tournament:
         match_3 = [list_round_1[0][2], list_round_1[1][2]]
         match_4 = [list_round_1[0][3], list_round_1[1][3]]
 
-        round_1_dict = {'Round_1': list([match_1, match_2, match_3, match_4])}
+        round_1_dict = {'Round_1': [match_1, match_2, match_3, match_4]}
 
-        return round_1_dict
+        self.tours.insert(0, round_1_dict)
 
-    def next_round(self, list_results_previous_round):
+    def next_round(self, tournament):
 
-        list_match_round_1 = list()
-        list_player_next_round_tried = list()
-        list_match_next_round = list()
+        for roud_actual in tournament.tours[-1].values():
 
-        for match in list_results_previous_round:
-            list_match_round_1.append((match[0][0], match[1][0]))
-            list_player_next_round_tried.extend(match)
+            list_match_round_1 = list()
+            list_player_next_round_tried = list()
+            list_match_next_round = list()
 
-        list_player_next_round_tried.sort(key=operator.itemgetter(2, 1), reverse=True)
+            for match in roud_actual:
+                list_match_round_1.append((match[0][0], match[1][0]))
+                list_player_next_round_tried.extend(match)
 
-        y = 1
-        while len(list_player_next_round_tried) > 0:
+            list_player_next_round_tried.sort(key=operator.itemgetter(2, 1), reverse=True)
 
-            try:
+            y = 1
+            while len(list_player_next_round_tried) > 0:
 
-                match = [list_player_next_round_tried[0], list_player_next_round_tried[y]]
-                match_control = [match[0][0], match[1][0]]
+                try:
 
-                if match_control in list_match_round_1 or tuple(reversed(match_control)) in list_match_round_1:
+                    match = [list_player_next_round_tried[0], list_player_next_round_tried[y]]
+                    match_control = [match[0][0], match[1][0]]
 
-                    match_control = list_player_next_round_tried[0][0], list_player_next_round_tried[y + 1][0]
+                    if match_control in list_match_round_1 or tuple(reversed(match_control)) in list_match_round_1:
 
-                    if match_control not in list_match_round_1 or tuple(
-                            reversed(match_control)) not in list_match_round_1:
+                        match_control = list_player_next_round_tried[0][0], list_player_next_round_tried[y + 1][0]
+
+                        if match_control not in list_match_round_1 or tuple(
+                                reversed(match_control)) not in list_match_round_1:
+                            list_match_next_round.append(match)
+
+                            del list_player_next_round_tried[0]
+                            del list_player_next_round_tried[y]
+
+                    else:
+
                         list_match_next_round.append(match)
+                        del list_player_next_round_tried[:y + 1]
 
-                        del list_player_next_round_tried[0]
-                        del list_player_next_round_tried[y]
+                except IndexError:
+                    break
 
-                else:
+            print('nb round = ',len(self.tours))
 
-                    list_match_next_round.append(match)
-                    del list_player_next_round_tried[:y + 1]
+            if len(self.tours) < 4:
+                next_round_dict = {f"{'Round_'}{len(self.tours)+1}": list_match_next_round}
+                self.tours.insert(len(self.tours), next_round_dict)
 
-            except IndexError:
-                break
-
-        next_round_dict = {f"{'Round_'}{self.round_indicator}": list_match_next_round}
-
-        return next_round_dict
-        
+            else:
+                print("\n\nThe tournament is finnish.")
