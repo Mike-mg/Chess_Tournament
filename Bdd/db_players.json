@@ -5,7 +5,7 @@
             "Name": "Michael",
             "Birthday": "1979-07-13",
             "Sex": "M",
-            "Ranking": 10,
+            "Ranking": 1,
             "Points": 0
         },
         "2": {
@@ -13,7 +13,7 @@
             "Name": "Angelique",
             "Birthday": "1974-03-03",
             "Sex": "F",
-            "Ranking": 20,
+            "Ranking": 2,
             "Points": 0
         },
         "3": {
