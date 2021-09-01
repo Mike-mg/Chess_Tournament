@@ -16,8 +16,8 @@ class Tournament:
     create a object Tournament
     """
 
-    def __init__(self, name, location, start_date, end_date,
-                 players, time_control, description):
+    def __init__(self, name: str, location: str, start_date: str, end_date: str,
+                 players: list[int], time_control: str, description: str):
 
         self.name = name.title()
         self.location = location.title()
@@ -51,9 +51,9 @@ class Tournament:
 
         self.tours.insert(0, round_1_dict)
 
-    def next_round(self, tournament):
+    def next_round(self):
 
-        for roud_actual in tournament.tours[-1].values():
+        for roud_actual in self.tours[-1].values():
 
             list_match_round_1 = list()
             list_player_next_round_tried = list()
@@ -94,7 +94,7 @@ class Tournament:
 
             print('nb round = ',len(self.tours))
 
-            if len(self.tours) < 4:
+            if len(self.tours) < self.nb_rounds:
                 next_round_dict = {f"{'Round_'}{len(self.tours)+1}": list_match_next_round}
                 self.tours.insert(len(self.tours), next_round_dict)
 
