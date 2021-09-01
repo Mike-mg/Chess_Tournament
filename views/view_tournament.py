@@ -9,10 +9,7 @@ import datetime
 
 import views.view_players
 import views.view_menu
-
-
-def format_string(get_string):
-    return input(f":: {get_string} > ")
+import utility_functions.utils_func
 
 
 class ViewTournament:
@@ -44,9 +41,9 @@ class ViewTournament:
         # views.view_menu.show_menu()
         self.menu.sub_menu('* Add A Tournament *')
 
-        name = format_string("Name tournament").capitalize()
-        location = format_string("Location").capitalize()
-        description = format_string("Description").capitalize()
+        name = utility_functions.utils_func.format_string("Name tournament").capitalize()
+        location = utility_functions.utils_func.format_string("Location").capitalize()
+        description = utility_functions.utils_func.format_string("Description").capitalize()
 
         date_string = (f"\nEnter start date\n{'-' * 16}",
                        f"\nEnter end date\n{'-' * 14}")
@@ -57,9 +54,9 @@ class ViewTournament:
 
             print(value)
 
-            year = int(format_string("Year"))
-            month = int(format_string("Month"))
-            day = int(format_string("Day"))
+            year = int(utility_functions.utils_func.format_string("Year"))
+            month = int(utility_functions.utils_func.format_string("Month"))
+            day = int(utility_functions.utils_func.format_string("Day"))
             date.append(datetime.date(year, month, day).strftime("%d/%m/%Y"))
 
         start_date = date[0]
@@ -72,7 +69,7 @@ class ViewTournament:
         for key, time_control in enumerate(list_time_control):
             print(f"[ {key} ]  {time_control}")
 
-        choice_time_control = int(format_string("Choice time control"))
+        choice_time_control = int(utility_functions.utils_func.format_string("Choice time control"))
 
         time_control = list_time_control[choice_time_control]
 
@@ -92,7 +89,7 @@ class ViewTournament:
 
         for i in range(8):
 
-            player = int(format_string(f"Player {i + 1}"))
+            player = int(utility_functions.utils_func.format_string(f"Player {i + 1}"))
 
             players.append(player)
 
@@ -182,8 +179,8 @@ class ViewTournament:
                         print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
                               f"N°{match[1][0]}\n{'-' * 29}")
 
-                        new_point_match_player_1 = float(format_string(f"New point player N°{match[0][0]}"))
-                        new_point_match_player_2 = float(format_string(f"New point player N°{match[1][0]}"))
+                        new_point_match_player_1 = float(utility_functions.utils_func.format_string(f"New point player N°{match[0][0]}"))
+                        new_point_match_player_2 = float(utility_functions.utils_func.format_string(f"New point player N°{match[1][0]}"))
 
                         match[0], match[1] = list(match[0]), list(match[1])
 
