@@ -68,5 +68,4 @@ class ControllerTournament:
         num_tournament, result_round_actual = self.view_tournament.result_round(ControllerTournament.tournaments)
 
         tournament = ControllerTournament.tournaments[num_tournament]
-
-        tournament.next_round(tournament)
+        tournament.next_round()
