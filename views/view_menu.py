@@ -1,8 +1,7 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import os
-import sys
+import utility_functions.utils_func
 
 
 class ViewMenu:
@@ -12,12 +11,7 @@ class ViewMenu:
         Docstrings
         """
 
-        if sys.platform.startswith('linux'):
-            os.system('clear')
-        elif sys.platform.startswith('win32'):
-            os.system('cls')
-        elif sys.platform.startswith('darwin'):
-            os.system('clear')
+        utility_functions.utils_func.clear_screen()
 
         menu_list = ['List of all players',
                      'Add a player',
