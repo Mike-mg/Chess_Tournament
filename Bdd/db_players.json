@@ -1,132 +1,140 @@
 {
     "players": {
         "1": {
-            "Last_name": "Gay",
-            "Name": "Michael",
-            "Birthday": "1979-07-13",
-            "Sex": "M",
-            "Ranking": 1,
-            "Points": 0
+            "last_name": "Gay",
+            "name": "Michael",
+            "birthday": "1979-07-13",
+            "sex": "M",
+            "ranking": 1,
+            "points": 0
         },
         "2": {
-            "Last_name": "Erd",
-            "Name": "Angelique",
-            "Birthday": "1974-03-03",
-            "Sex": "F",
-            "Ranking": 2,
-            "Points": 0
+            "last_name": "Erd",
+            "name": "Angelique",
+            "birthday": "1974-03-03",
+            "sex": "F",
+            "ranking": 2,
+            "points": 0
         },
         "3": {
-            "Last_name": "yer",
-            "Name": "Amandine",
-            "Birthday": "2006-02-26",
-            "Sex": "F",
-            "Ranking": 30,
-            "Points": 0
+            "last_name": "yer",
+            "name": "Amandine",
+            "birthday": "2006-02-26",
+            "sex": "F",
+            "ranking": 30,
+            "points": 0
         },
         "4": {
-            "Last_name": "Hyr",
-            "Name": "Anais",
-            "Birthday": "1998-04-24",
-            "Sex": "F",
-            "Ranking": 40,
-            "Points": 0
+            "last_name": "Hyr",
+            "name": "Anais",
+            "birthday": "1998-04-24",
+            "sex": "F",
+            "ranking": 40,
+            "points": 0
         },
         "5": {
-            "Last_name": "Ruv",
-            "Name": "Ilya",
-            "Birthday": "1997-02-12",
-            "Sex": "M",
-            "Ranking": 50,
-            "Points": 0
+            "last_name": "Ruv",
+            "name": "Ilya",
+            "birthday": "1997-02-12",
+            "sex": "M",
+            "ranking": 50,
+            "points": 0
         },
         "6": {
-            "Last_name": "Berton",
-            "Name": "Isabelle",
-            "Birthday": "1975-04-22",
-            "Sex": "F",
-            "Ranking": 60,
-            "Points": 0
+            "last_name": "Berton",
+            "name": "Isabelle",
+            "birthday": "1975-04-22",
+            "sex": "F",
+            "ranking": 60,
+            "points": 0
         },
         "7": {
-            "Last_name": "Ingram",
-            "Name": "Andrew",
-            "Birthday": "1986-07-16",
-            "Sex": "M",
-            "Ranking": 70,
-            "Points": 0
+            "last_name": "Ingram",
+            "name": "Andrew",
+            "birthday": "1986-07-16",
+            "sex": "M",
+            "ranking": 70,
+            "points": 0
         },
         "8": {
-            "Last_name": "Hilton",
-            "Name": "Joe",
-            "Birthday": "1988-09-17",
-            "Sex": "M",
-            "Ranking": 80,
-            "Points": 0
+            "last_name": "Hilton",
+            "name": "Joe",
+            "birthday": "1988-09-17",
+            "sex": "M",
+            "ranking": 80,
+            "points": 0
         },
         "9": {
-            "Last_name": "Bon",
-            "Name": "Arlette",
-            "Birthday": "01/01/2021",
-            "Sex": "F",
-            "Ranking": 111,
-            "Points": 0
+            "last_name": "Bon",
+            "name": "Arlette",
+            "birthday": "01/01/2021",
+            "sex": "F",
+            "ranking": 111,
+            "points": 0
         },
         "10": {
-            "Last_name": "Gates",
-            "Name": "Benjamin",
-            "Birthday": "12/12/2020",
-            "Sex": "M",
-            "Ranking": 100,
-            "Points": 0
+            "last_name": "Gates",
+            "name": "Benjamin",
+            "birthday": "12/12/2020",
+            "sex": "M",
+            "ranking": 100,
+            "points": 0
         },
         "11": {
-            "Last_name": "Anderson",
-            "Name": "Ellie",
-            "Birthday": "12/12/2021",
-            "Sex": "F",
-            "Ranking": 25,
-            "Points": 0
+            "last_name": "Anderson",
+            "name": "Ellie",
+            "birthday": "12/12/2021",
+            "sex": "F",
+            "ranking": 25,
+            "points": 0
         },
         "12": {
-            "Last_name": "Byrne",
-            "Name": "Lilas",
-            "Birthday": "12/12/2020",
-            "Sex": "F",
-            "Ranking": 33,
-            "Points": 0
+            "last_name": "Byrne",
+            "name": "Lilas",
+            "birthday": "12/12/2020",
+            "sex": "F",
+            "ranking": 33,
+            "points": 0
         },
         "13": {
-            "Last_name": "Cooper",
-            "Name": "Rose",
-            "Birthday": "11/12/2021",
-            "Sex": "F",
-            "Ranking": 57,
-            "Points": 0
+            "last_name": "Cooper",
+            "name": "Rose",
+            "birthday": "11/12/2021",
+            "sex": "F",
+            "ranking": 57,
+            "points": 0
         },
         "14": {
-            "Last_name": "Evans",
-            "Name": "Maxine",
-            "Birthday": "05/05/2020",
-            "Sex": "M",
-            "Ranking": 99,
-            "Points": 0
+            "last_name": "Evans",
+            "name": "Maxine",
+            "birthday": "05/05/2020",
+            "sex": "M",
+            "ranking": 99,
+            "points": 0
         },
         "15": {
-            "Last_name": "Richardson",
-            "Name": "Megane",
-            "Birthday": "06/05/2020",
-            "Sex": "F",
-            "Ranking": 152,
-            "Points": 0
+            "last_name": "Richardson",
+            "name": "Megane",
+            "birthday": "06/05/2020",
+            "sex": "F",
+            "ranking": 152,
+            "points": 0
         },
         "16": {
-            "Last_name": "Paterson",
-            "Name": "Alexander",
-            "Birthday": "07/06/2020",
-            "Sex": "M",
-            "Ranking": 279,
-            "Points": 0
+            "last_name": "Paterson",
+            "name": "Alexander",
+            "birthday": "07/06/2020",
+            "sex": "M",
+            "ranking": 15,
+            "points": 0
+        },
+        "17": {
+            "last_name": "a",
+            "name": "a",
+            "birthday": "a",
+            "sex": "a",
+            "ranking": "a",
+            "points": 0
         }
     }
 }
