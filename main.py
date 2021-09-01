@@ -9,6 +9,9 @@ import controllers.controller_menu
 
 
 class Main:
+    """
+    Program entry point
+    """
 
     def __init__(self):
 
@@ -16,7 +19,7 @@ class Main:
 
     def start_main(self):
         """
-        Enter point
+        Show the menu while var choice_user_menu is True (7 = False and quit the program)
         """
 
         self.menu.show_menu()
