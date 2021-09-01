@@ -6,11 +6,9 @@ Modules views
 """
 
 import views.view_menu
+import utility_functions.utils_func
 import models.models_players
 
-
-def format_string(get_string):
-    return input(f":: {get_string} > ")
 
 
 class ViewPlayer:
@@ -57,11 +55,11 @@ class ViewPlayer:
         self.view_menu.show_menu()
         self.view_menu.sub_menu("* Add A Player *")
 
-        last_name = format_string("Last name")
-        name = format_string("Name")
-        birthday = format_string("Birthday")
-        sex = format_string("Sex")
-        ranking = format_string("Ranking")
+        last_name = utility_functions.utils_func.format_string("Last name")
+        name = utility_functions.utils_func.format_string("Name")
+        birthday = utility_functions.utils_func.format_string("Birthday")
+        sex = utility_functions.utils_func.format_string("Sex")
+        ranking = utility_functions.utils_func.format_string("Ranking")
         points = 0
 
         return last_name, name, birthday, sex, ranking, points
