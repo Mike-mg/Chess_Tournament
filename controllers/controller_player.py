@@ -34,11 +34,12 @@ class ControllerPlayer:
 
     def modified_ranking(self):
 
-        update = Query()
+        update_ranking_player = Query()
 
         players = models.models_players.deserialized_table_players()
 
         update_player = self.view_player.new_player_ranking(players)
 
-        models.models_players.table_players.update({'Ranking': update_player[1]['Ranking']}, update.Name == update_player[1]['Name'])
+        models.models_players.table_players.update({'Ranking': update_player['Ranking']},
+                                                   update_ranking_player.Name == update_player['Name'])
 
