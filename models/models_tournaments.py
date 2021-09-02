@@ -4,10 +4,9 @@
 from tinydb import TinyDB
 import operator
 
-import models.models_players
-import controllers.controller_tournament
+import bdd.db_serialized_deserialized_players_func
 
-DB_TOURNAMENTS = TinyDB('Bdd/db_tournaments.json', indent=4)
+DB_TOURNAMENTS = TinyDB('bdd/db_tournaments.json', indent=4)
 TOURNAMENTS = DB_TOURNAMENTS.table("tournaments")
 
 
@@ -33,7 +32,7 @@ class Tournament:
 
         list_round_1 = list()
 
-        for player in models.models_players.deserialized_table_players():
+        for player in bdd.db_serialized_deserialized_players_func.deserialized_table_players():
 
             if player.doc_id in self.players:
                 list_round_1.append((player.doc_id, player['Ranking'], player['Points']))
