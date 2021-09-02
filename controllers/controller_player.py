@@ -3,9 +3,12 @@
 
 from tinydb import Query
 
-import views.view_players
+
 import models.models_players
 import views.view_menu
+import views.view_players
+import bdd.db_serialized_deserialized_players_func
+
 
 
 class ControllerPlayer:
@@ -22,7 +25,7 @@ class ControllerPlayer:
         Shows all players
         """
 
-        self.view_player.view_show_player(models.models_players.table_players.all())
+        self.view_player.view_show_player()
 
     def controller_add_player(self):
         """
@@ -30,13 +33,13 @@ class ControllerPlayer:
         """
 
         get_view_player = self.view_player.add_player()
-        models.models_players.serialized_player(get_view_player)
+        models.models_players.Player(get_view_player)
 
     def modified_ranking(self):
 
         update_ranking_player = Query()
 
-        players = models.models_players.deserialized_table_players()
+        players = bdd.db_serialized_deserialized_players_func.deserialized_table_players()
 
         update_player = self.view_player.new_player_ranking(players)
 
