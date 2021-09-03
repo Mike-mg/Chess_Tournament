@@ -14,31 +14,32 @@ import utility_functions.utils_func
 
 class ViewTournament:
     """
-    Objet view tournament
+    Show and retrieve tournament information
     """
+
+    TIMES_CONTROL = ["Blitz", "Bullet", "Quick hit"]
 
     def __init__(self):
 
         self.menu = views.view_menu.ViewMenu()
         self.view_player = views.view_players.ViewPlayer()
 
-    def menu_tournament(self, list_tournament):
+    def menu_tournament(self, list_tournament: list):
         """
         Show menu tournament
         """
 
-        # views.view_menu.show_menu()
         self.menu.sub_menu("Current tournament")
 
         for key, value in enumerate(list_tournament):
             print(f"[ {key} ] - [ {value.name}, {value.location} ]")
 
-    def main_tournament_info(self):
+    def main_tournament_info(self) -> tuple:
         """
-        Name, location, date, description and time control of tournament
+        Add a tournament
+        Retrieve name, location, date, description and time control of tournament
         """
 
-        # views.view_menu.show_menu()
         self.menu.sub_menu('* Add A Tournament *')
 
         name = utility_functions.utils_func.format_string("Name tournament").capitalize()
@@ -62,22 +63,20 @@ class ViewTournament:
         start_date = date[0]
         end_date = date[1]
 
-        list_time_control = ["Blitz", "Bullet", "Quick hit"]
-
         print(f"\nSelect time control\n{'-' * 19}")
 
-        for key, time_control in enumerate(list_time_control):
+        for key, time_control in enumerate(ViewTournament.TIMES_CONTROL):
             print(f"[ {key} ]  {time_control}")
 
         choice_time_control = int(utility_functions.utils_func.format_string("Choice time control"))
 
-        time_control = list_time_control[choice_time_control]
+        time_control = ViewTournament.TIMES_CONTROL[choice_time_control]
 
         return name, location, start_date, end_date, time_control, description
 
-    def add_player_tournament(self):
+    def add_player_tournament(self) -> list:
         """
-        Add player at a tournament
+        Add player a tournament
         """
 
         self.view_player.view_show_player()
@@ -95,7 +94,10 @@ class ViewTournament:
 
         return players
 
-    def show_tournament(self, list_tournament):
+    def show_tournament(self, list_tournament: list):
+        """
+        Show general tournament information
+        """
 
         self.menu.show_menu()
         self.menu_tournament(list_tournament)
@@ -130,18 +132,24 @@ class ViewTournament:
                                   f"N°{current_round[1][0]}:{current_round[1][2]}")
                             i += 1
 
-    def choice_tournament(self, tournament):
+    def choice_tournament(self, list_tournament: list) -> int:
+        """
+        Selects the tournament number to show
+        """
 
         select_tournament = int(input(f"\n{'-' * 41}\n{':: Select the tournament to be modified > '}"))
 
-        for key, value in enumerate(tournament):
+        for key, value in enumerate(list_tournament):
 
             if key == select_tournament:
                 self.menu.sub_menu(f"[ Tournament : {value.name} ] ")
 
             return key
 
-    def result_round(self, list_tournament):
+    def result_round(self, list_tournament: list) -> tuple:
+        """
+        Changes the points of the completed rounds
+        """
 
         select_tournament = int(input(f"\n{'-' * 41}\n{':: Select the tournament to be modified > '}"))
 
@@ -179,8 +187,11 @@ class ViewTournament:
                         print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
                               f"N°{match[1][0]}\n{'-' * 29}")
 
-                        new_point_match_player_1 = float(utility_functions.utils_func.format_string(f"New point player N°{match[0][0]}"))
-                        new_point_match_player_2 = float(utility_functions.utils_func.format_string(f"New point player N°{match[1][0]}"))
+                        new_point_match_player_1 = float(utility_functions.utils_func.format_string
+                                                         (f"New point player N°{match[0][0]}"))
+
+                        new_point_match_player_2 = float(utility_functions.utils_func.format_string
+                                                         (f"New point player N°{match[1][0]}"))
 
                         match[0], match[1] = list(match[0]), list(match[1])
 
