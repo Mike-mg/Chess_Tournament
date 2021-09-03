@@ -1,11 +1,6 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-"""
-Modules views
-Modules Models
-"""
-
 import views.view_tournament
 import views.view_players
 import views.view_menu
@@ -14,9 +9,10 @@ import models.models_tournaments
 
 class ControllerTournament:
     """
-    Controller tournament
+    Controls the creation of tournaments
     """
-    tournaments = []
+
+    TOURNAMENTS = []
 
     def __init__(self):
 
@@ -24,6 +20,9 @@ class ControllerTournament:
         self.view_player = views.view_players.ViewPlayer()
 
     def controller_add_tournament(self):
+        """
+        Instance a tournament
+        """
 
         # main_info_tournament = self.view_tournament.main_tournament_info()
         # add_player = self.view_tournament.add_player_tournament()
@@ -44,28 +43,24 @@ class ControllerTournament:
                                                           "time control",
                                                           "description")
 
-        tournament1 = models.models_tournaments.Tournament("Tournament 2",
-                                                           "French",
-                                                           "01/01/2020",
-                                                           "01/01/2020",
-                                                           [1, 2, 3, 4, 5, 6, 7, 8],
-                                                           "time control",
-                                                           "description")
-
         tournament.round_1()
-        tournament1.round_1()
-        ControllerTournament.tournaments.append(tournament)
-        ControllerTournament.tournaments.append(tournament1)
+        ControllerTournament.TOURNAMENTS.append(tournament)
 
     def show_tournament(self):
+        """
+        Displays the general information of the tournament
+        """
 
-        self.view_tournament.show_tournament(ControllerTournament.tournaments)
+        self.view_tournament.show_tournament(ControllerTournament.TOURNAMENTS)
 
     def result_round(self):
+        """
+        Changes the points of the players at the end of each round
+        """
 
-        self.view_tournament.menu_tournament(ControllerTournament.tournaments)
+        self.view_tournament.menu_tournament(ControllerTournament.TOURNAMENTS)
 
-        num_tournament, result_round_actual = self.view_tournament.result_round(ControllerTournament.tournaments)
+        num_tournament, result_round_actual = self.view_tournament.result_round(ControllerTournament.TOURNAMENTS)
 
-        tournament = ControllerTournament.tournaments[num_tournament]
+        tournament = ControllerTournament.TOURNAMENTS[num_tournament]
         tournament.next_round()
