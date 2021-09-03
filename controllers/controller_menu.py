@@ -7,6 +7,9 @@ import views.view_menu
 
 
 class ControllerMenu:
+    """
+    Controls the menu options selected by the user
+    """
 
     def __init__(self):
         self.controller_tournament = controllers.controller_tournament.ControllerTournament()
@@ -14,10 +17,16 @@ class ControllerMenu:
         self.view_menu = views.view_menu.ViewMenu()
 
     def show_menu(self):
+        """
+        Show the program menu
+        """
 
         self.view_menu.show_menu()
 
-    def choice_user_menu(self):
+    def choice_user_menu(self) -> int:
+        """
+        Menu selection
+        """
 
         choice = self.view_menu.choice_menu()
 
