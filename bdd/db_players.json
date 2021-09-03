@@ -5,7 +5,7 @@
             "name": "Michael",
             "birthday": "1979-07-13",
             "sex": "M",
-            "ranking": 20,
+            "ranking": 1,
             "points": 0
         },
         "2": {
@@ -21,7 +21,7 @@
             "name": "Amandine",
             "birthday": "2006-02-26",
             "sex": "F",
-            "ranking": 30,
+            "ranking": 3,
             "points": 0
         },
         "4": {
@@ -29,7 +29,7 @@
             "name": "Anais",
             "birthday": "1998-04-24",
             "sex": "F",
-            "ranking": 40,
+            "ranking": 4,
             "points": 0
         },
         "5": {
@@ -126,14 +126,6 @@
             "birthday": "07/06/2020",
             "sex": "M",
             "ranking": 15,
-            "points": 0
-        },
-        "17": {
-            "last_name": "A",
-            "name": "A",
-            "birthday": "a",
-            "sex": "A",
-            "ranking": "a",
             "points": 0
         }
     }
