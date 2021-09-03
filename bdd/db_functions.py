@@ -26,15 +26,15 @@ def deserialized_table_players() -> list:
     return all_players
 
 
-def serialized_player(list_players: list):
+def serialized_player(list_players_object: list):
     """
     serialize the list of player objects in parameter
     """
 
-    TABLE_PLAYERS.truncate()
     serialized_players_for_table_players = list()
 
-    for player in list_players:
+    for player in list_players_object:
+
         player_serialized = dict()
 
         player_serialized['last_name'] = player.last_name
@@ -46,6 +46,7 @@ def serialized_player(list_players: list):
 
         serialized_players_for_table_players.append(player_serialized)
 
+    TABLE_PLAYERS.truncate()
     TABLE_PLAYERS.insert_multiple(serialized_players_for_table_players)
 
 
