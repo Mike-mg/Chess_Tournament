@@ -5,7 +5,7 @@ import os
 import sys
 
 
-def format_string(get_string) -> str:
+def format_string(get_string: str) -> str:
     """
     Format the input parameter
     """
