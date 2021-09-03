@@ -4,7 +4,7 @@
 from tinydb import TinyDB
 import operator
 
-import bdd.db_serialized_deserialized_players_func
+import bdd.db_functions
 
 DB_TOURNAMENTS = TinyDB('bdd/db_tournaments.json', indent=4)
 TOURNAMENTS = DB_TOURNAMENTS.table("tournaments")
@@ -15,8 +15,13 @@ class Tournament:
     create a object Tournament
     """
 
-    def __init__(self, name: str, location: str, start_date: str, end_date: str,
-                 players: list[int], time_control: str, description: str):
+    def __init__(self, name: str,
+                 location: str,
+                 start_date: str,
+                 end_date: str,
+                 players: list[int],
+                 time_control: str,
+                 description: str):
 
         self.name = name.title()
         self.location = location.title()
@@ -29,13 +34,17 @@ class Tournament:
         self.description = description
 
     def round_1(self):
+        """
+        Sort the players and create the matches for round 1
+        """
 
         list_round_1 = list()
 
-        for player in bdd.db_serialized_deserialized_players_func.deserialized_table_players():
+        for id_player, player in enumerate(bdd.db_functions.deserialized_table_players()):
 
-            if player.doc_id in self.players:
-                list_round_1.append((player.doc_id, player['Ranking'], player['Points']))
+            if id_player in self.players:
+
+                list_round_1.append((id_player, player.ranking, player.points))
 
         list_round_1.sort(key=operator.itemgetter(1))
 
@@ -51,14 +60,20 @@ class Tournament:
         self.tours.insert(0, round_1_dict)
 
     def next_round(self):
+        """
+        - Retrieve the current round
+        - Sort the matches by the number of points of the players
+        - Check if the players have already played together
+        - Create the next round
+        """
 
-        for roud_actual in self.tours[-1].values():
+        for round_actual in self.tours[-1].values():
 
             list_match_round_1 = list()
             list_player_next_round_tried = list()
             list_match_next_round = list()
 
-            for match in roud_actual:
+            for match in round_actual:
                 list_match_round_1.append((match[0][0], match[1][0]))
                 list_player_next_round_tried.extend(match)
 
@@ -90,8 +105,6 @@ class Tournament:
 
                 except IndexError:
                     break
-
-            print('nb round = ',len(self.tours))
 
             if len(self.tours) < self.nb_rounds:
                 next_round_dict = {f"{'Round_'}{len(self.tours)+1}": list_match_next_round}
