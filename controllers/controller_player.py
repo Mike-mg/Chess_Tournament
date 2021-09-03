@@ -1,20 +1,18 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-from tinydb import Query
-
-
 import models.models_players
 import views.view_menu
 import views.view_players
-import bdd.db_serialized_deserialized_players_func
-
+import bdd.db_functions
 
 
 class ControllerPlayer:
     """
-    Docstrings
+    Controls the user input for the player model
     """
+
+    ALL_PLAYERS = bdd.db_functions.deserialized_table_players()
 
     def __init__(self):
 
@@ -33,16 +31,22 @@ class ControllerPlayer:
         """
 
         get_view_player = self.view_player.add_player()
-        models.models_players.Player(get_view_player)
+        print(get_view_player)
+        print(ControllerPlayer.ALL_PLAYERS)
+
+        new_player = models.models_players.Player(get_view_player[0],
+                                                  get_view_player[1],
+                                                  get_view_player[2],
+                                                  get_view_player[3],
+                                                  get_view_player[4],
+                                                  get_view_player[5])
+
+        ControllerPlayer.ALL_PLAYERS.append(new_player)
 
     def modified_ranking(self):
+        """
+        Changes the player rank
+        """
 
-        update_ranking_player = Query()
-
-        players = bdd.db_serialized_deserialized_players_func.deserialized_table_players()
-
-        update_player = self.view_player.new_player_ranking(players)
-
-        models.models_players.table_players.update({'Ranking': update_player['Ranking']},
-                                                   update_ranking_player.Name == update_player['Name'])
-
+        self.view_player.new_player_ranking(ControllerPlayer.ALL_PLAYERS)
+        bdd.db_functions.serialized_player(ControllerPlayer.ALL_PLAYERS)
