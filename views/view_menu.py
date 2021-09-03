@@ -8,7 +8,7 @@ class ViewMenu:
 
     def show_menu(self):
         """
-        Docstrings
+        Shows the program menu
         """
 
         utility_functions.utils_func.clear_screen()
@@ -31,9 +31,9 @@ class ViewMenu:
 
         print(f"{'-' * 119}")
 
-    def choice_menu(self):
+    def choice_menu(self) -> int:
         """
-        Docstrings
+        Verification and redirection to controller of menu indexes
         """
 
         choice = input(f"\n\n\n{'=' * 22}\n"
@@ -49,9 +49,9 @@ class ViewMenu:
 
         return choice
 
-    def sub_menu(self, title):
+    def sub_menu(self, title: str):
         """
-        Docstrings
+        Format the under-menu titles
         """
 
         print(f"\n\n\n{'=' * 119}\n"
