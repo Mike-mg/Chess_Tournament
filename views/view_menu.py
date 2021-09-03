@@ -5,6 +5,9 @@ import utility_functions.utils_func
 
 
 class ViewMenu:
+    """
+    menu view management
+    """
 
     def show_menu(self):
         """
