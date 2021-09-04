@@ -11,11 +11,11 @@ class ControllerPlayer:
     Controls the user input for the player model
     """
 
-    ALL_PLAYERS = bdd.db_functions.deserialized_table_players()
+    ALL_PLAYERS = bdd.deserialized_table_players()
 
     def __init__(self):
 
-        self.view_player = views.view_players.ViewPlayer()
+        self.view_player = views.ViewPlayer()
 
     def controller_show_player(self):
         """
