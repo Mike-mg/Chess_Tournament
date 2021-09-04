@@ -4,7 +4,7 @@
 from tinydb import TinyDB
 import operator
 
-import bdd.db_functions
+import bdd
 
 DB_TOURNAMENTS = TinyDB('bdd/db_tournaments.json', indent=4)
 TOURNAMENTS = DB_TOURNAMENTS.table("tournaments")
@@ -40,7 +40,7 @@ class Tournament:
 
         list_round_1 = list()
 
-        for id_player, player in enumerate(bdd.db_functions.deserialized_table_players()):
+        for id_player, player in enumerate(bdd.deserialized_table_players()):
 
             if id_player in self.players:
 
