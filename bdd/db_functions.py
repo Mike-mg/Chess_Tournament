@@ -2,7 +2,8 @@
 # coding:utf-8
 
 from tinydb import TinyDB
-import models.models_players
+
+import models
 
 DB_PLAYERS = TinyDB('bdd/db_players.json', indent=4)
 TABLE_PLAYERS = DB_PLAYERS.table("players")
@@ -16,12 +17,12 @@ def deserialized_table_players() -> list:
     all_players = list()
     
     for player in TABLE_PLAYERS.all():
-        all_players.append(models.models_players.Player(player["last_name"],
-                                                        player["name"],
-                                                        player["birthday"],
-                                                        player["sex"],
-                                                        player["ranking"],
-                                                        player["points"]))
+        all_players.append(models.Player(player["last_name"],
+                                         player["name"],
+                                         player["birthday"],
+                                         player["sex"],
+                                         player["ranking"],
+                                         player["points"]))
 
     return all_players
 
