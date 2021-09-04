@@ -1,10 +1,8 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import views.view_tournament
-import views.view_players
-import views.view_menu
-import models.models_tournaments
+import views
+import models
 
 
 class ControllerTournament:
