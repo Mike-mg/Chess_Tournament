@@ -13,7 +13,7 @@ class ViewPlayer:
 
     def __init__(self):
 
-        self.view_menu = views.view_menu.ViewMenu()
+        self.view_menu = views.ViewMenu()
 
     def view_show_player(self):
         """
@@ -32,7 +32,7 @@ class ViewPlayer:
               f"{'Points'.center(10)}"
               f"\n{'°' * 119}")
 
-        for key, player in enumerate(controllers.controller_player.ControllerPlayer.ALL_PLAYERS):
+        for key, player in enumerate(controllers.ControllerPlayer.ALL_PLAYERS):
 
             print(f"{str(key).center(10)} | "
                   f"{player.last_name.center(20)} | "
