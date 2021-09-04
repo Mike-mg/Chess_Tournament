@@ -9,7 +9,7 @@ DB_PLAYERS = TinyDB('bdd/db_players.json', indent=4)
 TABLE_PLAYERS = DB_PLAYERS.table("players")
 
 
-def deserialized_table_players() -> list:
+def deserialized_table_players() -> list[object]:
     """
     Deserialized object players in var all_players
     """
