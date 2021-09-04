@@ -1,9 +1,9 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import views.view_menu
-import utility_functions.utils_func
-import controllers.controller_player
+import views
+import utils
+import controllers
 
 
 class ViewPlayer:
@@ -51,11 +51,11 @@ class ViewPlayer:
         self.view_menu.show_menu()
         self.view_menu.sub_menu("* Add A Player *")
 
-        last_name = utility_functions.utils_func.format_string("Last name")
-        name = utility_functions.utils_func.format_string("Name")
-        birthday = utility_functions.utils_func.format_string("Birthday")
-        sex = utility_functions.utils_func.format_string("Sex")
-        ranking = int(utility_functions.utils_func.format_string("Ranking"))
+        last_name = utils.utils_func.format_string("Last name")
+        name = utils.utils_func.format_string("Name")
+        birthday = utils.utils_func.format_string("Birthday")
+        sex = utils.utils_func.format_string("Sex")
+        ranking = int(utils.utils_func.format_string("Ranking"))
         points = 0
 
         return last_name, name, birthday, sex, ranking, points
