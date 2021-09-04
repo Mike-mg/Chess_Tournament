@@ -14,7 +14,7 @@ class ViewMenu:
         Shows the program menu
         """
 
-        utils.utils_func.clear_screen()
+        utils.clear_screen()
 
         menu_list = ['List of all players',
                      'Add a player',
