@@ -68,19 +68,24 @@ class Tournament:
         """
 
         for round_actual in self.tours[-1].values():
+            # Retrieve the current round
 
             list_match_round_1 = list()
             list_player_next_round_tried = list()
             list_match_next_round = list()
 
             for match in round_actual:
+                # Retrieve the players from each match
+
                 list_match_round_1.append((match[0][0], match[1][0]))
                 list_player_next_round_tried.extend(match)
 
             list_player_next_round_tried.sort(key=operator.itemgetter(2, 1), reverse=True)
+            # sort the players by points and then rank
 
             y = 1
             while len(list_player_next_round_tried) > 0:
+                # Check if the players have already played together
 
                 try:
 
@@ -99,7 +104,7 @@ class Tournament:
                             del list_player_next_round_tried[y]
 
                     else:
-
+                        # Add the match for the next round
                         list_match_next_round.append(match)
                         del list_player_next_round_tried[:y + 1]
 
