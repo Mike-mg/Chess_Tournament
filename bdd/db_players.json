@@ -127,14 +127,6 @@
             "sex": "M",
             "ranking": 15,
             "points": 0
-        },
-        "17": {
-            "last_name": "A",
-            "name": "A",
-            "birthday": "a",
-            "sex": "A",
-            "ranking": 1,
-            "points": 0
         }
     }
 }
