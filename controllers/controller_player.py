@@ -1,10 +1,9 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import models.models_players
-import views.view_menu
-import views.view_players
-import bdd.db_functions
+import models
+import views
+import bdd
 
 
 class ControllerPlayer:
@@ -32,16 +31,17 @@ class ControllerPlayer:
 
         get_view_player = self.view_player.add_player()
         print(get_view_player)
-        print(ControllerPlayer.ALL_PLAYERS)
 
-        new_player = models.models_players.Player(get_view_player[0],
-                                                  get_view_player[1],
-                                                  get_view_player[2],
-                                                  get_view_player[3],
-                                                  get_view_player[4],
-                                                  get_view_player[5])
+        new_player = models.Player(get_view_player[0],
+                                   get_view_player[1],
+                                   get_view_player[2],
+                                   get_view_player[3],
+                                   get_view_player[4],
+                                   get_view_player[5])
 
         ControllerPlayer.ALL_PLAYERS.append(new_player)
+        bdd.serialized_player(ControllerPlayer.ALL_PLAYERS)
+
 
     def modified_ranking(self):
         """
@@ -49,4 +49,4 @@ class ControllerPlayer:
         """
 
         self.view_player.new_player_ranking(ControllerPlayer.ALL_PLAYERS)
-        bdd.db_functions.serialized_player(ControllerPlayer.ALL_PLAYERS)
+        bdd.serialized_player(ControllerPlayer.ALL_PLAYERS)
