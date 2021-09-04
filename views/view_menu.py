@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import utility_functions.utils_func
+import utils
 
 
 class ViewMenu:
@@ -14,7 +14,7 @@ class ViewMenu:
         Shows the program menu
         """
 
-        utility_functions.utils_func.clear_screen()
+        utils.utils_func.clear_screen()
 
         menu_list = ['List of all players',
                      'Add a player',
