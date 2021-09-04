@@ -1,9 +1,8 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import controllers.controller_tournament
-import controllers.controller_player
-import views.view_menu
+import controllers
+import views
 
 
 class ControllerMenu:
@@ -12,9 +11,9 @@ class ControllerMenu:
     """
 
     def __init__(self):
-        self.controller_tournament = controllers.controller_tournament.ControllerTournament()
-        self.controller_player = controllers.controller_player.ControllerPlayer()
-        self.view_menu = views.view_menu.ViewMenu()
+        self.controller_tournament = controllers.ControllerTournament()
+        self.controller_player = controllers.ControllerPlayer()
+        self.view_menu = views.ViewMenu()
 
     def show_menu(self):
         """
