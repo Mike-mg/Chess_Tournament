@@ -71,7 +71,9 @@ class ViewTournament:
 
         time_control = ViewTournament.TIMES_CONTROL[choice_time_control]
 
-        return name, location, start_date, end_date, time_control, description
+        nb_rounds = int(utils.format_string("Number of rounds"))
+
+        return name, location, start_date, end_date, time_control, description, nb_rounds
 
     def add_player_tournament(self) -> list:
         """
@@ -98,38 +100,53 @@ class ViewTournament:
         Show general tournament information
         """
 
-        self.menu.show_menu()
-        self.menu_tournament(list_tournament)
+        # self.menu.show_menu()
+        # self.menu_tournament(list_tournament)
 
-        select_tournament = int(input(f"\n{'-' * 37}\n{':: Select the tournament to be show > '}"))
 
-        for key, tournament in enumerate(list_tournament):
-            if key == select_tournament:
+        print(list_tournament)
+        # select_tournament = int(input(f"\n{'-' * 37}\n{':: Select the tournament to be show > '}"))
+        #
+        # for key, tournament in enumerate(list_tournament):
+        #     if key == select_tournament:
+        #
+        #         self.menu.sub_menu(f"{tournament.name} - {tournament.description}")
 
-                self.menu.sub_menu(f"{tournament.name} - {tournament.description}")
 
-                print(f"{':: Number tournament':<22}{'> '}{key}\n"
-                      f"{':: Name tournament':<22}{'> '}{tournament.name}\n"
-                      f"{':: Location':<22}{'> '}{tournament.location}\n"
-                      f"{':: Start date':<22}{'> '}{tournament.start_date}\n"
-                      f"{':: End date':<22}{'> '}{tournament.end_date}\n"
-                      f"{':: Nb rounds':<22}{'> '}{tournament.nb_rounds}\n"
-                      f"{':: Players':<22}{'> '}{tournament.players}\n"
-                      f"{':: Time control':<22}{'> '}{tournament.time_control}\n"
-                      f"{':: Description':<22}{'> '}{tournament.description}\n"
-                      f"\n{'=' * 119}\n"
-                      f"{'Tours'.center(119)}\n"
-                      f"{'-' * 119}")
 
-                for all_round in tournament.tours:
-                    for value_id, value in all_round.items():
-                        print(f"\n\n[ {value_id} ]\n{'-' * 11}")
 
-                        i = 0
-                        for current_round in value:
-                            print(f":: Match {i + 1} > Player N°{current_round[0][0]}:{current_round[0][2]} Vs "
-                                  f"N°{current_round[1][0]}:{current_round[1][2]}")
-                            i += 1
+                # print(f"{':: Number tournament':<22}{'> '}{key}\n"
+                #       f"{':: Name tournament':<22}{'> '}{tournament.name}\n"
+                #       f"{':: Location':<22}{'> '}{tournament.location}\n"
+                #       f"{':: Start date':<22}{'> '}{tournament.start_date}\n"
+                #       f"{':: End date':<22}{'> '}{tournament.end_date}\n"
+                #       f"{':: Nb rounds':<22}{'> '}{tournament.nb_rounds}\n"
+                #       f"{':: Players':<22}{'> '}{tournament.players}\n"
+                #       f"{':: Time control':<22}{'> '}{tournament.time_control}\n"
+                #       f"{':: Description':<22}{'> '}{tournament.description}\n"
+                #       f"\n{'=' * 119}\n"
+                #       f"{'Tours'.center(119)}\n"
+                #       f"{'-' * 119}")
+
+
+
+
+                # for all_round in tournament.tours[0].items():
+                #     print(all_round)
+
+
+
+                    # print(tournament.tours)
+                    # print(f"Round_{len(tournament.tours)}")
+                    # print(all_round[f"Round_{len(tournament.tours)}"])
+                    #
+
+                    # print(f"\n\n{all_round[Round_len(tournament.tours)]}\n{'-' * 11}")
+                    # i = 0
+                    # for current_round in round_play[f"Round_{len(tournament.tours)}"]:
+                    #     print(f":: Match {i + 1} > Player N°{current_round[0][0]}:{current_round[0][2]} Vs "
+                    #           f"N°{current_round[1][0]}:{current_round[1][2]}")
+                    #     i += 1
 
     def choice_tournament(self, list_tournament: list) -> int:
         """
@@ -145,7 +162,7 @@ class ViewTournament:
 
                 return key
 
-    def result_round(self, list_tournament: list) -> tuple:
+    def result_round(self, list_tournament: list):
         """
         Changes the points of the completed rounds
         """
@@ -157,49 +174,28 @@ class ViewTournament:
             if key == select_tournament:
                 self.menu.sub_menu(f"[ Tournament : {tournament.name} ] ")
 
-                str_round = str()
-                round_indicator = int()
                 results_round = list()
 
-                if len(tournament.tours) == 1:
-                    str_round = f"Round_{len(tournament.tours)}"
-                    round_indicator = 0
+                str_round = f"Round_{len(tournament.tours)}"
+                round_indicator = len(tournament.tours) - 1
 
-                elif len(tournament.tours) == 2:
-                    str_round = f"Round_{len(tournament.tours)}"
+                print(f"{'Enter the points of the players of '}{str_round}\n{'-' * 42}")
 
-                    round_indicator = 1
+                for number_match, match in enumerate(tournament.tours[round_indicator][str_round]):
 
-                elif len(tournament.tours) == 3:
-                    str_round = f"Round_{len(tournament.tours)}"
-                    round_indicator = 2
+                    print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
+                          f"N°{match[1][0]}\n{'-' * 29}")
 
-                elif len(tournament.tours) == 4:
-                    str_round = f"Round_{len(tournament.tours)}"
-                    round_indicator = 3
+                    new_point_match_player_1 = float(utils.format_string(f"New point player N°{match[0][0]}"))
+                    new_point_match_player_2 = float(utils.format_string(f"New point player N°{match[1][0]}"))
 
-                for actual_round, round_match in tournament.tours[round_indicator].items():
+                    match[0], match[1] = list(match[0]), list(match[1])
 
-                    print(f"{'Enter the points of the players in '}{actual_round}\n{'-' * 42}")
+                    match[0][2], match[1][2] = new_point_match_player_1, new_point_match_player_2
 
-                    for number_match, match in enumerate(round_match):
+                    match[0], match[1] = tuple(match[0]), tuple(match[1])
 
-                        print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
-                              f"N°{match[1][0]}\n{'-' * 29}")
-
-                        new_point_match_player_1 = float(utils.format_string
-                                                         (f"New point player N°{match[0][0]}"))
-
-                        new_point_match_player_2 = float(utils.format_string
-                                                         (f"New point player N°{match[1][0]}"))
-
-                        match[0], match[1] = list(match[0]), list(match[1])
-
-                        match[0][2], match[1][2] = new_point_match_player_1, new_point_match_player_2
-
-                        match[0], match[1] = tuple(match[0]), tuple(match[1])
-
-                        results_round.append(match)
+                    results_round.append(match)
 
                 tournament.tours[round_indicator][str_round] = results_round
 
