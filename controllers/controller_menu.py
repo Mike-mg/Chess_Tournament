@@ -15,14 +15,14 @@ class ControllerMenu:
         self.controller_player = controllers.ControllerPlayer()
         self.view_menu = views.ViewMenu()
 
-    def show_menu(self):
+    def show_menu(self) -> None:
         """
         Show the program menu
         """
 
         self.view_menu.show_menu()
 
-    def choice_user_menu(self) -> int:
+    def choice_user_menu(self) -> bool:
         """
         Menu selection
         """
