@@ -36,8 +36,7 @@ class ControllerPlayer:
                                    get_view_player[1],
                                    get_view_player[2],
                                    get_view_player[3],
-                                   get_view_player[4],
-                                   get_view_player[5])
+                                   get_view_player[4])
 
         ControllerPlayer.ALL_PLAYERS.append(new_player)
         bdd.serialized_player(ControllerPlayer.ALL_PLAYERS)
