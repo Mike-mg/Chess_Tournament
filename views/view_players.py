@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 # coding:utf-8
-
+import models
 import views
 import utils
 import controllers
@@ -43,7 +43,7 @@ class ViewPlayer:
                   f"{str(player.points).center(10)}"
                   f"\n{'-' * 119}")
 
-    def add_player(self) -> tuple:
+    def add_player(self) -> tuple[str,str,str,str,int]:
         """
         Add a player
         """
@@ -56,11 +56,10 @@ class ViewPlayer:
         birthday = utils.utils_func.format_string("Birthday")
         sex = utils.utils_func.format_string("Sex")
         ranking = int(utils.utils_func.format_string("Ranking"))
-        points = 0
 
-        return last_name, name, birthday, sex, ranking, points
+        return last_name, name, birthday, sex, ranking
 
-    def new_player_ranking(self, all_players: list):
+    def new_player_ranking(self, all_players: list[models.Player]) -> list[models.Player]:
         """
         Modified ranking player
         """
@@ -77,6 +76,8 @@ class ViewPlayer:
                 new_ranking = int(input('Enter the new ranking : '))
 
                 player.ranking = new_ranking
+
+        return all_players
 
 
 if __name__ == "__main__":
