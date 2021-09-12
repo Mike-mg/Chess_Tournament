@@ -18,6 +18,8 @@ class Main:
         Show the menu while var choice_user_menu is True (7 = False and quit the program)
         """
 
+
+
         self.menu.show_menu()
 
         while True:
