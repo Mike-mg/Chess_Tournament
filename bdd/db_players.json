@@ -13,7 +13,7 @@
             "name": "Angelique",
             "birthday": "1974-03-03",
             "sex": "F",
-            "ranking": 2,
+            "ranking": 10,
             "points": 0
         },
         "3": {
@@ -145,6 +145,22 @@
             "points": 0
         },
         "19": {
+            "last_name": "A",
+            "name": "A",
+            "birthday": "a",
+            "sex": "A",
+            "ranking": 1,
+            "points": 0
+        },
+        "20": {
+            "last_name": "A",
+            "name": "A",
+            "birthday": "a",
+            "sex": "A",
+            "ranking": 1,
+            "points": 0
+        },
+        "21": {
             "last_name": "A",
             "name": "A",
             "birthday": "a",
