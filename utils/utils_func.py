@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
+import datetime
 import os
 import sys
 
@@ -24,3 +25,11 @@ def clear_screen():
         os.system('cls')
     elif sys.platform.startswith('darwin'):
         os.system('clear')
+
+
+def time_t():
+        return datetime.datetime.now().strftime('%d/%m/%Y - %H:%M:%S')
+
+
+if __name__ == "__main__":
+    pass
