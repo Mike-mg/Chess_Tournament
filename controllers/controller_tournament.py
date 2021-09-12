@@ -12,12 +12,11 @@ class ControllerTournament:
     """
     # BDD_TOURNAMENTS = bdd.deserialized_table_tournament()
     TOURNAMENTS = []
-    
+
     BDD_PLAYERS = bdd.deserialized_table_players()
     BDD_TOURNAMENTS = bdd.deserialized_table_tournament()
 
     def __init__(self):
-
         self.view_tournament = views.ViewTournament()
         self.view_player = views.ViewPlayer()
 
@@ -28,7 +27,7 @@ class ControllerTournament:
 
         # main_info_tournament = self.view_tournament.main_tournament_info()
         # add_player = self.view_tournament.add_player_tournament()
-        
+
         # tournament = models.models_tournaments.Tournament(main_info_tournament[0],
         #                                                   main_info_tournament[1],
         #                                                   main_info_tournament[2],
@@ -36,7 +35,7 @@ class ControllerTournament:
         #                                                   add_player,
         #                                                   main_info_tournament[4],
         #                                                   main_info_tournament[5])
-        
+
         tournament = models.Tournament("Tournament 1",
                                        "French",
                                        "01/01/2020",
@@ -52,7 +51,6 @@ class ControllerTournament:
                                        "time control",
                                        "description")
 
-
         round_1 = tournament.round_1()
         tournament.tours.insert(round_1[0], round_1[1])
         ControllerTournament.TOURNAMENTS.append(tournament)
@@ -62,7 +60,6 @@ class ControllerTournament:
         """
         Displays the general information of the tournament
         """
-
         self.view_tournament.show_tournament(ControllerTournament.BDD_TOURNAMENTS)
 
     def result_round(self):
@@ -76,3 +73,4 @@ class ControllerTournament:
 
         tournament = ControllerTournament.TOURNAMENTS[num_tournament]
         tournament.next_round()
+        bdd.serialized_tournament(ControllerTournament.TOURNAMENTS)
