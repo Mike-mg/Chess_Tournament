@@ -5,6 +5,7 @@ import datetime
 import operator
 
 import models
+import utils
 
 
 class Tournament:
@@ -52,8 +53,9 @@ class Tournament:
         match_3 = [list_round_1[0][2], list_round_1[1][2]]
         match_4 = [list_round_1[0][3], list_round_1[1][3]]
 
-        round_1_dict = {'Round_1': [match_1, match_2, match_3, match_4],
-                        'Start_time': datetime.datetime.now().strftime('%d/%m/%Y - %H:%M'), 'End_time': str()}
+        time = utils.time_t()
+        round_1_dict = {'round_1': [match_1, match_2, match_3, match_4],
+                        'start_time': time, 'end_time': str()}
 
         return len(self.tours), round_1_dict
 
@@ -69,12 +71,20 @@ class Tournament:
         list_match_round_1 = list()
         list_match_next_round = list()
 
-        for round_actual in self.tours[round_indicator][f"Round_{len(self.tours)}"]:
+        for key_dict_round, value in self.tours[round_indicator].items():
             # Retrieve the current round
 
-            for match in round_actual:
-                # Retrieve the players from each match
-                list_match_round_1.append(match)
+            if key_dict_round == 'end_time':
+                time = utils.time_t()
+                self.tours[round_indicator]['end_time'] = time
+
+            if key_dict_round == f"round_{len(self.tours)}":
+
+                for match in value:
+                    # Retrieve the players from each match
+                    list_match_round_1.extend(match)
+
+        print(list_match_round_1)
 
         list_match_round_1.sort(key=operator.itemgetter(2, 1), reverse=True)
         # sort the players by points and then rank
@@ -108,7 +118,11 @@ class Tournament:
                 break
 
         if len(self.tours) < self.nb_rounds:
-            next_round_dict = {f"{'Round_'}{len(self.tours)+1}": list_match_next_round}
+            time = utils.time_t()
+            next_round_dict = {f"{'round_'}{len(self.tours)+1}": list_match_next_round,
+                               'start_time': time,
+                               'end_time': str()}
+
             self.tours.insert(len(self.tours), next_round_dict)
 
         else:
