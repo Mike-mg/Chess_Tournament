@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import datetime
 import operator
 
 import models
@@ -21,7 +20,8 @@ class Tournament:
                  time_control: str,
                  description: str,
                  nb_rounds: int = 4,
-                 tours: list[dict] = []):
+                 tours: list[dict] = [],
+                 state: bool = True):
 
         self.name = name.title()
         self.location = location.title()
@@ -32,6 +32,7 @@ class Tournament:
         self.description = description
         self.nb_rounds = nb_rounds
         self.tours = tours
+        self.state = state
 
     def round_1(self) -> tuple:
         """
@@ -70,6 +71,7 @@ class Tournament:
         round_indicator = len(self.tours) - 1
         list_match_round_1 = list()
         list_match_next_round = list()
+
 
         for key_dict_round, value in self.tours[round_indicator].items():
             # Retrieve the current round
@@ -117,13 +119,12 @@ class Tournament:
             except IndexError:
                 break
 
-        if len(self.tours) < self.nb_rounds:
-            time = utils.time_t()
-            next_round_dict = {f"{'round_'}{len(self.tours)+1}": list_match_next_round,
+        time = utils.time_t()
+
+        if len(self.tours) <= self.nb_rounds:
+
+            next_round_dict = {f"{'round_'}{len(self.tours) + 1}": list_match_next_round,
                                'start_time': time,
                                'end_time': str()}
 
             self.tours.insert(len(self.tours), next_round_dict)
-
-        else:
-            print("\n\nThe tournament is finnish.")
