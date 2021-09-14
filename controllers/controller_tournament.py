@@ -72,5 +72,6 @@ class ControllerTournament:
         num_tournament, result_round_actual = self.view_tournament.result_round(ControllerTournament.TOURNAMENTS)
 
         tournament = ControllerTournament.TOURNAMENTS[num_tournament]
+
         tournament.next_round()
         bdd.serialized_tournament(ControllerTournament.TOURNAMENTS)
