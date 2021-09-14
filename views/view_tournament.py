@@ -100,42 +100,49 @@ class ViewTournament:
         Show general tournament information
         """
 
-        self.menu.show_menu()
-        self.menu_tournament(list_tournament)
+        if len(list_tournament) == 0:
+            print(f"\n{'-' * 38}\n"
+                  f"*** It does not have a tournament ***\n"
+                  f"{'-' * 38}")
 
-        select_tournament = int(input(f"\n{'-' * 37}\n{':: Select the tournament to be show > '}"))
+        else:
 
-        for key, tournament in enumerate(list_tournament):
-            if key == select_tournament:
+            self.menu.show_menu()
+            self.menu_tournament(list_tournament)
 
-                self.menu.sub_menu(f"{tournament.name} - {tournament.description}")
+            select_tournament = int(input(f"\n{'-' * 37}\n{':: Select the tournament to be show > '}"))
 
-                print(f"{':: Number tournament':<22}{'> '}{key}\n"
-                      f"{':: Name tournament':<22}{'> '}{tournament.name}\n"
-                      f"{':: Location':<22}{'> '}{tournament.location}\n"
-                      f"{':: Start date':<22}{'> '}{tournament.start_date}\n"
-                      f"{':: End date':<22}{'> '}{tournament.end_date}\n"
-                      f"{':: Nb rounds':<22}{'> '}{tournament.nb_rounds}\n"
-                      f"{':: Players':<22}{'> '}{tournament.players}\n"
-                      f"{':: Time control':<22}{'> '}{tournament.time_control}\n"
-                      f"{':: Description':<22}{'> '}{tournament.description}\n"
-                      f"\n{'=' * 119}\n"
-                      f"{'Tours'.center(119)}\n"
-                      f"{'-' * 119}")
+            for key, tournament in enumerate(list_tournament):
+                if key == select_tournament:
 
-                rounds = ["round_1","round_2","round_3","round_4"]
-                for all_round in tournament.tours:
+                    self.menu.sub_menu(f"{tournament.name} - {tournament.description}")
 
-                    for key, value in all_round.items():
+                    print(f"{':: Number tournament':<22}{'> '}{key}\n"
+                          f"{':: Name tournament':<22}{'> '}{tournament.name}\n"
+                          f"{':: Location':<22}{'> '}{tournament.location}\n"
+                          f"{':: Start date':<22}{'> '}{tournament.start_date}\n"
+                          f"{':: End date':<22}{'> '}{tournament.end_date}\n"
+                          f"{':: Nb rounds':<22}{'> '}{tournament.nb_rounds}\n"
+                          f"{':: Players':<22}{'> '}{tournament.players}\n"
+                          f"{':: Time control':<22}{'> '}{tournament.time_control}\n"
+                          f"{':: Description':<22}{'> '}{tournament.description}\n"
+                          f"\n{'=' * 119}\n"
+                          f"{'Tours'.center(119)}\n"
+                          f"{'-' * 119}")
 
-                        if key in rounds:
-                            print(f"\n\n{key}\n{'-' * 11}")
-                            i = 0
-                            for current_round in value:
+                    rounds = ["round_1", "round_2", "round_3", "round_4"]
+                    for all_round in tournament.tours:
 
-                                print(f":: Match {i + 1} > Player N°{current_round[0][0]}:{current_round[0][2]} Vs "
-                                      f"N°{current_round[1][0]}:{current_round[1][2]}")
-                                i += 1
+                        for key_round, value_round in all_round.items():
+
+                            if key in rounds:
+                                print(f"\n\n{key}\n{'-' * 11}")
+                                i = 0
+                                for current_round in value_round:
+
+                                    print(f":: Match {i + 1} > Player N°{current_round[0][0]}:{current_round[0][2]} Vs "
+                                          f"N°{current_round[1][0]}:{current_round[1][2]}")
+                                    i += 1
 
     def choice_tournament(self, list_tournament: list) -> int:
         """
@@ -161,6 +168,7 @@ class ViewTournament:
         for key, tournament in enumerate(list_tournament):
 
             if key == select_tournament:
+
                 self.menu.sub_menu(f"[ Tournament : {tournament.name} ] ")
 
                 results_round = list()
