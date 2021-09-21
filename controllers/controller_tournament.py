@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 # coding:utf-8
-
+import controllers
 import views
 import models
 import bdd
@@ -25,34 +25,18 @@ class ControllerTournament:
         Instance a tournament
         """
 
-        # main_info_tournament = self.view_tournament.main_tournament_info()
-        # add_player = self.view_tournament.add_player_tournament()
+        main_info_tournament = self.view_tournament.main_tournament_info()
+        add_player = self.view_tournament.add_player_tournament()
 
-        # tournament = models.models_tournaments.Tournament(main_info_tournament[0],
-        #                                                   main_info_tournament[1],
-        #                                                   main_info_tournament[2],
-        #                                                   main_info_tournament[3],
-        #                                                   add_player,
-        #                                                   main_info_tournament[4],
-        #                                                   main_info_tournament[5])
+        tournament = models.models_tournaments.Tournament(main_info_tournament[0],
+                                                          main_info_tournament[1],
+                                                          main_info_tournament[2],
+                                                          main_info_tournament[3],
+                                                          add_player,
+                                                          main_info_tournament[4],
+                                                          main_info_tournament[5])
 
-        tournament = models.Tournament("Tournament 1",
-                                       "French",
-                                       "01/01/2020",
-                                       "01/01/2020",
-                                       [ControllerTournament.BDD_PLAYERS[0],
-                                        ControllerTournament.BDD_PLAYERS[1],
-                                        ControllerTournament.BDD_PLAYERS[2],
-                                        ControllerTournament.BDD_PLAYERS[3],
-                                        ControllerTournament.BDD_PLAYERS[4],
-                                        ControllerTournament.BDD_PLAYERS[5],
-                                        ControllerTournament.BDD_PLAYERS[6],
-                                        ControllerTournament.BDD_PLAYERS[7]],
-                                       "time control",
-                                       "description")
-
-        round_1 = tournament.round_1()
-        tournament.tours.insert(round_1[0], round_1[1])
+        tournament.round_1()
         ControllerTournament.TOURNAMENTS.append(tournament)
         bdd.serialized_tournament(ControllerTournament.TOURNAMENTS)
 
