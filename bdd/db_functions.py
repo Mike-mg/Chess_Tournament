@@ -71,6 +71,7 @@ def deserialized_table_tournament() -> list:
                                                  tournament['nb_rounds'],
                                                  tournament['tours']))
 
+
     return all_tournaments
 
 
@@ -83,15 +84,10 @@ def serialized_tournament(list_tournament_object: list):
     serialized_tournament_for_table_tournaments = list()
 
     for tournament in list_tournament_object:
+
         players = []
         for player in tournament.players:
-            players.append([player.last_name,
-                            player.name,
-                            player.birthday,
-                            player.sex,
-                            player.ranking,
-                            player.points])
-
+            players.append(player[0])
 
         tournament_serialized['name'] = tournament.name
         tournament_serialized['location'] = tournament.location
