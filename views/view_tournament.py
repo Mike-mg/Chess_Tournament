@@ -9,6 +9,7 @@ import datetime
 
 import views
 import utils
+import controllers
 
 
 class ViewTournament:
@@ -91,7 +92,9 @@ class ViewTournament:
 
             player = int(utils.format_string(f"Player {i + 1}"))
 
-            players.append(player)
+            for key, all_player in enumerate(controllers.ControllerTournament.BDD_PLAYERS):
+                if key == player:
+                    players.append((player, controllers.ControllerTournament.BDD_PLAYERS[player]))
 
         return players
 
@@ -171,32 +174,36 @@ class ViewTournament:
 
                 self.menu.sub_menu(f"[ Tournament : {tournament.name} ] ")
 
-                results_round = list()
+                if tournament.state == False:
+                    print('termine')
 
-                str_round = f"round_{len(tournament.tours)}"
-                round_indicator = len(tournament.tours) - 1
+                else:
 
-                print(f"{'Enter the points of the players of '}{str_round}\n{'-' * 42}")
+                    results_round = list()
+                    str_round = f"round_{len(tournament.tours)}"
+                    round_indicator = len(tournament.tours) - 1
 
-                for number_match, match in enumerate(tournament.tours[round_indicator][str_round]):
+                    print(f"{'Enter the points of the players of '}{str_round}\n{'-' * 42}")
 
-                    print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
-                          f"N°{match[1][0]}\n{'-' * 29}")
+                    for number_match, match in enumerate(tournament.tours[round_indicator][str_round]):
 
-                    new_point_match_player_1 = float(utils.format_string(f"New point player N°{match[0][0]}"))
-                    new_point_match_player_2 = float(utils.format_string(f"New point player N°{match[1][0]}"))
+                        print(f"\n[ Match {number_match + 1} ] Player N°{match[0][0]} Vs "
+                              f"N°{match[1][0]}\n{'-' * 29}")
 
-                    match[0], match[1] = list(match[0]), list(match[1])
+                        new_point_match_player_1 = float(utils.format_string(f"New point player N°{match[0][0]}"))
+                        new_point_match_player_2 = float(utils.format_string(f"New point player N°{match[1][0]}"))
 
-                    match[0][2], match[1][2] = new_point_match_player_1, new_point_match_player_2
+                        match[0], match[1] = list(match[0]), list(match[1])
 
-                    match[0], match[1] = tuple(match[0]), tuple(match[1])
+                        match[0][2], match[1][2] = new_point_match_player_1, new_point_match_player_2
 
-                    results_round.append(match)
+                        match[0], match[1] = tuple(match[0]), tuple(match[1])
 
-                tournament.tours[round_indicator][str_round] = results_round
+                        results_round.append(match)
 
-                return key, results_round
+                    tournament.tours[round_indicator][str_round] = results_round
+
+                    return key, results_round
 
 
 if __name__ == "__main__":
