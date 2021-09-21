@@ -20,7 +20,7 @@ class Tournament:
                  time_control: str,
                  description: str,
                  nb_rounds: int = 4,
-                 tours: list[dict] = [],
+                 tours: list[dict] = None,
                  state: bool = True):
 
         self.name = name.title()
@@ -31,19 +31,20 @@ class Tournament:
         self.time_control = time_control
         self.description = description
         self.nb_rounds = nb_rounds
-        self.tours = tours
+        self.tours = [] if tours is None else tours
         self.state = state
 
-    def round_1(self) -> tuple:
+    def round_1(self) -> None:
         """
         Sort the players and create the matches for round 1
         """
 
         list_round_1 = list()
 
-        for id_player, player in enumerate(self.players):
+        for player in self.players:
+            print(player)
 
-            list_round_1.append((id_player, player.ranking, player.points))
+            list_round_1.append((player[0], player[1].ranking, player[1].points))
 
         list_round_1.sort(key=operator.itemgetter(1))
 
@@ -58,7 +59,7 @@ class Tournament:
         round_1_dict = {'round_1': [match_1, match_2, match_3, match_4],
                         'start_time': time, 'end_time': str()}
 
-        return len(self.tours), round_1_dict
+        self.tours.append(round_1_dict)
 
     def next_round(self):
         """
@@ -71,7 +72,6 @@ class Tournament:
         round_indicator = len(self.tours) - 1
         list_match_round_1 = list()
         list_match_next_round = list()
-
 
         for key_dict_round, value in self.tours[round_indicator].items():
             # Retrieve the current round
@@ -121,10 +121,10 @@ class Tournament:
 
         time = utils.time_t()
 
-        if len(self.tours) <= self.nb_rounds:
+        if len(self.tours) < self.nb_rounds:
 
             next_round_dict = {f"{'round_'}{len(self.tours) + 1}": list_match_next_round,
                                'start_time': time,
                                'end_time': str()}
 
-            self.tours.insert(len(self.tours), next_round_dict)
+            self.tours.append(next_round_dict)
