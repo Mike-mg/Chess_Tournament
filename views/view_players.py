@@ -21,29 +21,33 @@ class ViewPlayer:
         """
 
         self.view_menu.show_menu()
-        self.view_menu.sub_menu('* List of all players *')
+        self.view_menu.sub_menu("* List of all players *")
 
-        print(f"{'ID'.center(10)} | "
-              f"{'Last name'.center(20)} | "
-              f"{'Name'.center(20)} | "
-              f"{'Birthday'.center(15)} | "
-              f"{'Sex'.center(10)} | "
-              f"{'Ranking'.center(10)} | "
-              f"{'Points'.center(10)}"
-              f"\n{'°' * 119}")
+        print(
+            f"{'ID'.center(10)} | "
+            f"{'Last name'.center(20)} | "
+            f"{'Name'.center(20)} | "
+            f"{'Birthday'.center(15)} | "
+            f"{'Sex'.center(10)} | "
+            f"{'Ranking'.center(10)} | "
+            f"{'Points'.center(10)}"
+            f"\n{'°' * 119}"
+        )
 
         for key, player in enumerate(controllers.ControllerPlayer.ALL_PLAYERS):
 
-            print(f"{str(key).center(10)} | "
-                  f"{player.last_name.center(20)} | "
-                  f"{player.name.center(20)} | "
-                  f"{player.birthday.center(15)} | "
-                  f"{player.sex.center(10)} | "
-                  f"{str(player.ranking).center(10)} | "
-                  f"{str(player.points).center(10)}"
-                  f"\n{'-' * 119}")
+            print(
+                f"{str(key).center(10)} | "
+                f"{player.last_name.center(20)} | "
+                f"{player.name.center(20)} | "
+                f"{player.birthday.center(15)} | "
+                f"{player.sex.center(10)} | "
+                f"{str(player.ranking).center(10)} | "
+                f"{str(player.points).center(10)}"
+                f"\n{'-' * 119}"
+            )
 
-    def add_player(self) -> tuple[str,str,str,str,int]:
+    def add_player(self) -> tuple[str, str, str, str, int]:
         """
         Add a player
         """
@@ -59,21 +63,27 @@ class ViewPlayer:
 
         return last_name, name, birthday, sex, ranking
 
-    def new_player_ranking(self, all_players: list[models.Player]) -> list[models.Player]:
+    def new_player_ranking(
+        self, all_players: list[models.Player]
+    ) -> list[models.Player]:
         """
         Modified ranking player
         """
 
         self.view_show_player()
 
-        select_player = int(input(f"\n{'-' * 41}\n{':: Select the player to be modified > '}"))
+        select_player = int(
+            input(f"\n{'-' * 41}\n{':: Select the player to be modified > '}")
+        )
 
         for key, player in enumerate(all_players):
 
             if key == select_player:
-                print(f"\n{'Select player :'} {player.last_name} {player.name}\n{'-' * 30}")
+                print(
+                    f"\n{'Select player :'} {player.last_name} {player.name}\n{'-' * 30}"
+                )
 
-                new_ranking = int(input('Enter the new ranking : '))
+                new_ranking = int(input("Enter the new ranking : "))
 
                 player.ranking = new_ranking
 
