@@ -16,18 +16,21 @@ class ViewMenu:
 
         utils.clear_screen()
 
-        menu_list = ['List of all players',
-                     'Add a player',
-                     'Modified ranking player',
-                     'List of all tournaments',
-                     'Add a tournament',
-                     'Modified a tournament',
-                     'Return menu',
-                     'Leave -*- CHESS TOURNAMENT -*-'
-                     ]
+        menu_list = [
+            "List of all players",
+            "Add a player",
+            "Modified ranking player",
+            "List of all tournaments",
+            "Add a tournament",
+            "Modified a tournament",
+            "Return menu",
+            "Leave -*- CHESS TOURNAMENT -*-",
+        ]
 
-        self.sub_menu(r'/^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\')
-        self.sub_menu('* MENU *')
+        self.sub_menu(
+            r"/^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\"
+        )
+        self.sub_menu("* MENU *")
 
         for index, m_menu in enumerate(menu_list):
             print(f"[ {index} ]  {m_menu}")
@@ -39,10 +42,12 @@ class ViewMenu:
         Verification and redirection to controller of menu indexes
         """
 
-        choice = input(f"\n\n\n{'=' * 22}\n"
-                       f"Help : 6 > Return menu"
-                       f"\n{'-' * 22}"
-                       f"\n{':: Select a option > '}")
+        choice = input(
+            f"\n\n\n{'=' * 22}\n"
+            f"Help : 6 > Return menu"
+            f"\n{'-' * 22}"
+            f"\n{':: Select a option > '}"
+        )
 
         try:
             choice = int(choice)
@@ -57,6 +62,8 @@ class ViewMenu:
         Format the under-menu titles
         """
 
-        print(f"\n\n\n{'=' * 119}\n"
-              f"{title.center(119)}\n"
-              f"{str('-' * len(title)).center(119)}\n\n")
+        print(
+            f"\n\n\n{'=' * 119}\n"
+            f"{title.center(119)}\n"
+            f"{str('-' * len(title)).center(119)}\n\n"
+        )
