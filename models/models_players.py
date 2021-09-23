@@ -7,12 +7,15 @@ class Player:
     Class that creates player objects
     """
 
-    def __init__(self, last_name: str,
-                 name: str,
-                 birthday: str,
-                 sex: str,
-                 ranking: int,
-                 points: int = 0):
+    def __init__(
+        self,
+        last_name: str,
+        name: str,
+        birthday: str,
+        sex: str,
+        ranking: int,
+        points: int = 0,
+    ):
 
         self.last_name = last_name.capitalize()
         self.name = name.capitalize()
