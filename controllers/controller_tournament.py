@@ -42,7 +42,6 @@ class ControllerTournament:
         bdd.serialized_tournament(ControllerTournament.TOURNAMENTS)
         tournament.round_1()
 
-
     def show_tournament(self):
         """
         Displays the general information of the tournament
