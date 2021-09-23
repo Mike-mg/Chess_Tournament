@@ -6,7 +6,6 @@ import operator
 import models
 import utils
 import bdd
-import controllers
 
 
 class Tournament:
@@ -94,8 +93,6 @@ class Tournament:
                 for match in value:
                     # Retrieve the players from each match
                     list_match_round_1.extend(match)
-
-        print(list_match_round_1)
 
         list_match_round_1.sort(key=operator.itemgetter(2, 1), reverse=True)
         # sort the players by points and then rank
