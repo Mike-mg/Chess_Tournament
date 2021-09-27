@@ -11,7 +11,7 @@ class ControllerPlayer:
     Controls the user input for the player model
     """
 
-    ALL_PLAYERS = bdd.deserialized_table_players()
+    ALL_PLAYERS = bdd.deserialize_table_players()
 
     def __init__(self):
 
@@ -40,7 +40,7 @@ class ControllerPlayer:
         )
 
         ControllerPlayer.ALL_PLAYERS.append(new_player)
-        bdd.serialized_player(ControllerPlayer.ALL_PLAYERS)
+        bdd.serialize_player(ControllerPlayer.ALL_PLAYERS)
 
     def modified_ranking(self):
         """
@@ -48,4 +48,4 @@ class ControllerPlayer:
         """
 
         self.view_player.new_player_ranking(ControllerPlayer.ALL_PLAYERS)
-        bdd.serialized_player(ControllerPlayer.ALL_PLAYERS)
+        bdd.serialize_player(ControllerPlayer.ALL_PLAYERS)

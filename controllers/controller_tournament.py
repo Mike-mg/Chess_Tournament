@@ -43,7 +43,7 @@ class ControllerTournament:
         """
         Displays the general information of the tournament
         """
-        self.view_tournament.show_tournament(bdd.deserialized_table_tournament())
+        self.view_tournament.show_tournament(bdd.deserialize_table_tournament())
 
     def result_round(self):
         """
@@ -52,13 +52,14 @@ class ControllerTournament:
 
         self.view_tournament.menu_tournament(ControllerTournament.TOURNAMENTS)
 
-        num_tournament, result_round_actual = self.view_tournament.result_round(
+        result_round = self.view_tournament.result_round(
             ControllerTournament.TOURNAMENTS
         )
 
-        tournament = ControllerTournament.TOURNAMENTS[num_tournament]
+        tournament = ControllerTournament.TOURNAMENTS[result_round[0]]
+        tournament.tours[result_round[1]][result_round[2]] = result_round[3]
 
         tournament.next_round()
 
     def save_tournament(self):
-        self.bdd.serialized_tournament(ControllerTournament.TOURNAMENTS)
+        self.bdd.serialize_tournament(ControllerTournament.TOURNAMENTS)

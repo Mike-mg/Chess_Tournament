@@ -6,7 +6,6 @@ import views
 """
 
 import datetime
-from operator import attrgetter
 
 import views
 import utils
@@ -235,7 +234,7 @@ class ViewTournament:
 
                 return key
 
-    def result_round(self, list_tournament: list):
+    def result_round(self, list_tournament: list) -> tuple:
         """
         Changes the points of the completed rounds
         """
@@ -244,9 +243,9 @@ class ViewTournament:
             input(f"\n{'-' * 41}\n{':: Select the tournament to be modified > '}")
         )
 
-        for key, tournament in enumerate(list_tournament):
+        for id_tournament, tournament in enumerate(list_tournament):
 
-            if key == select_tournament:
+            if id_tournament == select_tournament:
 
                 self.menu.sub_menu(f"[ Tournament : {tournament.name} ] ")
 
@@ -290,9 +289,7 @@ class ViewTournament:
 
                         results_round.append(match)
 
-                    tournament.tours[round_indicator][str_round] = results_round
-
-                    return key, results_round
+                    return id_tournament, round_indicator, str_round, results_round
 
 
 if __name__ == "__main__":

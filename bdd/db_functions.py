@@ -12,7 +12,7 @@ DB_TOURNAMENTS = TinyDB("bdd/db_tournaments.json", indent=4)
 TABLE_TOURNAMENTS = DB_TOURNAMENTS.table("tournaments")
 
 
-def deserialized_table_players(table_player=TABLE_PLAYERS) -> list[models.Player]:
+def deserialize_table_players(table_player=TABLE_PLAYERS) -> list[models.Player]:
     """
     Deserialized object players in var all_players
     """
@@ -36,7 +36,7 @@ def deserialized_table_players(table_player=TABLE_PLAYERS) -> list[models.Player
     return all_players
 
 
-def serialized_player(list_players_object: list[models.Player]):
+def serialize_player(list_players_object: list[models.Player]):
     """
     serialize the list of player objects in parameter
     """
@@ -59,7 +59,7 @@ def serialized_player(list_players_object: list[models.Player]):
     TABLE_PLAYERS.insert_multiple(serialized_players_for_table_players)
 
 
-def deserialized_table_tournament() -> list:
+def deserialize_table_tournament() -> list:
     """
     Deserialized object tournament in var all_tournaments
     """
@@ -100,7 +100,7 @@ def deserialized_table_tournament() -> list:
     return all_tournaments
 
 
-def serialized_tournament(list_tournament_object: list):
+def serialize_tournament(list_tournament_object: list):
     """
     serialize the list of tournament objects in parameter
     """
