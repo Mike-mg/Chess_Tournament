@@ -2,7 +2,6 @@
 # coding:utf-8
 
 import views
-import bdd
 import controllers
 
 

@@ -4,7 +4,6 @@ import bdd
 import models
 import views
 import utils
-import controllers
 
 
 class ViewPlayer:
