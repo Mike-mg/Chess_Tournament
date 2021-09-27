@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 # coding:utf-8
+import bdd
 import models
 import views
 import utils
@@ -34,7 +35,7 @@ class ViewPlayer:
             f"\n{'°' * 119}"
         )
 
-        for player in controllers.ControllerPlayer.ALL_PLAYERS:
+        for player in bdd.deserialize_table_players():
             print(
                 f"{str(player.player_id).center(10)} | "
                 f"{player.last_name.center(20)} | "
@@ -75,9 +76,9 @@ class ViewPlayer:
             input(f"\n{'-' * 41}\n{':: Select the player to be modified > '}")
         )
 
-        for key, player in enumerate(all_players):
+        for player in all_players:
 
-            if key == select_player:
+            if player.player_id == select_player:
                 print(
                     f"\n{'Select player :'} {player.last_name} {player.name}\n{'-' * 30}"
                 )
