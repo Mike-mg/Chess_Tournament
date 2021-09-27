@@ -34,10 +34,9 @@ class ViewPlayer:
             f"\n{'°' * 119}"
         )
 
-        for key, player in enumerate(controllers.ControllerPlayer.ALL_PLAYERS):
-
+        for player in controllers.ControllerPlayer.ALL_PLAYERS:
             print(
-                f"{str(key).center(10)} | "
+                f"{str(player.player_id).center(10)} | "
                 f"{player.last_name.center(20)} | "
                 f"{player.name.center(20)} | "
                 f"{player.birthday.center(15)} | "

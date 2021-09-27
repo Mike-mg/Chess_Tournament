@@ -15,6 +15,7 @@ class Player:
         sex: str,
         ranking: int,
         points: int = 0,
+        player_id: int = None,
     ):
 
         self.last_name = last_name.capitalize()
@@ -23,6 +24,7 @@ class Player:
         self.sex = sex.capitalize()
         self.ranking = ranking
         self.points = points
+        self.player_id = player_id
 
 
 if __name__ == "__main__":

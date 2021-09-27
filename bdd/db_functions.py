@@ -12,14 +12,15 @@ DB_TOURNAMENTS = TinyDB("bdd/db_tournaments.json", indent=4)
 TABLE_TOURNAMENTS = DB_TOURNAMENTS.table("tournaments")
 
 
-def deserialized_table_players() -> list[models.Player]:
+def deserialized_table_players(table_player=TABLE_PLAYERS) -> list[models.Player]:
     """
     Deserialized object players in var all_players
     """
 
     all_players = list()
 
-    for player in TABLE_PLAYERS.all():
+    for player in table_player.all():
+
         all_players.append(
             models.Player(
                 player["last_name"],
@@ -28,6 +29,7 @@ def deserialized_table_players() -> list[models.Player]:
                 player["sex"],
                 player["ranking"],
                 player["points"],
+                player.doc_id,
             )
         )
 
@@ -42,16 +44,16 @@ def serialized_player(list_players_object: list[models.Player]):
     serialized_players_for_table_players = list()
 
     for player in list_players_object:
-        tournament_serialized = dict()
+        player_serialized = dict()
 
-        tournament_serialized["last_name"] = player.last_name
-        tournament_serialized["name"] = player.name
-        tournament_serialized["birthday"] = player.birthday
-        tournament_serialized["sex"] = player.sex
-        tournament_serialized["ranking"] = player.ranking
-        tournament_serialized["points"] = player.points
+        player_serialized["last_name"] = player.last_name
+        player_serialized["name"] = player.name
+        player_serialized["birthday"] = player.birthday
+        player_serialized["sex"] = player.sex
+        player_serialized["ranking"] = player.ranking
+        player_serialized["points"] = player.points
 
-        serialized_players_for_table_players.append(tournament_serialized)
+        serialized_players_for_table_players.append(player_serialized)
 
     TABLE_PLAYERS.truncate()
     TABLE_PLAYERS.insert_multiple(serialized_players_for_table_players)
@@ -103,29 +105,25 @@ def serialized_tournament(list_tournament_object: list):
     serialize the list of tournament objects in parameter
     """
 
-    tournament_serialized = dict()
-    serialized_tournament_for_table_tournaments = list()
+    player_serialized = dict()
+    player_serialized_for_table_tournaments = list()
 
     for tournament in list_tournament_object:
 
-        players = []
-        for player in tournament.players:
-            players.append(player)
+        player_serialized["name"] = tournament.name
+        player_serialized["location"] = tournament.location
+        player_serialized["start_date"] = tournament.start_date
+        player_serialized["end_date"] = tournament.end_date
+        player_serialized["players"] = tournament.players
+        player_serialized["time_control"] = tournament.time_control
+        player_serialized["description"] = tournament.description
+        player_serialized["nb_rounds"] = tournament.nb_rounds
+        player_serialized["tours"] = tournament.tours
 
-        tournament_serialized["name"] = tournament.name
-        tournament_serialized["location"] = tournament.location
-        tournament_serialized["start_date"] = tournament.start_date
-        tournament_serialized["end_date"] = tournament.end_date
-        tournament_serialized["players"] = players
-        tournament_serialized["time_control"] = tournament.time_control
-        tournament_serialized["description"] = tournament.description
-        tournament_serialized["nb_rounds"] = tournament.nb_rounds
-        tournament_serialized["tours"] = tournament.tours
-
-        serialized_tournament_for_table_tournaments.append(tournament_serialized)
+        player_serialized_for_table_tournaments.append(player_serialized)
 
     TABLE_TOURNAMENTS.truncate()
-    TABLE_TOURNAMENTS.insert_multiple(serialized_tournament_for_table_tournaments)
+    TABLE_TOURNAMENTS.insert_multiple(player_serialized_for_table_tournaments)
 
 
 if __name__ == "__main__":

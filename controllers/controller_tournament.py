@@ -11,14 +11,12 @@ class ControllerTournament:
     Controls the creation of tournaments
     """
 
-    # BDD_TOURNAMENTS = bdd.deserialized_table_tournament()
     TOURNAMENTS = []
-    BDD_PLAYERS = bdd.deserialized_table_players()
-    BDD_TOURNAMENTS = bdd.deserialized_table_tournament()
 
     def __init__(self):
         self.view_tournament = views.ViewTournament()
         self.view_player = views.ViewPlayer()
+        self.bdd = bdd.db_functions
 
     def controller_add_tournament(self):
         """
@@ -39,14 +37,13 @@ class ControllerTournament:
         )
 
         ControllerTournament.TOURNAMENTS.append(tournament)
-        bdd.serialized_tournament(ControllerTournament.TOURNAMENTS)
         tournament.round_1()
 
     def show_tournament(self):
         """
         Displays the general information of the tournament
         """
-        self.view_tournament.show_tournament(ControllerTournament.BDD_TOURNAMENTS)
+        self.view_tournament.show_tournament(bdd.deserialized_table_tournament())
 
     def result_round(self):
         """
@@ -62,4 +59,6 @@ class ControllerTournament:
         tournament = ControllerTournament.TOURNAMENTS[num_tournament]
 
         tournament.next_round()
-        bdd.serialized_tournament(ControllerTournament.TOURNAMENTS)
+
+    def save_tournament(self):
+        self.bdd.serialized_tournament(ControllerTournament.TOURNAMENTS)

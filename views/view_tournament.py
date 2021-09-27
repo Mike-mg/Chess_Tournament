@@ -24,7 +24,7 @@ class ViewTournament:
         self.menu = views.ViewMenu()
         self.view_player = views.ViewPlayer()
 
-    def menu_tournament(self, list_tournament: list):
+    def menu_tournament(self, list_tournament: list) -> None:
         """
         Show menu tournament
         """
@@ -114,9 +114,7 @@ class ViewTournament:
 
         if len(list_tournament) == 0:
             print(
-                f"\n{'-' * 38}\n"
-                f"*** It does not have a tournament ***\n"
-                f"{'-' * 38}"
+                f"\n{'-' * 38}\n" f"*** No tournament completed yet ***\n" f"{'-' * 38}"
             )
 
         else:
@@ -131,20 +129,26 @@ class ViewTournament:
             for key, tournament in enumerate(list_tournament):
                 if key == select_tournament:
 
-                    self.menu.sub_menu(f"{tournament.name} - {tournament.description}")
+                    self.menu.sub_menu(
+                        f"Tournament : {tournament.name} - {tournament.description}"
+                    )
 
-                    # print(
-                    #     f"{':: Number tournament':<22}{'> '}{key}\n"
-                    #     f"{':: Name tournament':<22}{'> '}{tournament.name}\n"
-                    #     f"{':: Location':<22}{'> '}{tournament.location}\n"
-                    #     f"{':: Start date':<22}{'> '}{tournament.start_date}\n"
-                    #     f"{':: End date':<22}{'> '}{tournament.end_date}\n"
-                    #     f"{':: Nb rounds':<22}{'> '}{tournament.nb_rounds}\n"
-                    #     f"{':: Time control':<22}{'> '}{tournament.time_control}\n"
-                    #     f"{':: Description':<22}{'> '}{tournament.description}\n")
+                    print(
+                        f"\n\n{'*** General information ***':^119}\n"
+                        f"{'°' * 119}\n"
+                        f"{':: Number tournament':<22}{'> '}{key}\n"
+                        f"{':: Name tournament':<22}{'> '}{tournament.name}\n"
+                        f"{':: Location':<22}{'> '}{tournament.location}\n"
+                        f"{':: Start date':<22}{'> '}{tournament.start_date}\n"
+                        f"{':: End date':<22}{'> '}{tournament.end_date}\n"
+                        f"{':: Nb rounds':<22}{'> '}{tournament.nb_rounds}\n"
+                        f"{':: Time control':<22}{'> '}{tournament.time_control}\n"
+                        f"{':: Description':<22}{'> '}{tournament.description}\n"
+                    )
 
-                    print(f"\n\n{'*** Players sorted alphabetically ***':^119}\n"
-                          f"{'°' * 119}\n"
+                    print(
+                        f"\n\n{'*** Players sorted alphabetically ***':^119}\n"
+                        f"{'°' * 119}\n"
                         f"{'Last name':^20} | "
                         f"{'Name':^20} | "
                         f"{'Birthday':^15} | "
@@ -158,40 +162,45 @@ class ViewTournament:
                     for player in tournament.players:
                         players.append(player)
 
-                    players_sorted_alphabetically = sorted(players, key=lambda x: x.last_name)
+                    players_sorted_alphabetically = sorted(
+                        players, key=lambda x: x.last_name
+                    )
 
                     for i in players_sorted_alphabetically:
-                        print(f"{i.last_name:^20} | "
-                              f"{i.name:^20} | "
-                              f"{i.birthday:^15} | "
-                              f"{i.sex:^10} | "
-                              f"{i.ranking:^10} | "
-                              f"{i.points:^10}")
+                        print(
+                            f"{i.last_name:^20} | "
+                            f"{i.name:^20} | "
+                            f"{i.birthday:^15} | "
+                            f"{i.sex:^10} | "
+                            f"{i.ranking:^10} | "
+                            f"{i.points:^10}"
+                        )
 
-                    print(f"\n\n{'*** Players sorted by ranking order ***':^119}\n"
-                          f"{'=' * 119}\n"
-                          f"{'Last name':^20} | "
-                          f"{'Name':^20} | "
-                          f"{'Birthday':^15} | "
-                          f"{'Sex':^10} | "
-                          f"{'Ranking':^10} | "
-                          f"{'Points':^10}"
-                          f"\n{'°' * 119}"
-                          )
+                    print(
+                        f"\n\n{'*** Players sorted by ranking order ***':^119}\n"
+                        f"{'=' * 119}\n"
+                        f"{'Last name':^20} | "
+                        f"{'Name':^20} | "
+                        f"{'Birthday':^15} | "
+                        f"{'Sex':^10} | "
+                        f"{'Ranking':^10} | "
+                        f"{'Points':^10}"
+                        f"\n{'°' * 119}"
+                    )
 
                     players_sorted_ranking = sorted(players, key=lambda x: x.ranking)
 
                     for i in players_sorted_ranking:
-                        print(f"{i.last_name:^20} | "
-                              f"{i.name:^20} | "
-                              f"{i.birthday:^15} | "
-                              f"{i.sex:^10} | "
-                              f"{i.ranking:^10} | "
-                              f"{i.points:^10}")
+                        print(
+                            f"{i.last_name:^20} | "
+                            f"{i.name:^20} | "
+                            f"{i.birthday:^15} | "
+                            f"{i.sex:^10} | "
+                            f"{i.ranking:^10} | "
+                            f"{i.points:^10}"
+                        )
 
-                    print(f"\n\n{'List of all matches'.center(119)}\n"
-                          f"{'=' * 119}"
-                    )
+                    print(f"\n\n{'List of all matches'.center(119)}\n" f"{'=' * 119}")
 
                     rounds = ["round_1", "round_2", "round_3", "round_4"]
                     for all_round in tournament.tours:
@@ -199,12 +208,15 @@ class ViewTournament:
                         for key_round, value_round in all_round.items():
 
                             if key_round in rounds:
-                                print(f"\n{key_round.title()}\n"
-                                      f"{'-' * len(key_round)}")
+                                print(
+                                    f"\n{key_round.title()}\n" f"{'-' * len(key_round)}"
+                                )
 
                                 i = 1
                                 for player in value_round:
-                                    print(f"Match {i} : Player N°{player[0][0]} Vs player N°{player[1][0]}")
+                                    print(
+                                        f"Match {i} : Player N°{player[0][0]} Vs player N°{player[1][0]}"
+                                    )
                                     i += 1
 
     def choice_tournament(self, list_tournament: list) -> int:

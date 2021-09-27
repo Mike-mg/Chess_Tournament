@@ -49,7 +49,7 @@ class Tournament:
 
             player_dict = bdd.db_functions.TABLE_PLAYERS.get(doc_id=player)
 
-            list_round_1.append((player, player_dict['ranking'], player_dict['points']))
+            list_round_1.append((player, player_dict["ranking"], player_dict["points"]))
 
         list_round_1.sort(key=operator.itemgetter(1))
 
