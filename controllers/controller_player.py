@@ -30,7 +30,6 @@ class ControllerPlayer:
         """
 
         get_view_player = self.view_player.add_player()
-        print(get_view_player)
 
         new_player = models.Player(
             get_view_player[0],
