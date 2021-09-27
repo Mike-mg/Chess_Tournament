@@ -1,8 +1,9 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import controllers
 import views
+import bdd
+import controllers
 
 
 class ControllerMenu:
@@ -59,4 +60,5 @@ class ControllerMenu:
 
         elif choice == 7:
             # Leave program
+            self.controller_tournament.save_tournament()
             return False
