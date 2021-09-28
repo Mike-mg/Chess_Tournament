@@ -13,7 +13,7 @@
             "name": "Angelique",
             "birthday": "1974-03-03",
             "sex": "F",
-            "ranking": 1,
+            "ranking": 2,
             "points": 0
         },
         "3": {
@@ -126,6 +126,14 @@
             "birthday": "07/06/2020",
             "sex": "M",
             "ranking": 15,
+            "points": 0
+        },
+        "17": {
+            "last_name": "0",
+            "name": "",
+            "birthday": "",
+            "sex": "",
+            "ranking": 1,
             "points": 0
         }
     }

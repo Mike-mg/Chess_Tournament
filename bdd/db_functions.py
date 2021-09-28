@@ -59,15 +59,16 @@ def serialize_player(list_players_object: list[models.Player]):
     TABLE_PLAYERS.insert_multiple(serialized_players_for_table_players)
 
 
-def deserialize_table_tournament() -> list:
+def deserialize_table_tournaments() -> list:
     """
     Deserialized object tournament in var all_tournaments
     """
 
     all_tournaments = list()
-    players = []
 
     for tournament in TABLE_TOURNAMENTS.all():
+
+        players = list()
 
         for player in tournament["players"]:
             player_dict = TABLE_PLAYERS.get(doc_id=player)
@@ -122,7 +123,7 @@ def serialize_tournament(list_tournament_object: list):
 
         player_serialized_for_table_tournaments.append(player_serialized)
 
-    TABLE_TOURNAMENTS.truncate()
+    # TABLE_TOURNAMENTS.truncate()
     TABLE_TOURNAMENTS.insert_multiple(player_serialized_for_table_tournaments)
 
 

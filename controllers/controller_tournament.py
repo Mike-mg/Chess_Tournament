@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
+from tinydb import Query
 import views
 import models
 import bdd
@@ -16,7 +17,6 @@ class ControllerTournament:
     def __init__(self):
         self.view_tournament = views.ViewTournament()
         self.view_player = views.ViewPlayer()
-        self.bdd = bdd.db_functions
 
     def controller_add_tournament(self):
         """
@@ -38,28 +38,35 @@ class ControllerTournament:
 
         ControllerTournament.TOURNAMENTS.append(tournament)
         tournament.round_1()
+        bdd.serialize_tournament(ControllerTournament.TOURNAMENTS)
 
     def show_tournament(self):
         """
         Displays the general information of the tournament
         """
-        self.view_tournament.show_tournament(bdd.deserialize_table_tournament())
+
+        self.view_tournament.show_tournament(bdd.deserialize_table_tournaments())
 
     def result_round(self):
         """
         Changes the points of the players at the end of each round
         """
+        tournament_query = Query()
 
-        self.view_tournament.menu_tournament(ControllerTournament.TOURNAMENTS)
+        self.view_tournament.menu_tournament(bdd.deserialize_table_tournaments())
 
         result_round = self.view_tournament.result_round(
-            ControllerTournament.TOURNAMENTS
+            bdd.deserialize_table_tournaments()
         )
 
-        tournament = ControllerTournament.TOURNAMENTS[result_round[0]]
-        tournament.tours[result_round[1]][result_round[2]] = result_round[3]
+        for id_tournament, tournament in enumerate(bdd.deserialize_table_tournaments()):
 
-        tournament.next_round()
+            if id_tournament == result_round[0]:
 
-    def save_tournament(self):
-        self.bdd.serialize_tournament(ControllerTournament.TOURNAMENTS)
+                tournament.tours[result_round[1]][result_round[2]] = result_round[3]
+
+                tournament.next_round()
+
+                bdd.db_functions.TABLE_TOURNAMENTS.update({"tours":tournament.tours}, tournament_query.name == tournament.name)
+
+

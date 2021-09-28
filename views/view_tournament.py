@@ -7,8 +7,10 @@ import views
 
 import datetime
 
+import models
 import views
 import utils
+import bdd
 
 
 class ViewTournament:
@@ -106,7 +108,7 @@ class ViewTournament:
 
         return players
 
-    def show_tournament(self, list_tournament: list):
+    def show_tournament(self, list_tournament: list[models.Tournament]):
         """
         Show general tournament information
         """
@@ -129,20 +131,20 @@ class ViewTournament:
                 if key == select_tournament:
 
                     self.menu.sub_menu(
-                        f"Tournament : {tournament.name} - {tournament.description}"
+                        f"Tournament : {list_tournament[key].name} - {list_tournament[key].description}"
                     )
 
                     print(
                         f"\n\n{'*** General information ***':^119}\n"
                         f"{'°' * 119}\n"
                         f"{':: Number tournament':<22}{'> '}{key}\n"
-                        f"{':: Name tournament':<22}{'> '}{tournament.name}\n"
-                        f"{':: Location':<22}{'> '}{tournament.location}\n"
-                        f"{':: Start date':<22}{'> '}{tournament.start_date}\n"
-                        f"{':: End date':<22}{'> '}{tournament.end_date}\n"
-                        f"{':: Nb rounds':<22}{'> '}{tournament.nb_rounds}\n"
-                        f"{':: Time control':<22}{'> '}{tournament.time_control}\n"
-                        f"{':: Description':<22}{'> '}{tournament.description}\n"
+                        f"{':: Name tournament':<22}{'> '}{list_tournament[key].name}\n"
+                        f"{':: Location':<22}{'> '}{list_tournament[key].location}\n"
+                        f"{':: Start date':<22}{'> '}{list_tournament[key].start_date}\n"
+                        f"{':: End date':<22}{'> '}{list_tournament[key].end_date}\n"
+                        f"{':: Nb rounds':<22}{'> '}{list_tournament[key].nb_rounds}\n"
+                        f"{':: Time control':<22}{'> '}{list_tournament[key].time_control}\n"
+                        f"{':: Description':<22}{'> '}{list_tournament[key].description}\n"
                     )
 
                     print(
@@ -250,7 +252,7 @@ class ViewTournament:
                 self.menu.sub_menu(f"[ Tournament : {tournament.name} ] ")
 
                 if tournament.state is False:
-                    print("Finnish")
+                    print("Tournament finnish")
 
                 else:
 

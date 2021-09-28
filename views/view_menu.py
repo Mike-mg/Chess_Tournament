@@ -28,7 +28,7 @@ class ViewMenu:
         ]
 
         self.sub_menu(
-            r"/^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\"
+            r"//^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\"
         )
         self.sub_menu("* MENU *")
 
