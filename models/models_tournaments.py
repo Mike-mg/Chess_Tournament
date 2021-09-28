@@ -107,8 +107,7 @@ class Tournament:
                 match_control = [match[0][0], match[1][0]]
 
                 if (
-                    match_control in list_match_round_1
-                    or tuple(reversed(match_control)) in list_match_round_1
+                    match_control in list_match_round_1 or tuple(reversed(match_control)) in list_match_round_1
                 ):
 
                     match_control = (
@@ -118,7 +117,7 @@ class Tournament:
 
                     if (
                         match_control not in list_match_round_1
-                        or tuple(reversed(match_control)) not in list_match_round_1
+                            or tuple(reversed(match_control)) not in list_match_round_1
                     ):
                         list_match_next_round.append(match)
 

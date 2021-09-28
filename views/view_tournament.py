@@ -10,7 +10,6 @@ import datetime
 import models
 import views
 import utils
-import bdd
 
 
 class ViewTournament:
