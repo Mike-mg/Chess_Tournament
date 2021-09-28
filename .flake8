@@ -1,0 +1,4 @@
+[flake8]
+max-line-length = 119
+per-file-ignores = 
+	views/__init__.py:F401
