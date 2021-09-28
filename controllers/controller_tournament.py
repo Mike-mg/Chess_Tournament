@@ -2,6 +2,7 @@
 # coding:utf-8
 
 from tinydb import Query
+
 import views
 import models
 import bdd
@@ -12,11 +13,10 @@ class ControllerTournament:
     Controls the creation of tournaments
     """
 
-    TOURNAMENTS = []
-
     def __init__(self):
         self.view_tournament = views.ViewTournament()
         self.view_player = views.ViewPlayer()
+        self.tournaments = bdd.deserialize_table_tournaments()
 
     def controller_add_tournament(self):
         """
@@ -36,30 +36,48 @@ class ControllerTournament:
             main_info_tournament[5],
         )
 
-        ControllerTournament.TOURNAMENTS.append(tournament)
+        players_objets = list()
+
+        for player in tournament.players:
+
+            player_dict = bdd.db_functions.TABLE_PLAYERS.get(doc_id=player)
+
+            players_objets.append(
+                models.Player(
+                    player_dict["last_name"],
+                    player_dict["name"],
+                    player_dict["birthday"],
+                    player_dict["sex"],
+                    player_dict["ranking"],
+                    player_dict["points"],
+                    player
+                )
+            )
+
+            tournament.players = players_objets
+
+        self.tournaments.append(tournament)
         tournament.round_1()
-        bdd.serialize_tournament(ControllerTournament.TOURNAMENTS)
 
     def show_tournament(self):
         """
         Displays the general information of the tournament
         """
 
-        self.view_tournament.show_tournament(bdd.deserialize_table_tournaments())
+        self.view_tournament.show_tournament(self.tournaments)
 
     def result_round(self):
         """
         Changes the points of the players at the end of each round
         """
+
         tournament_query = Query()
 
-        self.view_tournament.menu_tournament(bdd.deserialize_table_tournaments())
+        self.view_tournament.menu_tournament(self.tournaments)
 
-        result_round = self.view_tournament.result_round(
-            bdd.deserialize_table_tournaments()
-        )
+        result_round = self.view_tournament.result_round(self.tournaments)
 
-        for id_tournament, tournament in enumerate(bdd.deserialize_table_tournaments()):
+        for id_tournament, tournament in enumerate(self.tournaments):
 
             if id_tournament == result_round[0]:
 
@@ -71,3 +89,10 @@ class ControllerTournament:
                     {"tours": tournament.tours},
                     tournament_query.name == tournament.name,
                 )
+
+    def save_tournaments(self, list_tournaments: list[models.Tournament]):
+        """
+        serialize all tournaments
+        """
+
+        bdd.serialize_tournament(list_tournaments)

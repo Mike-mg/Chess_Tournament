@@ -5,7 +5,6 @@ import operator
 
 import models
 import utils
-import bdd
 
 
 class Tournament:
@@ -46,10 +45,7 @@ class Tournament:
         list_round_1 = list()
 
         for player in self.players:
-
-            player_dict = bdd.db_functions.TABLE_PLAYERS.get(doc_id=player)
-
-            list_round_1.append((player, player_dict["ranking"], player_dict["points"]))
+            list_round_1.append((player.player_id, player.ranking, player.points))
 
         list_round_1.sort(key=operator.itemgetter(1))
 

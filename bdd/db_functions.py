@@ -106,16 +106,23 @@ def serialize_tournament(list_tournament_object: list):
     serialize the list of tournament objects in parameter
     """
 
+    TABLE_TOURNAMENTS.truncate()
+
     player_serialized = dict()
     player_serialized_for_table_tournaments = list()
 
     for tournament in list_tournament_object:
 
+        players_ids = list()
+
+        for player in tournament.players:
+            players_ids.append(player.player_id)
+
         player_serialized["name"] = tournament.name
         player_serialized["location"] = tournament.location
         player_serialized["start_date"] = tournament.start_date
         player_serialized["end_date"] = tournament.end_date
-        player_serialized["players"] = tournament.players
+        player_serialized["players"] = players_ids
         player_serialized["time_control"] = tournament.time_control
         player_serialized["description"] = tournament.description
         player_serialized["nb_rounds"] = tournament.nb_rounds
@@ -123,7 +130,6 @@ def serialize_tournament(list_tournament_object: list):
 
         player_serialized_for_table_tournaments.append(player_serialized)
 
-    # TABLE_TOURNAMENTS.truncate()
     TABLE_TOURNAMENTS.insert_multiple(player_serialized_for_table_tournaments)
 
 
