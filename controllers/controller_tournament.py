@@ -67,6 +67,7 @@ class ControllerTournament:
 
                 tournament.next_round()
 
-                bdd.db_functions.TABLE_TOURNAMENTS.update({"tours":tournament.tours}, tournament_query.name == tournament.name)
-
-
+                bdd.db_functions.TABLE_TOURNAMENTS.update(
+                    {"tours": tournament.tours},
+                    tournament_query.name == tournament.name,
+                )
