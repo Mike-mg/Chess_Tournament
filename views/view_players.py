@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
-import bdd
 import models
 import views
 import utils
@@ -16,7 +15,7 @@ class ViewPlayer:
 
         self.view_menu = views.ViewMenu()
 
-    def view_show_player(self):
+    def view_show_player(self, table_players) -> None:
         """
         Show all players
         """
@@ -35,7 +34,7 @@ class ViewPlayer:
             f"\n{'°' * 119}"
         )
 
-        for player in bdd.deserialize_table_players():
+        for player in table_players:
             print(
                 f"{str(player.player_id).center(10)} | "
                 f"{player.last_name.center(20)} | "
@@ -70,7 +69,7 @@ class ViewPlayer:
         Modified ranking player
         """
 
-        self.view_show_player()
+        self.view_show_player(all_players)
 
         select_player = int(
             input(f"\n{'-' * 41}\n{':: Select the player to be modified > '}")

@@ -5,9 +5,8 @@
             "name": "Michael",
             "birthday": "1979-07-13",
             "sex": "M",
-            "ranking": 1,
-            "points": 0,
-            "player_id": null
+            "ranking": 100,
+            "points": 0
         },
         "2": {
             "last_name": "Erd",
@@ -15,8 +14,7 @@
             "birthday": "1974-03-03",
             "sex": "F",
             "ranking": 2,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "3": {
             "last_name": "Yer",
@@ -24,8 +22,7 @@
             "birthday": "2006-02-26",
             "sex": "F",
             "ranking": 3,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "4": {
             "last_name": "Hyr",
@@ -33,8 +30,7 @@
             "birthday": "1998-04-24",
             "sex": "F",
             "ranking": 4,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "5": {
             "last_name": "Ruv",
@@ -42,8 +38,7 @@
             "birthday": "1997-02-12",
             "sex": "M",
             "ranking": 50,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "6": {
             "last_name": "Berton",
@@ -51,8 +46,7 @@
             "birthday": "1975-04-22",
             "sex": "F",
             "ranking": 60,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "7": {
             "last_name": "Ingram",
@@ -60,8 +54,7 @@
             "birthday": "1986-07-16",
             "sex": "M",
             "ranking": 70,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "8": {
             "last_name": "Hilton",
@@ -69,8 +62,7 @@
             "birthday": "1988-09-17",
             "sex": "M",
             "ranking": 80,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "9": {
             "last_name": "Bon",
@@ -78,8 +70,7 @@
             "birthday": "01/01/2021",
             "sex": "F",
             "ranking": 111,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "10": {
             "last_name": "Gates",
@@ -87,8 +78,7 @@
             "birthday": "12/12/2020",
             "sex": "M",
             "ranking": 100,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "11": {
             "last_name": "Anderson",
@@ -96,8 +86,7 @@
             "birthday": "12/12/2021",
             "sex": "F",
             "ranking": 25,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "12": {
             "last_name": "Byrne",
@@ -105,8 +94,7 @@
             "birthday": "12/12/2020",
             "sex": "F",
             "ranking": 33,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "13": {
             "last_name": "Cooper",
@@ -114,8 +102,7 @@
             "birthday": "11/12/2021",
             "sex": "F",
             "ranking": 57,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "14": {
             "last_name": "Evans",
@@ -123,8 +110,7 @@
             "birthday": "05/05/2020",
             "sex": "M",
             "ranking": 99,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "15": {
             "last_name": "Richardson",
@@ -132,8 +118,7 @@
             "birthday": "06/05/2020",
             "sex": "F",
             "ranking": 152,
-            "points": 0,
-            "player_id": null
+            "points": 0
         },
         "16": {
             "last_name": "Paterson",
@@ -141,8 +126,7 @@
             "birthday": "07/06/2020",
             "sex": "M",
             "ranking": 15,
-            "points": 0,
-            "player_id": null
+            "points": 0
         }
     }
 }

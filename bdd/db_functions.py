@@ -17,7 +17,7 @@ def deserialize_table_players(table_player=TABLE_PLAYERS) -> list[models.Player]
     Deserialized object players in var all_players
     """
 
-    all_players = list()
+    all_players = []
 
     for player in table_player.all():
 
@@ -41,10 +41,10 @@ def serialize_player(list_players_object: list[models.Player]):
     serialize the list of player objects in parameter
     """
 
-    serialized_players_for_table_players = list()
+    serialized_players_for_table_players = []
 
     for player in list_players_object:
-        player_serialized = dict()
+        player_serialized = {}
 
         player_serialized["last_name"] = player.last_name
         player_serialized["name"] = player.name
@@ -64,11 +64,11 @@ def deserialize_table_tournaments() -> list:
     Deserialized object tournament in var all_tournaments
     """
 
-    all_tournaments = list()
+    all_tournaments = []
 
     for tournament in TABLE_TOURNAMENTS.all():
 
-        players = list()
+        players = []
 
         for player in tournament["players"]:
             player_dict = TABLE_PLAYERS.get(doc_id=player)
@@ -108,12 +108,12 @@ def serialize_tournament(list_tournament_object: list):
 
     TABLE_TOURNAMENTS.truncate()
 
-    player_serialized = dict()
-    player_serialized_for_table_tournaments = list()
+    player_serialized = {}
+    player_serialized_for_table_tournaments = []
 
     for tournament in list_tournament_object:
 
-        players_ids = list()
+        players_ids = []
 
         for player in tournament.players:
             players_ids.append(player.player_id)

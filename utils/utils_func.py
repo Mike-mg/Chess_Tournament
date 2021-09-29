@@ -27,7 +27,7 @@ def clear_screen():
         os.system("clear")
 
 
-def time_t():
+def time_t() -> str:
     return datetime.datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
 
 

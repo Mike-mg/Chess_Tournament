@@ -122,9 +122,7 @@ class ViewTournament:
             self.menu.show_menu()
             self.menu_tournament(list_tournament)
 
-            select_tournament = int(
-                input(f"\n{'-' * 37}\n{':: Select the tournament to be show > '}")
-            )
+            select_tournament = self.choice_tournament(list_tournament)
 
             for key, tournament in enumerate(list_tournament):
                 if key == select_tournament:
@@ -240,9 +238,7 @@ class ViewTournament:
         Changes the points of the completed rounds
         """
 
-        select_tournament = int(
-            input(f"\n{'-' * 41}\n{':: Select the tournament to be modified > '}")
-        )
+        select_tournament = self.choice_tournament(list_tournament)
 
         for id_tournament, tournament in enumerate(list_tournament):
 

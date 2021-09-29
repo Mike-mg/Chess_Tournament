@@ -17,6 +17,7 @@ class ControllerTournament:
         self.view_tournament = views.ViewTournament()
         self.view_player = views.ViewPlayer()
         self.tournaments = bdd.deserialize_table_tournaments()
+        self.players = bdd.deserialize_table_players()
 
     def controller_add_tournament(self):
         """
@@ -36,7 +37,7 @@ class ControllerTournament:
             main_info_tournament[5],
         )
 
-        players_objets = list()
+        players_objets = []
 
         for player in tournament.players:
 
@@ -63,8 +64,9 @@ class ControllerTournament:
         """
         Displays the general information of the tournament
         """
+        return self.players
 
-        self.view_tournament.show_tournament(self.tournaments)
+        # self.view_tournament.show_tournament(self.tournaments)
 
     def result_round(self):
         """
@@ -77,18 +79,16 @@ class ControllerTournament:
 
         result_round = self.view_tournament.result_round(self.tournaments)
 
-        for id_tournament, tournament in enumerate(self.tournaments):
+        tournament = self.tournaments[result_round[0]]
 
-            if id_tournament == result_round[0]:
+        tournament.tours[result_round[1]][result_round[2]] = result_round[3]
 
-                tournament.tours[result_round[1]][result_round[2]] = result_round[3]
+        tournament.next_round()
 
-                tournament.next_round()
-
-                bdd.db_functions.TABLE_TOURNAMENTS.update(
-                    {"tours": tournament.tours},
-                    tournament_query.name == tournament.name,
-                )
+        bdd.db_functions.TABLE_TOURNAMENTS.update(
+            {"tours": tournament.tours},
+            tournament_query.name == tournament.name,
+        )
 
     def save_tournaments(self, list_tournaments: list[models.Tournament]):
         """
@@ -96,3 +96,6 @@ class ControllerTournament:
         """
 
         bdd.serialize_tournament(list_tournaments)
+
+    def players(self):
+        print("ok")

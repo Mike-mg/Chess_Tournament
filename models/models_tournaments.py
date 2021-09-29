@@ -74,8 +74,8 @@ class Tournament:
         """
 
         round_indicator = len(self.tours) - 1
-        list_match_round_1 = list()
-        list_match_next_round = list()
+        list_match_round_1 = []
+        list_match_next_round = []
 
         for key_dict_round, value in self.tours[round_indicator].items():
             # Retrieve the current round
@@ -103,7 +103,8 @@ class Tournament:
                 match_control = [match[0][0], match[1][0]]
 
                 if (
-                    match_control in list_match_round_1 or tuple(reversed(match_control)) in list_match_round_1
+                    match_control in list_match_round_1 or
+                        tuple(reversed(match_control)) in list_match_round_1
                 ):
 
                     match_control = (
