@@ -8,8 +8,8 @@ import views
 import datetime
 
 import models
-import views
 import utils
+import views
 
 
 class ViewTournament:
@@ -86,12 +86,12 @@ class ViewTournament:
             nb_rounds,
         )
 
-    def add_player_tournament(self) -> list:
+    def add_player_tournament(self, table_players) -> list:
         """
         Add player a tournament
         """
 
-        self.view_player.view_show_player()
+        self.view_player.view_show_player(table_players)
 
         print(
             f"\n{'Select players by their index to add them to the tournament'}\n"

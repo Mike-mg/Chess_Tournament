@@ -3,9 +3,9 @@
 
 from tinydb import Query
 
-import views
-import models
 import bdd
+import models
+import views
 
 
 class ControllerTournament:
@@ -16,8 +16,8 @@ class ControllerTournament:
     def __init__(self):
         self.view_tournament = views.ViewTournament()
         self.view_player = views.ViewPlayer()
-        self.tournaments = bdd.deserialize_table_tournaments()
         self.players = bdd.deserialize_table_players()
+        self.tournaments = bdd.deserialize_table_tournaments()
 
     def controller_add_tournament(self):
         """
@@ -25,7 +25,7 @@ class ControllerTournament:
         """
 
         main_info_tournament = self.view_tournament.main_tournament_info()
-        add_player = self.view_tournament.add_player_tournament()
+        add_player = self.view_tournament.add_player_tournament(self.players)
 
         tournament = models.models_tournaments.Tournament(
             main_info_tournament[0],
@@ -51,22 +51,21 @@ class ControllerTournament:
                     player_dict["sex"],
                     player_dict["ranking"],
                     player_dict["points"],
-                    player
+                    player,
                 )
             )
 
             tournament.players = players_objets
 
-        self.tournaments.append(tournament)
         tournament.round_1()
+        self.tournaments.append(tournament)
 
     def show_tournament(self):
         """
         Displays the general information of the tournament
         """
-        return self.players
 
-        # self.view_tournament.show_tournament(self.tournaments)
+        self.view_tournament.show_tournament(self.tournaments)
 
     def result_round(self):
         """
@@ -90,12 +89,9 @@ class ControllerTournament:
             tournament_query.name == tournament.name,
         )
 
-    def save_tournaments(self, list_tournaments: list[models.Tournament]):
+    def save_tournaments(self):
         """
         serialize all tournaments
         """
 
-        bdd.serialize_tournament(list_tournaments)
-
-    def players(self):
-        print("ok")
+        bdd.serialize_tournament(self.tournaments)

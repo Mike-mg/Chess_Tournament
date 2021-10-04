@@ -1,2 +1,3 @@
-from bdd.db_functions import serialize_player, deserialize_table_players, serialize_tournament, \
-    deserialize_table_tournaments
+from bdd.db_functions import (deserialize_table_players,
+                              deserialize_table_tournaments, serialize_player,
+                              serialize_tournament)

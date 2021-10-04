@@ -2,8 +2,8 @@
 # coding:utf-8
 
 import models
-import views
 import utils
+import views
 
 
 class ViewPlayer:

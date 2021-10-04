@@ -59,14 +59,16 @@ def serialize_player(list_players_object: list[models.Player]):
     TABLE_PLAYERS.insert_multiple(serialized_players_for_table_players)
 
 
-def deserialize_table_tournaments() -> list:
+def deserialize_table_tournaments(
+    table_tournaments=TABLE_TOURNAMENTS,
+) -> list[models.Tournament]:
     """
     Deserialized object tournament in var all_tournaments
     """
 
     all_tournaments = []
 
-    for tournament in TABLE_TOURNAMENTS.all():
+    for tournament in table_tournaments.all():
 
         players = []
 
@@ -108,29 +110,29 @@ def serialize_tournament(list_tournament_object: list):
 
     TABLE_TOURNAMENTS.truncate()
 
-    player_serialized = {}
-    player_serialized_for_table_tournaments = []
+    tournament_serialized_for_table_tournaments = []
 
     for tournament in list_tournament_object:
 
         players_ids = []
+        tournament_serialized = {}
 
         for player in tournament.players:
             players_ids.append(player.player_id)
 
-        player_serialized["name"] = tournament.name
-        player_serialized["location"] = tournament.location
-        player_serialized["start_date"] = tournament.start_date
-        player_serialized["end_date"] = tournament.end_date
-        player_serialized["players"] = players_ids
-        player_serialized["time_control"] = tournament.time_control
-        player_serialized["description"] = tournament.description
-        player_serialized["nb_rounds"] = tournament.nb_rounds
-        player_serialized["tours"] = tournament.tours
+        tournament_serialized["name"] = tournament.name
+        tournament_serialized["location"] = tournament.location
+        tournament_serialized["start_date"] = tournament.start_date
+        tournament_serialized["end_date"] = tournament.end_date
+        tournament_serialized["players"] = players_ids
+        tournament_serialized["time_control"] = tournament.time_control
+        tournament_serialized["description"] = tournament.description
+        tournament_serialized["nb_rounds"] = tournament.nb_rounds
+        tournament_serialized["tours"] = tournament.tours
 
-        player_serialized_for_table_tournaments.append(player_serialized)
+        tournament_serialized_for_table_tournaments.append(tournament_serialized)
 
-    TABLE_TOURNAMENTS.insert_multiple(player_serialized_for_table_tournaments)
+    TABLE_TOURNAMENTS.insert_multiple(tournament_serialized_for_table_tournaments)
 
 
 if __name__ == "__main__":

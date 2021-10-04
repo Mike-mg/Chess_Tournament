@@ -1,9 +1,9 @@
 #! /usr/bin/env python3
 # coding:utf-8
 
+import bdd
 import models
 import views
-import bdd
 
 
 class ControllerPlayer:
@@ -45,6 +45,5 @@ class ControllerPlayer:
         """
         Changes the player rank
         """
-
         self.view_player.new_player_ranking(self.players)
         bdd.serialize_player(self.players)
