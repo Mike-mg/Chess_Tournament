@@ -8,6 +8,23 @@ class ViewMenu:
     """
     menu view management
     """
+    MENU_LIST = [
+        "List of all players",
+        "Add a player",
+        "Modified ranking player",
+        "Add a tournament",
+        "Modified a tournament",
+        "List of all players in alphabetical order",
+        "List of all players by ranking order",
+        "List of all players in a tournament by ranking order",
+        "List of all players in a tournament in alphabetical order",
+        "List of all tournaments",
+        "List of all rounds in a tournament",
+        "List of all games in a tournament",
+        "Generate 'Flake8.html' report",
+        "Return menu",
+        "Leave -*- CHESS TOURNAMENT -*-"
+    ]
 
     def show_menu(self):
         """
@@ -16,31 +33,12 @@ class ViewMenu:
 
         utils.clear_screen()
 
-        menu_list = [
-            "List of all players",
-            "Add a player",
-            "Modified ranking player",
-            "List of all tournaments",
-            "Add a tournament",
-            "Modified a tournament",
-            "List of all players in alphabetical order",
-            "List of all players by ranking order",
-            "List of all players in a tournament by ranking order",
-            "List of all players in a tournament in alphabetical order",
-            "List of all tournaments",
-            "List of all rounds in a tournament",
-            "List of all games in a tournament",
-            "Generate 'Flake8.html' report",
-            "Return menu",
-            "Leave -*- CHESS TOURNAMENT -*-"
-        ]
-
         self.sub_menu(
             r"//^\ *** -*- WELCOME TO THE CHESS TOURNAMENT PROGRAM -*- *** /^\\"
         )
         self.sub_menu("* MENU *")
 
-        for index, m_menu in enumerate(menu_list):
+        for index, m_menu in enumerate(self.MENU_LIST):
             print(f"[ {index} ]  {m_menu}")
 
         print(f"{'-' * 119}")
@@ -52,7 +50,7 @@ class ViewMenu:
 
         choice = input(
             f"\n\n\n{'=' * 22}\n"
-            f"Help : 14 > Return menu"
+            f"Help : {len(self.MENU_LIST) - 2} > Return menu"
             f"\n{'-' * 22}"
             f"\n{':: Select a option > '}"
         )

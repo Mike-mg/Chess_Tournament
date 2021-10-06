@@ -44,54 +44,50 @@ class ControllerMenu:
             self.controller_player.modified_ranking()
 
         elif choice == 3:
-            # List tournament
-            self.controller_tournament.show_tournament()
-
-        elif choice == 4:
             # Add a tournament
             self.controller_tournament.controller_add_tournament()
 
-        elif choice == 5:
+        elif choice == 4:
             # Modified a tournament
             self.controller_tournament.result_round()
 
-        elif choice == 6:
+        elif choice == 5:
             # List of all actors in alphabetical order
             self.view_tournament.show_all_players_alphabetical(bdd.deserialize_table_players())
 
-        elif choice == 7:
+        elif choice == 6:
             # List of all players in order of ranking
             self.view_tournament.show_all_players_ranking(bdd.deserialize_table_players())
 
-        elif choice == 8:
+        elif choice == 7:
             # List of all players in a tournament by ranking order
             self.view_tournament.show_all_players_ranking_by_tournament(bdd.deserialize_table_tournaments())
 
-        elif choice == 9:
+        elif choice == 8:
             # List of all players in a tournament in alphabetical order
             self.view_tournament.show_all_players_alphabetical_by_tournament(bdd.deserialize_table_tournaments())
 
-        elif choice == 10:
+        elif choice == 9:
             # List of all tournaments
             self.view_tournament.show_all_tournaments(bdd.deserialize_table_tournaments())
 
-        elif choice == 11:
+        elif choice == 10:
             # List of all rounds in a tournament
             self.view_tournament.show_all_rounds_by_tournaments(bdd.deserialize_table_tournaments())
 
-        elif choice == 12:
+        elif choice == 11:
             # List of all games in a tournament
             self.view_tournament.show_all_match_by_tournaments(bdd.deserialize_table_tournaments())
 
-        elif choice == 13:
+        elif choice == 12:
             # Generate flake8.html
             utils.report_flake8_html()
 
-        elif choice == 14:
+        elif choice == 13:
             # show menu
             self.show_menu()
 
-        elif choice == 15:
+        elif choice == 14:
             # Leave program
             self.controller_tournament.save_tournaments()
             return False

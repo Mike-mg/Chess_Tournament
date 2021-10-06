@@ -17,7 +17,7 @@
 `pip install -r requirements.txt`
 ####
 - Program launch  
-`./Books_to_Scrape.py`
+`./main.py`
 ####
 - To disable the working environment  
 `deactivate`
