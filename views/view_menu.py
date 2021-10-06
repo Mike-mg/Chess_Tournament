@@ -8,20 +8,21 @@ class ViewMenu:
     """
     menu view management
     """
+
     MENU_LIST = [
         "List of all players",
         "Add a player",
         "Modified ranking player",
         "Add a tournament",
         "Modified a tournament",
-        "List of all players in alphabetical order",
-        "List of all players by ranking order",
-        "List of all players in a tournament by ranking order",
-        "List of all players in a tournament in alphabetical order",
-        "List of all tournaments",
-        "List of all rounds in a tournament",
-        "List of all games in a tournament",
-        "Generate 'Flake8.html' report",
+        "(report) List of all players in alphabetical order",
+        "(report) List of all players by ranking order",
+        "(report) List of all players in a tournament by ranking order",
+        "(report) List of all players in a tournament in alphabetical order",
+        "(report) List of all tournaments",
+        "(report) List of all rounds in a tournament",
+        "(report) List of all games in a tournament",
+        "(report) Generate file html 'folder flake-report'",
         "Return menu",
         "Leave -*- CHESS TOURNAMENT -*-"
     ]
