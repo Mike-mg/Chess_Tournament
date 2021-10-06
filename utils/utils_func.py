@@ -30,10 +30,16 @@ def clear_screen() -> None:
 
 
 def time_t() -> str:
+    """
+    get time
+    """
     return datetime.datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
 
 
 def report_flake8_html() -> None:
+    """
+    Save all reports in flake8-report
+    """
 
     for path in DIRECTORY:
         os.system(f"flake8 {path} --format=html --htmldir=flake-report/reports_{path}")

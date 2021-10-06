@@ -40,6 +40,6 @@
 9. Displays a report of all tournaments (name, location, description, start date and end date)
 10. Displays a report of all rounds in a tournament
 11. Displays a report of all matches in a tournament
-12. Displays a report of the correct operation of the program (per module)
+12. Displays a report ( flake8-html ) of the correct operation of the program ( per module )
 13. Back to main menu
 14. Quit and save the program 

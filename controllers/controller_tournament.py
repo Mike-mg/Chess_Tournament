@@ -35,6 +35,7 @@ class ControllerTournament:
             add_player,
             main_info_tournament[4],
             main_info_tournament[5],
+            main_info_tournament[6]
         )
 
         players_objets = []
@@ -59,13 +60,6 @@ class ControllerTournament:
 
         tournament.round_1()
         self.tournaments.append(tournament)
-
-    def show_tournament(self):
-        """
-        Displays the general information of the tournament
-        """
-
-        pass
 
     def result_round(self):
         """
