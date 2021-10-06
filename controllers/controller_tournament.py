@@ -65,7 +65,7 @@ class ControllerTournament:
         Displays the general information of the tournament
         """
 
-        self.view_tournament.show_tournament(self.tournaments)
+        pass
 
     def result_round(self):
         """

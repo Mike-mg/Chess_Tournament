@@ -5,6 +5,8 @@ import datetime
 import os
 import sys
 
+DIRECTORY = ["bdd", "controllers", "main.py", "models", "utils", "views"]
+
 
 def format_string(get_string: str) -> str:
     """
@@ -14,7 +16,7 @@ def format_string(get_string: str) -> str:
     return input(f":: {get_string} > ")
 
 
-def clear_screen():
+def clear_screen() -> None:
     """
     Clear the screen
     """
@@ -29,6 +31,12 @@ def clear_screen():
 
 def time_t() -> str:
     return datetime.datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
+
+
+def report_flake8_html() -> None:
+
+    for path in DIRECTORY:
+        os.system(f"flake8 {path} --format=html --htmldir=flake-report/reports_{path}")
 
 
 if __name__ == "__main__":

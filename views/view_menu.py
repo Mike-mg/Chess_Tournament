@@ -23,8 +23,16 @@ class ViewMenu:
             "List of all tournaments",
             "Add a tournament",
             "Modified a tournament",
+            "List of all players in alphabetical order",
+            "List of all players by ranking order",
+            "List of all players in a tournament by ranking order",
+            "List of all players in a tournament in alphabetical order",
+            "List of all tournaments",
+            "List of all rounds in a tournament",
+            "List of all games in a tournament",
+            "Generate 'Flake8.html' report",
             "Return menu",
-            "Leave -*- CHESS TOURNAMENT -*-",
+            "Leave -*- CHESS TOURNAMENT -*-"
         ]
 
         self.sub_menu(
@@ -44,7 +52,7 @@ class ViewMenu:
 
         choice = input(
             f"\n\n\n{'=' * 22}\n"
-            f"Help : 6 > Return menu"
+            f"Help : 14 > Return menu"
             f"\n{'-' * 22}"
             f"\n{':: Select a option > '}"
         )
